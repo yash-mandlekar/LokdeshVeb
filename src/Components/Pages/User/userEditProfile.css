@@ -1,0 +1,218 @@
+.editProfile {
+  display: flex;
+  width: 100vw;
+  margin-top: 4%;
+}
+.editProfileLeft {
+  width: 25%;
+  float: left;
+  background-color: #f4fbff;
+}
+.editProfileLeftBox {
+  margin-top: 4%;
+  padding: 20px;
+  margin-left: 10%;
+  width: 80%;
+  height: 20vh;
+  box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
+    6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
+    12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
+    22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
+    41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05),
+    100px 100px 80px rgba(0, 0, 0, 0.07);
+  background-color: whitesmoke;
+}
+.editProfileLeftBox1 {
+  display: flex;
+  padding-left: 20px;
+  height: 5vh;
+  color: rgb(67, 6, 78);
+  font-size: 1vmax;
+  text-decoration: none;
+}
+.editProfileLeftBox1 a {
+  text-decoration: none;
+  color: rgb(67, 6, 78);
+}
+
+.editProfileCenter {
+  width: 60%;
+  height: 100%;
+  background-color: rgb(255, 255, 255);
+}
+.editProfileCenterBox1 {
+  margin-top: 2%;
+  display: flex;
+  height: 20vh;
+  box-shadow: 12.8px 12.8px 12.2px rgba(0, 0, 0, 0.02);
+}
+.editProfileCenterBox1Left {
+  width: 20%;
+  height: 100%;
+  border-radius: 50%;
+}
+.editProfileCenterBox1Left img {
+  width: 100%;
+  height: 100%;
+}
+.editProfileRight {
+  width: 25%;
+  height: 100vh;
+  float: right;
+  background-color: #f4fbff;
+}
+.editProfileRightBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5%;
+  margin-left: 10%;
+  width: 80%;
+  height: 10vh;
+  box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
+    6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
+    12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
+    22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
+    41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05),
+    100px 100px 80px rgba(0, 0, 0, 0.07);
+  background-color: whitesmoke;
+}
+.editProfileRightBox button {
+  background-color: rgb(138, 138, 138);
+  border: none;
+  color: #ffffff;
+  padding: 8px 32px;
+  font-size: 1vmax;
+  border-radius: 4px;
+}
+.editProfileRightBox2 {
+  margin-top: 14%;
+  margin-left: 10%;
+  width: 80%;
+  height: 20vh;
+  background-color: whitesmoke;
+  box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
+    6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
+    12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
+    22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
+    41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05),
+    100px 100px 80px rgba(0, 0, 0, 0.07);
+}
+.editProfileCenterBox1Right {
+  width: 80%;
+  height: 100%;
+  padding-left: 25px;
+}
+.editProfileCenterBox1Right h3 {
+  font-size: 1.4vmax;
+  color: rgb(67, 6, 78);
+  font-family: gilroy;
+  font-weight: 10;
+}
+.editProfileCenterBox1Right p {
+  margin-top: 2%;
+  font-size: 1vmax;
+  color: rgb(34, 90, 168);
+  font-family: cursive;
+}
+.editPRofileCenter {
+  margin-top: 1%;
+  display: flex;
+  color: black;
+}
+.editPRofileCenter input {
+  width: 52vw;
+  height: 5vh;
+  font-size: 1vmax;
+  font-weight: 10;
+  border: 1px solid rgb(233, 230, 230);
+  margin-top: 2%;
+  padding-left: 14px;
+  border-radius: 5px;
+}
+.editPRofileCenter input:focus {
+  outline: none;
+}
+.editPRofileCenter label {
+  margin-top: 2%;
+  border: none;
+  font-size: 1vmax;
+  font-weight: 10;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+.editPRofileCenter button {
+  padding: 10px;
+  width: 10vw;
+  margin-top: 4%;
+  border: none;
+  font-size: 1vmax;
+  color: white;
+  font-weight: 800;
+  background-color: rgb(0, 200, 255);
+}
+
+
+
+
+@media (max-width: 600px) {
+    .editProfile {
+        display: flex;
+        width: 100vw;
+        margin-top: 4%;
+      }
+      .editProfileLeft {
+        margin-top: 12%;
+        width: 25%;
+        float: left;
+        background-color: #f4fbff;
+        display: none;
+      }
+  .editProfileCenter {
+    padding: 15px;
+    margin-top: 10%;
+    display: initial;
+    width: 100%;
+  }
+  .editProfileCenterBox1{
+    height: 100%;
+    width: 100%;
+  }
+  .editProfileCenterBox1Left{
+    width: 30%;
+    height: 100%;
+  }
+  .editProfileCenterBox1Right{
+    width: 70%;
+    height: 100%;
+  }
+  .editPRofileCenter{
+    display: flex;
+    flex-direction: column;
+  }
+  .editPRofileCenter input {
+    width: 100%;
+    height: 5vh;
+    font-size: 1vmax;
+    font-weight: 10;
+    border: 1px solid rgb(233, 230, 230);
+    margin-top: 2%;
+    padding-left: 14px;
+    border-radius: 5px;
+  }
+  .editProfileCenter button{
+    width: 20%;
+  }
+ 
+
+
+
+
+
+
+
+
+  .editProfileRight {
+    display: none;
+  }
+}

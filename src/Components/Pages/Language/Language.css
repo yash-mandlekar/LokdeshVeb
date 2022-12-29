@@ -1,0 +1,87 @@
+.Language {
+  width: 84%;
+  height: 100vh;
+  font-family: Noto Sans Black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+.Language h1 {
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 900;
+  color: rgb(255, 191, 0);
+}
+.Language__container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+.LCB {
+  border: rgba(255, 222, 173, 0);
+  height: 6vh;
+  width: 8vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgb(234, 234, 234);
+  background-color: white;
+  border-radius: 22px;
+  font-size: 1.5rem;
+  margin-left: 2%;
+  margin-top: 2%;
+  font-family: "Noto Sans KR", sans-serif;
+}
+.LCB:hover {
+  border: 1px solid rgb(255, 191, 0);
+  color: rgb(33, 29, 29);
+  background-color: rgb(255, 254, 247);
+}
+.Language a {
+  display: flex;
+  border-radius: 28px;
+  margin-top: 5%;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: black;
+  width: 14vmax;
+  height: 5vmax;
+  font-size: 12px;
+}
+@media (max-width: 600px) {
+  .Language {
+    overflow: hidden;
+    margin-top: 6%;
+    width: 100vw;
+  }
+  .Language__container {
+    width: 100%;
+    color: black;
+  }
+  .LCB {
+    width: 30vw;
+    height: 10vh;
+    font-size: 1.5rem;
+    margin-left: 0;
+    margin-top: 2%;
+    font-weight: 100;
+  }
+  .Language a {
+    margin-top: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: black;
+    width: 14vmax;
+    height: 5vmax;
+    font-size: 1.5vmax;
+    /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
+
+  }
+}
