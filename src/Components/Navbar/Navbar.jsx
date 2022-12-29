@@ -6,8 +6,11 @@ import Playstorelogo from "../images/playstore.png";
 import Applestorelogo from "../images/lolobg.png";
 import { Link } from "react-router-dom";
 import Axios from "../Axios/Axios";
-
-const Navbar = ({ theme, setTheme }) => {
+import { useDispatch, useSelector } from "react-redux";
+import { changeTheme } from "../../Redux/Actions/Theme";
+const Navbar = () => {
+  const dispatch = useDispatch();
+  const { ThemeRed } = useSelector((state) => state);
   const [isOpen, setIsOpen] = useState(false);
   const [navItems, setNavItems] = useState([
     {
@@ -37,15 +40,6 @@ const Navbar = ({ theme, setTheme }) => {
     },
   ]);
 
-  const handleTheme = () => {
-    if (theme === "light") {
-      setTheme("dark");
-      localStorage.setItem("theme", "dark");
-    } else {
-      setTheme("light");
-      localStorage.setItem("theme", "light");
-    }
-  };
   const handleNavItems = async () => {
     const lang2 = localStorage.getItem("language");
     const cpy = [];
@@ -67,16 +61,16 @@ const Navbar = ({ theme, setTheme }) => {
     handleNavItems();
   }, []);
   return (
-    <div className={`Navbar ${theme === "light" ? "" : "Navbar-dark"}`}>
+    <div className={`Navbar ${ThemeRed === "light" ? "" : "Navbar-dark"}`}>
       <span className="nav-logo">
         <Link to="/" onClick={() => setIsOpen(false)}>
-          <img src={theme === "dark" ? Darklogo : Logo} alt="" />
+          <img src={ThemeRed === "dark" ? Darklogo : Logo} alt="" />
         </Link>
       </span>
 
       <div
         className={`nav-items ${isOpen && "open"} ${
-          theme === "light" ? "" : "Navbar-dark"
+          ThemeRed === "light" ? "" : "Navbar-dark"
         }`}
       >
         {navItems.map((item, i) => (
@@ -85,24 +79,12 @@ const Navbar = ({ theme, setTheme }) => {
             {item.title}
           </Link>
         ))}
-        {/* <Link to="/video" onClick={() => setIsOpen(false)}>
-          <i className="bi bi-play-circle"></i>वीडियो
-        </Link>
-        <Link to="/Epaper" onClick={() => setIsOpen(!isOpen)}>
-          <i className="bi bi-newspaper"></i>ई-पेपर
-        </Link>
-        <Link to="/Login" onClick={() => setIsOpen(!isOpen)}>
-          <i className="bi bi-box-arrow-in-right"></i> लॉग इन करें
-        </Link>
-        <Link to="/user" onClick={() => setIsOpen(!isOpen)}>
-          <i className="bi bi-person-circle"></i>यूजर
-        </Link> */}
 
         <a
-          onClick={handleTheme}
-          className={`${theme === "dark" ? "Navbar-dark" : ""}`}
+          onClick={() => dispatch(changeTheme())}
+          className={`${ThemeRed === "dark" ? "Navbar-dark" : ""}`}
         >
-          {theme === "light" ? (
+          {ThemeRed === "light" ? (
             <>
               <i className="bi bi-moon"></i>
             </>

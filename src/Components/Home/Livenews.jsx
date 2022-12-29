@@ -1,8 +1,11 @@
 import moment from "moment/moment";
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-const News = ({ theme, NewsData }) => {
+const News = ({  NewsData }) => {
+  const { ThemeRed } = useSelector((state) => state);
+
   const navigate = useNavigate();
   return (
     <div className="news">
@@ -19,12 +22,12 @@ const News = ({ theme, NewsData }) => {
               </div>
               <div className="Newsright">
                 <h1
-                  style={{ color: `${theme === "light" ? "black" : "white"}` }}
+                  style={{ color: `${ThemeRed === "light" ? "black" : "white"}` }}
                 >
                   {e.metaTitle.length > 50 ? (
                     <span
                       style={{
-                        color: `${theme === "light" ? "black" : "white"}`,
+                        color: `${ThemeRed === "light" ? "black" : "white"}`,
                       }}
                     >
                       <h3>Live</h3>
@@ -37,7 +40,7 @@ const News = ({ theme, NewsData }) => {
                 {e.metaDescription.length > 150 ? (
                   <p
                     style={{
-                      color: `${theme === "light" ? "black" : "white"}`,
+                      color: `${ThemeRed === "light" ? "black" : "white"}`,
                     }}
                   >
                     {/* {new Date(e.createdAt).toLocaleTimeString()} : 
@@ -53,7 +56,7 @@ const News = ({ theme, NewsData }) => {
                 ) : (
                   <p
                     style={{
-                      color: `${theme === "light" ? "black" : "white"}`,
+                      color: `${ThemeRed === "light" ? "black" : "white"}`,
                     }}
                   >
                     {e.metaDescription}

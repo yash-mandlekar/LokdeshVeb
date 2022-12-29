@@ -11,17 +11,20 @@ import {
   WhatsappShareButton,
   WhatsappIcon,
 } from "react-share";
+import { useSelector } from "react-redux";
 
-const SingleNews = ({ theme }) => {
+const SingleNews = () => {
   const { id } = useParams();
+  const { ThemeRed } = useSelector((state) => state);
   const [NewsData, setNewsData] = useState({});
   useEffect(() => {
     getNews();
   }, []);
   useEffect(() => {
-    document.body.style.backgroundColor = theme === "light" ? "white" : "black";
-    document.body.style.color = theme === "light" ? "black" : "white";
-  }, [theme]);
+    document.body.style.backgroundColor =
+      ThemeRed === "light" ? "white" : "black";
+    document.body.style.color = ThemeRed === "light" ? "black" : "white";
+  }, []);
   const getNews = async () => {
     const lang2 = localStorage.getItem("language");
     const res = await Axios.get(`/news/${id}`);
@@ -48,7 +51,7 @@ const SingleNews = ({ theme }) => {
       <div className="newsmain">
         <div className="NewsmainHeading">
           <h2>
-            <Link to="/">Home</Link> / 
+            <Link to="/">Home</Link> /
           </h2>
           <h1>{NewsData.metaTitle}</h1>
         </div>

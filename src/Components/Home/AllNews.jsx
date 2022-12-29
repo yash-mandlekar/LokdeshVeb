@@ -12,9 +12,11 @@ import {
   WhatsappIcon,
 } from "react-share";
 import ReactPlayer from "../ReactPlayer/ReactPlayer";
+import { useSelector } from "react-redux";
 
-const SingleNews = ({ theme, NewsData, handlePlayerReady }) => {
-  // const shareUrl = "";
+const SingleNews = ({ NewsData, handlePlayerReady }) => {
+  const { ThemeRed } = useSelector((state) => state);
+
   const navigate = useNavigate();
   return (
     <>
@@ -24,34 +26,32 @@ const SingleNews = ({ theme, NewsData, handlePlayerReady }) => {
             <div
               key={i}
               className={
-                theme === "light" ? "TrendingNews" : "TrendingNewsDark"
+                ThemeRed === "light" ? "TrendingNews" : "TrendingNewsDark"
               }
             >
               <div className="TrendingNewsLeft">
                 <div className="TrendingNewsLeftImg">
-                {e.fileType === "video" && (
-
-                  <div 
-                    style={{
-                      width: "100%",
-                      
-                    }}
-                  >
-                    <ReactPlayer
-                      options={{
-                        controls: true,
-                        responsive: true,
-                        fluid: true,
-                        sources: [
-                          {
-                            src: `data:video/mp4;base64,${e.file}`,
-                            type: "video/mp4",
-                          },
-                        ],
+                  {e.fileType === "video" && (
+                    <div
+                      style={{
+                        width: "100%",
                       }}
-                      onReady={handlePlayerReady}
-                    />
-                  </div>
+                    >
+                      <ReactPlayer
+                        options={{
+                          controls: true,
+                          responsive: true,
+                          fluid: true,
+                          sources: [
+                            {
+                              src: `data:video/mp4;base64,${e.file}`,
+                              type: "video/mp4",
+                            },
+                          ],
+                        }}
+                        onReady={handlePlayerReady}
+                      />
+                    </div>
                   )}
 
                   {e.fileType === "image" && (
@@ -65,22 +65,28 @@ const SingleNews = ({ theme, NewsData, handlePlayerReady }) => {
 
                   <div
                     className={
-                      theme === "light"
+                      ThemeRed === "light"
                         ? "TrendingNewsLeftIcons"
                         : "TrendingNewsLeftIconsDark"
                     }
                   >
                     {/* {SingleData.file} */}
 
-                    <FacebookShareButton url={`http://lokdeshtv.com/news/${e._id}`}>
+                    <FacebookShareButton
+                      url={`http://lokdeshtv.com/news/${e._id}`}
+                    >
                       <FacebookIcon size={26} round />
                     </FacebookShareButton>
 
-                    <TwitterShareButton url={`http://lokdeshtv.com/news/${e._id}`}>
+                    <TwitterShareButton
+                      url={`http://lokdeshtv.com/news/${e._id}`}
+                    >
                       <TwitterIcon size={26} round />
                     </TwitterShareButton>
 
-                    <WhatsappShareButton url={`http://lokdeshtv.com/news/${e._id}`}>
+                    <WhatsappShareButton
+                      url={`http://lokdeshtv.com/news/${e._id}`}
+                    >
                       <WhatsappIcon size={26} round />
                     </WhatsappShareButton>
                   </div>
@@ -91,40 +97,28 @@ const SingleNews = ({ theme, NewsData, handlePlayerReady }) => {
                 onClick={() => navigate(`/news/${e._id}`)}
               >
                 <h1
-                  style={{ color: `${theme === "light" ? "black" : "white"}` }}
+                  style={{
+                    color: `${ThemeRed === "light" ? "black" : "white"}`,
+                  }}
                 >
                   <span className={`red`}></span>
                   {e.metaTitle.slice(0, 280)} ..
                 </h1>
                 <br />
-                {/* <h6
-                  style={{
-                    color: `${theme === "light" ? "black" : "#b1b1b1"}`,
-                  }}
-                >
-                  {e.metaDescription.slice(0, 200)}...
-                </h6> */}
-                {/* <h4>{moment
-                      .utc(new Date(e.createdAt).toLocaleString())
-                      .local()
-                      .startOf("seconds")
-                      .fromNow()} ago</h4> */}
                 <h3>
-                 
                   <span> {e.location}</span>
                 </h3>
               </div>
             </div>
-            
           )
-          
       )}
       <div className="FeedbackPhone">
-      <Link to="/feedback">
-        <h1><i className="bi bi-pencil-square"></i></h1>
-      </Link>
+        <Link to="/feedback">
+          <h1>
+            <i className="bi bi-pencil-square"></i>
+          </h1>
+        </Link>
       </div>
-      
     </>
   );
 };

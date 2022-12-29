@@ -4,10 +4,12 @@ import Category from "../Home/Category";
 import News from "../Home/Livenews";
 import Axios from "../Axios/Axios";
 import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-const Categories = ({ theme }) => {
+const Categories = () => {
+  const { ThemeRed } = useSelector((state) => state);
   const { category } = useParams();
-  const [NewsData, setNewsData] = useState([  ]);
+  const [NewsData, setNewsData] = useState([]);
   const [categories, setcategories] = useState([]);
   useEffect(() => {
     getNews();
@@ -82,18 +84,17 @@ const Categories = ({ theme }) => {
       <div
         className="d-flex mt-5"
         style={{
-          backgroundColor: `${theme === "light" ? "white" : "black"}`,
-          color: `${theme === "light" ? "black" : "white"}`,
+          backgroundColor: `${ThemeRed === "light" ? "white" : "black"}`,
+          color: `${ThemeRed === "light" ? "black" : "white"}`,
         }}
       >
         <Category
-          theme={theme}
           categories={categories}
           setNewsData={setNewsData}
           filterNews={filterNews}
         />
-        <Debate NewsData={NewsData} theme={theme} show={false} />
-        <News NewsData={NewsData} theme={theme} />
+        <Debate NewsData={NewsData} show={false} />
+        <News NewsData={NewsData} />
       </div>
     </>
   );

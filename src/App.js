@@ -20,8 +20,6 @@ import Language from "./Components/Pages/Language/Language.jsx";
 // import SingleFeed from "./Components/Pages/User/singleFedd";
 
 const App = () => {
-  const [theme, setTheme] = useState(localStorage.getItem("theme") ?? "light");
-  const [User, setUser] = useState();
   useEffect(() => {
     const lang = localStorage.getItem("language");
     if (!lang) {
@@ -32,16 +30,16 @@ const App = () => {
   return (
     <div>
       <BrowserRouter>
-        <Navbar theme={theme} setTheme={setTheme} />
+        <Navbar />
         <Routes>
-          <Route path="/" element={<Home theme={theme} />} />
+          <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/video" element={<Video />} />
           <Route path="/Epaper" element={<Epaper />} />
-          <Route path="/news/:id" element={<SingleNews theme={theme} />} />
+          <Route path="/news/:id" element={<SingleNews/>} />
           <Route path="/user" element={<UserProfile />} />
           <Route path="/feedback" element={<Mailer />} />
-          <Route path="/:category" element={<Categories theme={theme} />} />
+          <Route path="/:category" element={<Categories/>} />
           <Route path="/epaper/:city" element={<LocationEpaper />} />
           <Route path="/web/:id" element={<FullScreenPaper />} />
           <Route path="/otp" element={<Otp />} />
