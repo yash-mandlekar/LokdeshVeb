@@ -15,41 +15,24 @@ import {
   WhatsappIcon,
 } from "react-share";
 import { useDispatch, useSelector } from "react-redux";
-import { loadShort } from "../../../Store/Actions/Shorts";
+import { likeShort, loadShort } from "../../../Store/Actions/Shorts";
 const SingleVideo = () => {
-  const { shorts } = useSelector((state) => state);
+  const { shorts, auth } = useSelector((state) => state);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
   const [VideoData, setVideoData] = useState({});
-  const [Heart, setHeart] = useState(false);
-  const [loader, setLoader] = useState(true);
-  const [User, setUser] = useState({});
   useEffect(() => {
     dispatch(loadShort(id));
-    getUser();
   }, []);
-  console.log(shorts.short);
-  const getUser = async () => {
-    if (localStorage.getItem("accessToken")?.length > 25) {
-      try {
-        const res = await Axios.post("/user/refreshtoken", {
-          token: localStorage.getItem("refreshToken"),
-        });
-        setUser(res.data.user);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-  };
   const handleHeart = async () => {
+    dispatch(likeShort(id));
     const config = {
       headers: {
         token: localStorage.getItem("accessToken"),
       },
     };
     if (localStorage.getItem("accessToken")?.length > 25) {
-      // setHeart(!Heart);
       try {
         const res = await Axios.get(`/user/shorts/like/${id}`, config);
         setVideoData({ ...VideoData, likes: res.data.likes });
@@ -161,17 +144,31 @@ const SingleVideo = () => {
           </div>
           <div className="showvideoRightBottom">
             <div className="showvideoRightBottomTop">
-              <div
-                onClick={handleHeart}
-                className="showvideoRightBottomTopLeft"
-              >
-                {shorts.short?.likes?.includes(User?._id) ? (
-                  <i style={{ color: "red" }} className="bi bi-heart-fill"></i>
-                ) : (
-                  <i className="bi bi-heart"> </i>
-                )}
-                <a>{shorts.short?.likes?.length} Likes</a>
-              </div>
+              {shorts.loading ? (
+                <div className="loader-cnt">
+                  <DotSpinner
+                    size={15}
+                    lineWeight={2}
+                    speed={0.8}
+                    color="black"
+                  />
+                </div>
+              ) : (
+                <div
+                  onClick={handleHeart}
+                  className="showvideoRightBottomTopLeft"
+                >
+                  {shorts.short?.likes?.includes(auth.user?._id) ? (
+                    <i
+                      style={{ color: "red" }}
+                      className="bi bi-heart-fill"
+                    ></i>
+                  ) : (
+                    <i className="bi bi-heart"> </i>
+                  )}
+                  <a>{shorts.short?.likes?.length} Likes</a>
+                </div>
+              )}
               <div className="showvideoRightBottomTopLeftTop">
                 <a href="">
                   <i className="bi bi-bookmarks"></i>

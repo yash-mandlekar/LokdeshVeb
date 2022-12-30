@@ -37,3 +37,25 @@ export const loadShort = (id) => async (dispatch) => {
     });
   }
 };
+
+export const likeShort = (id) => async (dispatch) => {
+  try {
+    dispatch({
+      type: "likeShortRequest",
+    });
+    const res = await Axios.get(`/user/shorts/like/${id}`, {
+      headers: {
+        token: localStorage.getItem("accessToken"),
+      },
+    });
+    dispatch({
+      type: "likeShortSuccess",
+      payload: res.data.short,
+    });
+  } catch (error) {
+    dispatch({
+      type: "likeShortFail",
+      payload: error.response.data.message,
+    });
+  }
+};

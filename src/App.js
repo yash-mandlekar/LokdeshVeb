@@ -20,6 +20,7 @@ import Language from "./Components/Pages/Language/Language.jsx";
 import { useDispatch } from "react-redux";
 import { loadCategories } from "./Store/Actions/Categories";
 import { loadShorts } from "./Store/Actions/Shorts";
+import { loadUser } from "./Store/Actions/User";
 const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -30,6 +31,7 @@ const App = () => {
     Notification.requestPermission();
     dispatch(loadCategories());
     dispatch(loadShorts());
+    dispatch(loadUser());
   }, []);
   return (
     <div>

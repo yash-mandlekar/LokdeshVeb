@@ -3,20 +3,16 @@ import "./video.css";
 import ReactPlayer from "../../ReactPlayer/ReactPlayer";
 import { RWebShare } from "react-web-share";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { loadShort } from "../../../Store/Actions/Shorts";
+import {  useSelector } from "react-redux";
 
 const Video = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const { shorts } = useSelector((state) => state);
   const playerRef = useRef(null);
   const handlePlayerReady = (player) => {
     playerRef.current = player;
   };
-  const handleSingleVideo = (id) => {
-    navigate(`/singleVideo/${id}`);
-  };
+
   return (
     <div>
       <div className="vid">
@@ -34,7 +30,7 @@ const Video = () => {
               <div className="all-reels" key={i}>
                 <div
                   className="lol"
-                  onClick={() => handleSingleVideo(item._id)}
+                  onClick={() => navigate(`/singleVideo/${item._id}`)}
                 >
                   <ReactPlayer
                     className="reel-videojs"

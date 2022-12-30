@@ -30,4 +30,16 @@ export const shortsReducer = createReducer(initialState, {
     state.loading = false;
     state.error = action.payload;
   },
+  likeShortRequest: (state) => {
+    state.loading = true;
+  },
+  likeShortSuccess: (state, action) => {
+    state.loading = false;
+    state.short = action.payload;
+  },
+  likeShortFail: (state, action) => { 
+    state.loading = false;
+    state.error = action.payload;
+  }
+
 });

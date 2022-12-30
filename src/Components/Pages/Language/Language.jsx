@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import "./Language.css";
 import { loadCategories } from "../../../Store/Actions/Categories";
 const Language = () => {
   const dispatch = useDispatch();
+  const { theme } = useSelector((state) => state.theme);
   const [language, setLanguage] = useState([
     { lang1: "Hindi", lang2: "Hindi", code: "hi" },
     { lang1: "Arabic", lang2: "Arabic", code: "ar" },
@@ -33,7 +34,10 @@ const Language = () => {
   };
   return (
     <>
-      <div className="Language">
+      <div
+        className="Language"
+        style={{ backgroundColor: theme === "dark" ? "#000" : "#fff" }}
+      >
         <h1>अपनी भाषा चुनें</h1>
         <div className="Language__container">
           {language.map((lang, i) => (

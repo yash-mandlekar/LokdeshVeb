@@ -1,16 +1,13 @@
-import axios from "axios";
-import { server } from "../store";
+import Axios from "../../Components/Axios/Axios";
 
 export const loadUser = () => async (dispatch) => {
   try {
     dispatch({
       type: "loadUserRequest",
     });
-
-    const { data } = await axios.get(`${server}/me`, {
-      withCredentials: true,
+    const { data } = await Axios.post("/user/refreshtoken", {
+      token: localStorage.getItem("refreshToken"),
     });
-
     dispatch({
       type: "loadUserSuccess",
       payload: data.user,
@@ -29,7 +26,7 @@ export const logout = () => async (dispatch) => {
       type: "logoutRequest",
     });
 
-    const { data } = await axios.get(`${server}/logout`, {
+    const { data } = await Axios.get(`/logout`, {
       withCredentials: true,
     });
 
