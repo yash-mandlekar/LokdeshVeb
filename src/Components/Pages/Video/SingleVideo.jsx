@@ -14,8 +14,11 @@ import {
   WhatsappShareButton,
   WhatsappIcon,
 } from "react-share";
-
+import { useDispatch, useSelector } from "react-redux";
+import { loadShort } from "../../../Store/Actions/Shorts";
 const SingleVideo = () => {
+  const { shorts } = useSelector((state) => state);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
   const [VideoData, setVideoData] = useState({});
@@ -23,28 +26,20 @@ const SingleVideo = () => {
   const [loader, setLoader] = useState(true);
   const [User, setUser] = useState({});
   useEffect(() => {
-    getShort();
+    dispatch(loadShort(id));
     getUser();
   }, []);
-  const getShort = async () => {
-    setLoader(true);
-    try {
-      const res = await Axios.get(`/shorts/${id}`);
-      setVideoData(res.data);
-      setLoader(false);
-      console.log(res.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  console.log(shorts.short);
   const getUser = async () => {
-    try {
-      const res = await Axios.post("/user/refreshtoken", {
-        token: localStorage.getItem("refreshToken"),
-      });
-      setUser(res.data.user);
-    } catch (error) {
-      console.log(error);
+    if (localStorage.getItem("accessToken")?.length > 25) {
+      try {
+        const res = await Axios.post("/user/refreshtoken", {
+          token: localStorage.getItem("refreshToken"),
+        });
+        setUser(res.data.user);
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
   const handleHeart = async () => {
@@ -91,7 +86,7 @@ const SingleVideo = () => {
     <div className="SingleVideo">
       <div className="showSingleVideo">
         <div className="showvideoLeft">
-          {loader ? (
+          {shorts.loading ? (
             <div className="loader-cnt">
               <DotSpinner size={90} lineWeight={2} speed={0.8} color="white" />
               <h2 style={{ marginTop: "15px" }}>Loading...</h2>
@@ -101,7 +96,7 @@ const SingleVideo = () => {
               options={{
                 sources: [
                   {
-                    src: `data:video/mp4;base64,${VideoData.file}`,
+                    src: `data:video/mp4;base64,${shorts.short.file}`,
                     type: "video/mp4",
                   },
                 ],
@@ -109,7 +104,7 @@ const SingleVideo = () => {
               class="showvideoLeftt"
             />
           )}
-        </div>  
+        </div>
         <div className="showvideoRight">
           <div className="showvideoRightTop">
             <div className="showvideoRightTopLeft">
@@ -120,11 +115,15 @@ const SingleVideo = () => {
               <h2 style={{ marginLeft: "10px" }}>लोकदेश</h2>
             </div>
             <div className="showvideoRightTopShare">
-              <FacebookShareButton url={`http://lokdeshtv.com/SingleVideo/${id}`}>
+              <FacebookShareButton
+                url={`http://lokdeshtv.com/SingleVideo/${id}`}
+              >
                 <FacebookIcon className="fbi" size={27} round />
               </FacebookShareButton>
 
-              <WhatsappShareButton url={`http://lokdeshtv.com/SingleVideo/${id}`}>
+              <WhatsappShareButton
+                url={`http://lokdeshtv.com/SingleVideo/${id}`}
+              >
                 <WhatsappIcon className="fbi" size={27} round />
               </WhatsappShareButton>
               <div className="allreelSharwee">
@@ -151,8 +150,8 @@ const SingleVideo = () => {
                 युवती भी शामिल है।
               </h1>
             </div>
-            {VideoData?.comments?.map((comment) => (
-              <div className="userComment">
+            {shorts.short?.comments?.map((comment, i) => (
+              <div className="userComment" key={i}>
                 <div className="userprofileComment"></div>
                 <div className="userCommentText">
                   <h2>{comment.comment}</h2>
@@ -166,12 +165,12 @@ const SingleVideo = () => {
                 onClick={handleHeart}
                 className="showvideoRightBottomTopLeft"
               >
-                {VideoData?.likes?.includes(User?._id) ? (
+                {shorts.short?.likes?.includes(User?._id) ? (
                   <i style={{ color: "red" }} className="bi bi-heart-fill"></i>
                 ) : (
                   <i className="bi bi-heart"> </i>
                 )}
-                <a>{VideoData?.likes?.length} Likes</a>
+                <a>{shorts.short?.likes?.length} Likes</a>
               </div>
               <div className="showvideoRightBottomTopLeftTop">
                 <a href="">

@@ -5,12 +5,32 @@ export const loadNews = () => async (dispatch) => {
     dispatch({
       type: "loadNewsRequest",
     });
-    const res = await Axios.get("/all/news", {
+    var News = [];
+    const lang = localStorage.getItem("language");
+    const { data } = await Axios.get("/all/news", {
       withCredentials: true,
     });
+    for (var i = 0; i < data.length; i++) {
+      const res2 = await Axios.post("/user/translate", {
+        text: data[i].metaTitle,
+        text2: data[i].metaDescription,
+        text3: data[i].shortDescription,
+        text4: data[i].location,
+        text5: "शेयर",
+        target: lang,
+      });
+      News.push({
+        ...data[i],
+        metaTitle: res2.data.translation,
+        metaDescription: res2.data.translation2,
+        shortDescription: res2.data.translation3,
+        location: res2.data.translation4,
+        share: res2.data.translation5,
+      });
+    }
     dispatch({
       type: "loadNewsSuccess",
-      payload: res.data,
+      payload: News,
     });
   } catch (error) {
     dispatch({
@@ -55,28 +75,6 @@ export const filterNews = (category) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: "filterNewsFail",
-      payload: error.response.data.message,
-    });
-  }
-};
-
-export const logout = () => async (dispatch) => {
-  try {
-    dispatch({
-      type: "logoutRequest",
-    });
-
-    const { data } = await Axios.get("/logout", {
-      withCredentials: true,
-    });
-
-    dispatch({
-      type: "logoutSuccess",
-      payload: data.message,
-    });
-  } catch (error) {
-    dispatch({
-      type: "logoutFail",
       payload: error.response.data.message,
     });
   }

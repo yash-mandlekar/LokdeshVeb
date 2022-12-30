@@ -19,6 +19,7 @@ import Timer from "./Components/Timer/Timer";
 import Language from "./Components/Pages/Language/Language.jsx";
 import { useDispatch } from "react-redux";
 import { loadCategories } from "./Store/Actions/Categories";
+import { loadShorts } from "./Store/Actions/Shorts";
 const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -28,6 +29,7 @@ const App = () => {
     }
     Notification.requestPermission();
     dispatch(loadCategories());
+    dispatch(loadShorts());
   }, []);
   return (
     <div>

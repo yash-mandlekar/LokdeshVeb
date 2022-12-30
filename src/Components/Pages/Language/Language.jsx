@@ -1,17 +1,17 @@
 import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import Axios from "../../Axios/Axios";
 import "./Language.css";
-
+import { loadCategories } from "../../../Store/Actions/Categories";
 const Language = () => {
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [language, setLanguage] = useState([
     { lang1: "Hindi", lang2: "Hindi", code: "hi" },
     { lang1: "Arabic", lang2: "Arabic", code: "ar" },
     { lang1: "भोजपुरी", lang2: "Bhojpuri", code: "bh" },
     { lang1: "Bengali", lang2: "Bengali", code: "bn" },
     { lang1: "English (US)", lang2: "English (US)", code: "en" },
-    { lang1: "English (UK)",lang2:"English (UK)", code: "en-GB" },
+    { lang1: "English (UK)", lang2: "English (UK)", code: "en-GB" },
     { lang1: "French", lang2: "French", code: "fr" },
     { lang1: "ગુજરાતી", lang2: "Gujrati", code: "gu" },
     { lang1: "Kannada", lang2: "Kannada", code: "kn" },
@@ -29,6 +29,7 @@ const Language = () => {
   ]);
   const handleLanguage = (code) => {
     localStorage.setItem("language", code);
+    dispatch(loadCategories());
   };
   return (
     <>
@@ -40,7 +41,6 @@ const Language = () => {
               key={i}
               className="LCB"
               onClick={() => handleLanguage(lang.code)}
-              
             >
               {/* <Link to="/">{lang.lang1}
               {lang.lang2 && <span>{lang.lang2}</span>}</Link> */}
@@ -48,7 +48,6 @@ const Language = () => {
             </button>
           ))}
         </div>
-        
       </div>
     </>
   );
