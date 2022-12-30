@@ -15,15 +15,14 @@ import { useSelector } from "react-redux";
 
 const SingleNews = () => {
   const { id } = useParams();
-  const { ThemeRed } = useSelector((state) => state);
+  const { theme } = useSelector((state) => state.theme);
   const [NewsData, setNewsData] = useState({});
   useEffect(() => {
     getNews();
   }, []);
   useEffect(() => {
-    document.body.style.backgroundColor =
-      ThemeRed === "light" ? "white" : "black";
-    document.body.style.color = ThemeRed === "light" ? "black" : "white";
+    document.body.style.backgroundColor = theme === "light" ? "white" : "black";
+    document.body.style.color = theme === "light" ? "black" : "white";
   }, []);
   const getNews = async () => {
     const lang2 = localStorage.getItem("language");

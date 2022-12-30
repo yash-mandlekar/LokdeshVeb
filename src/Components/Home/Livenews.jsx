@@ -3,13 +3,13 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-const News = ({  NewsData }) => {
-  const { ThemeRed } = useSelector((state) => state);
+const News = () => {
+  const { theme, news } = useSelector((state) => state);
 
   const navigate = useNavigate();
   return (
     <div className="news">
-      {NewsData.map(
+      {news.news.map(
         (e, i) =>
           e.showInSlider.toLowerCase() === "true" && (
             <div
@@ -22,12 +22,14 @@ const News = ({  NewsData }) => {
               </div>
               <div className="Newsright">
                 <h1
-                  style={{ color: `${ThemeRed === "light" ? "black" : "white"}` }}
+                  style={{
+                    color: `${theme.theme === "light" ? "black" : "white"}`,
+                  }}
                 >
                   {e.metaTitle.length > 50 ? (
                     <span
                       style={{
-                        color: `${ThemeRed === "light" ? "black" : "white"}`,
+                        color: `${theme.theme === "light" ? "black" : "white"}`,
                       }}
                     >
                       <h3>Live</h3>
@@ -40,7 +42,7 @@ const News = ({  NewsData }) => {
                 {e.metaDescription.length > 150 ? (
                   <p
                     style={{
-                      color: `${ThemeRed === "light" ? "black" : "white"}`,
+                      color: `${theme.theme === "light" ? "black" : "white"}`,
                     }}
                   >
                     {/* {new Date(e.createdAt).toLocaleTimeString()} : 
@@ -56,7 +58,7 @@ const News = ({  NewsData }) => {
                 ) : (
                   <p
                     style={{
-                      color: `${ThemeRed === "light" ? "black" : "white"}`,
+                      color: `${theme.theme === "light" ? "black" : "white"}`,
                     }}
                   >
                     {e.metaDescription}

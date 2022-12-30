@@ -2,8 +2,7 @@ import React, { useRef } from "react";
 import SingleNews from "./AllNews";
 import Earth from "../images/earth.mp4";
 import ReactPlayer from "../ReactPlayer/ReactPlayer";
-const Debate = ({  NewsData, show }) => {
-
+const Debate = ({ show }) => {
   const playerRef = useRef(null);
   const handlePlayerReady = (player) => {
     playerRef.current = player;
@@ -45,7 +44,7 @@ const Debate = ({  NewsData, show }) => {
             })
           } */}
 
-          <SingleNews NewsData={NewsData} />
+          <SingleNews />
         </div>
       </div>
     </>

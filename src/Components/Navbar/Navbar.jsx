@@ -7,10 +7,10 @@ import Applestorelogo from "../images/lolobg.png";
 import { Link } from "react-router-dom";
 import Axios from "../Axios/Axios";
 import { useDispatch, useSelector } from "react-redux";
-import { changeTheme } from "../../Redux/Actions/Theme";
+import { changeTheme } from "../../Store/Actions/Theme";
 const Navbar = () => {
   const dispatch = useDispatch();
-  const { ThemeRed } = useSelector((state) => state);
+  const { theme } = useSelector((state) => state.theme);
   const [isOpen, setIsOpen] = useState(false);
   const [navItems, setNavItems] = useState([
     {
@@ -39,7 +39,6 @@ const Navbar = () => {
       icon: "bi bi-person",
     },
   ]);
-
   const handleNavItems = async () => {
     const lang2 = localStorage.getItem("language");
     const cpy = [];
@@ -61,16 +60,16 @@ const Navbar = () => {
     handleNavItems();
   }, []);
   return (
-    <div className={`Navbar ${ThemeRed === "light" ? "" : "Navbar-dark"}`}>
+    <div className={`Navbar ${theme === "light" ? "" : "Navbar-dark"}`}>
       <span className="nav-logo">
         <Link to="/" onClick={() => setIsOpen(false)}>
-          <img src={ThemeRed === "dark" ? Darklogo : Logo} alt="" />
+          <img src={theme === "dark" ? Darklogo : Logo} alt="" />
         </Link>
       </span>
 
       <div
         className={`nav-items ${isOpen && "open"} ${
-          ThemeRed === "light" ? "" : "Navbar-dark"
+          theme === "light" ? "" : "Navbar-dark"
         }`}
       >
         {navItems.map((item, i) => (
@@ -81,10 +80,10 @@ const Navbar = () => {
         ))}
 
         <a
-          onClick={() => dispatch(changeTheme())}
-          className={`${ThemeRed === "dark" ? "Navbar-dark" : ""}`}
+          onClick={() => dispatch(changeTheme(theme))}
+          className={`${theme === "dark" ? "Navbar-dark" : ""}`}
         >
-          {ThemeRed === "light" ? (
+          {theme === "light" ? (
             <>
               <i className="bi bi-moon"></i>
             </>
