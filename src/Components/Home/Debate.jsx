@@ -30,20 +30,6 @@ const Debate = ({ show }) => {
         )}
 
         <div className="Allnewsfeed">
-          {/* {
-            NewsData.map((item)=>{
-              return (
-                <div className="newsfeed">
-                  <img src={item.urlToImage} alt="" />
-                  <div className="newsfeedText">
-                    <h4>{item.title}</h4>
-                    <p>{item.description}</p>
-                  </div>
-                </div>
-              )
-            })
-          } */}
-
           <SingleNews />
         </div>
       </div>

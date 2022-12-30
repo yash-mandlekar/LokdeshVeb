@@ -17,19 +17,13 @@ import FullScreenPaper from "./Components/Pages/Epaper/FullScreenPaper";
 import SingleVideo from "./Components/Pages/Video/SingleVideo";
 import Timer from "./Components/Timer/Timer";
 import Language from "./Components/Pages/Language/Language.jsx";
-import { useDispatch } from "react-redux";
-import { loadNews } from "./Store/Actions/News";
-import { loadCategories } from "./Store/Actions/Categories";
 const App = () => {
-  const dispatch = useDispatch();
   useEffect(() => {
     const lang = localStorage.getItem("language");
     if (!lang) {
       localStorage.setItem("language", "hi");
     }
     Notification.requestPermission();
-    dispatch(loadCategories());
-    dispatch(loadNews());
   }, []);
   return (
     <div>
