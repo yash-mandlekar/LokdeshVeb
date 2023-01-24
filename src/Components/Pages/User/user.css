@@ -9,9 +9,6 @@
     box-sizing: border-box;
 }
 
-
-
-
 .container {
     max-width: 93.5rem;
     margin: 0 auto;
@@ -20,19 +17,18 @@
 .var{
     margin-top: 10%;
 }
-
-.btn {
-    display: inline-block;
-    font: inherit;
-    background: none;
-    border: none;
-    color: inherit;
-    padding: 0;
-    cursor: pointer;
+.btn-group{
+    margin-left: 1%;
 }
-
-.btn:focus {
-    outline: 0.5rem auto #4d90fe;
+.btn-group i
+{
+    font-size: 1.2vmax;
+}
+.setting-button{
+    font-size: 20px;
+}
+.editprofile{
+    color: blue;
 }
 
 .visually-hidden {
@@ -42,9 +38,27 @@
     overflow: hidden;
     clip: rect(1px, 1px, 1px, 1px);
 }
-
+.dropdown-toggle::after {
+    display: inline-block;
+    margin-left: 0.255em;
+    vertical-align: 0.255em;
+    content: "";
+    border-top: 0em solid !important;
+    border-right: 0.3em solid transparent;
+    border-bottom: 0;
+    border-left: 0.3em solid transparent;
+}
 /* Profile Section */
-
+.follow-unfollow{
+    margin-left: 10%;
+    height: 5vh;
+    width: 14vh;
+    background-color: rgb(18, 180, 255);
+    border:none;
+    font-size: 15px;
+    color: white;
+    border-radius: 6px;
+}
 .profile {
     padding: 10rem 0px;
 }
@@ -127,7 +141,9 @@
 .profile-edit-btn {
     font-weight: 600;
 }
-
+.btn:focus{
+    border: none;
+}
 /* Gallery Section */
 
 .gallery {
@@ -201,6 +217,37 @@
     margin: 0 auto;
     animation: loader 500ms linear infinite;
 }
+.btn-secondary{
+    background-color: white;
+}
+
+.dropdown{
+    background-color: none;
+    margin-top: -20%;
+    /* background-color: red; */
+    /* font-size: 3vmax; */
+}
+.dropdown:focus{
+    outline: none;
+
+}
+.btn-secondary{
+    background-color: none;
+    
+}
+.dropdown i{
+    background-color: none;
+    font-size: 1.5vmax;
+    color: black;
+}
+.dropdown-menu{
+    width: 10vw;
+}
+.dropdown-item{
+    background-color: none;
+    font-size: 1vmax;
+    color: black;
+}
 
 /* Media Query */
 
@@ -210,7 +257,26 @@
         flex-wrap: wrap;
         padding: 4rem 0;
     }
-
+    .follow-unfollow{
+        margin-left: 10%;
+        height: 4vmax;
+        width: 9vmax;
+        background-color: rgb(18, 180, 255);
+        border:none;
+        font-size: 15px;
+        color: white;
+        border-radius: 6px;
+        
+    }
+    .btn-group{
+        margin-top: -77%;
+        margin-left: 250%;
+        background-color: yellow;
+    }
+    .btn-group i
+    {
+        font-size: 2.2vmax;
+    }
     .profile::after {
         display: none;
     }
@@ -356,4 +422,35 @@
             margin: 0;
         }
     }
+}
+
+@media (max-width: 600px){
+.dropdown{
+    background-color: none;
+    margin-top: -4%;
+    margin-left: -40%;
+    /* background-color: red; */
+    /* font-size: 3vmax; */
+}
+.dropdown:focus{
+    outline: none;
+
+}
+.btn-secondary{
+    background-color: none;
+    
+}
+.dropdown i{
+    background-color: none;
+    font-size: 2vmax;
+    color: black;
+}
+.dropdown-menu{
+    width: 35vw;
+}
+.dropdown-item{
+    background-color: none;
+    font-size: 2vmax;
+    color: black;
+}
 }

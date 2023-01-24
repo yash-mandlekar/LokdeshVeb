@@ -107,8 +107,7 @@ const LocationEpaper = () => {
           ) : (
             <h3>No data found</h3>
           )}
-          <button className="PrevButton" onClick={handlePrevPage}>Prev</button>
-          <button className="NextButton" onClick={handleNextPage}>Next</button>
+ 
         </div>
       </div>
     </div>

@@ -35,7 +35,6 @@ const Video = () => {
                   <ReactPlayer
                     className="reel-videojs"
                     options={{
-                      autoplay: true,
                       controls: true,
                       responsive: true,
                       fluid: true,

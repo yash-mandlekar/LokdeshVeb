@@ -21,7 +21,8 @@ const SingleNews = ({ handlePlayerReady }) => {
     <>
       {/* loading */}
       {news.loading ? (
-        <h2>Loading...</h2>
+        <h1>Loading...</h1>
+        
       ) : news.news.length > 0 ? (
         news.news.map(
           (e, i) =>

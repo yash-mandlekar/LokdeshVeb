@@ -112,6 +112,8 @@ box-shadow:  35px 35px 70px #bebebe,
 .Navbar > .nav-toggle {
   display: none;
 }
+
+
 @media (max-width: 700px) {
   .Navbar > .nav-items {
     position: absolute;

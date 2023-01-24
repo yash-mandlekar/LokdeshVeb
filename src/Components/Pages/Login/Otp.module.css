@@ -15,10 +15,11 @@
     margin-left: 8%;
 
 }
+
 .otpCnt input{
     background:repeating-linear-gradient(90deg ,   dimgray 0 , dimgray 2ch , transparent 0px , transparent 3ch)0 100%/ 18ch 2px no-repeat;
     border: none;
-    width: 14.6vmax;
+    width: 7.6vmax;
     letter-spacing: 1.9ch;
     font-size: 1.2vmax;
 }

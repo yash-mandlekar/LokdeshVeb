@@ -93,12 +93,13 @@ const Navbar = () => {
             </>
           )}
         </a>
-        <div className="playstore">
+    
+        {/* <div className="playstore">
           <img src={Playstorelogo} alt="" />
         </div>
         <div className="applestore">
           <img src={Applestorelogo} alt="" />
-        </div>
+        </div> */}
         <div className="followus">
           <h1>Follow us on</h1>
           <div className="sociali">

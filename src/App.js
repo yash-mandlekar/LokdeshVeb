@@ -10,6 +10,7 @@ import Epaper from "./Components/Pages/Epaper/Epaper.jsx";
 import Otp from "./Components/Pages/Login/Otp";
 import UserProfile from "./Components/Pages/User/userProfile";
 import UserP from "./Components/Pages/User/editP";
+import UserPhotoUpload from "./Components/Pages/User/UserActions/UserPhotoUpload.jsx";
 import Mailer from "./Components/Mail/mailer";
 import Categories from "./Components/Category/Categories";
 import LocationEpaper from "./Components/Pages/Epaper/LocationEpaper";
@@ -17,11 +18,15 @@ import FullScreenPaper from "./Components/Pages/Epaper/FullScreenPaper";
 import SingleVideo from "./Components/Pages/Video/SingleVideo";
 import Timer from "./Components/Timer/Timer";
 import Language from "./Components/Pages/Language/Language.jsx";
+import UserWall from "./Components/Pages/User/Userwall";
+import UserReels from "./Components/Pages/User/UserActions/UserReels.jsx";
 import { useDispatch } from "react-redux";
 import { loadCategories } from "./Store/Actions/Categories";
 import { loadShorts } from "./Store/Actions/Shorts";
 import { loadUser } from "./Store/Actions/User";
+import { loadNews } from "./Store/Actions/News";
 const App = () => {
+  console.log();
   const dispatch = useDispatch();
   useEffect(() => {
     const lang = localStorage.getItem("language");
@@ -36,7 +41,7 @@ const App = () => {
   return (
     <div>
       <BrowserRouter>
-        <Navbar />
+        {window.location.href.slice(21) === "/userwall" ? "" : <Navbar />}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
@@ -52,6 +57,9 @@ const App = () => {
           <Route path="/Timer" element={<Timer />} />
           <Route path="/singleVideo/:id" element={<SingleVideo />} />
           <Route path="/UserP" element={<UserP />} />
+          <Route path="/userwall" element={<UserWall />} />
+          <Route path="/UserReels" element={<UserReels />} />
+          <Route path="/user/photoupload" element={<UserPhotoUpload />} />
           <Route path="/Language" element={<Language />} />
         </Routes>
       </BrowserRouter>

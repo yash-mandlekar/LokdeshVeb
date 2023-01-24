@@ -18,10 +18,42 @@ const userProfile = () => {
 
             <div className="profile-user-settings">
               <h1 className="profile-user-name">janedoe_</h1>
-
-              <button className="btn profile-edit-btn">
-                <Link to="/UserP">Edit</Link>
-              </button>
+              <button className="follow-unfollow">follow</button>
+              <div className="btn-group">
+                <button
+                  type="button"
+                  className="btn btn-prmimary dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <i class="bi bi-three-dots-vertical"></i>
+                </button>
+                <ul className="dropdown-menu">
+                  <li>
+                    <a className="dropdown-item" href="/userwall">
+                      My Wall
+                    </a>
+                  </li>
+                  <li>
+                    <a className="dropdown-item" href="#">
+                      Another
+                    </a>
+                  </li>
+                  <li>
+                    <a className="dropdown-item" href="#">
+                      Something
+                    </a>
+                  </li>
+                  <li>
+                    <hr className="dropdown-divider" />
+                  </li>
+                  <li>
+                    <Link className="dropdown-item" to={"/UserP"}>
+                      Edit
+                    </Link>
+                  </li>
+                </ul>
+              </div>
 
               <button
                 className="btn profile-settings-btn"
@@ -47,8 +79,10 @@ const userProfile = () => {
 
             <div className="profile-bio">
               <p>
-                <span className="profile-real-name">Jane Doe</span> Lorem ipsum
-                dolor sit, amet consectetur adipisicing elit 📷✈️🏕️
+                <span className="profile-real-name">Jane Doe</span> abhay singh is a web developer and a youtuber. “I'm selfish,
+                impatient and a little insecure. I make mistakes, I am out of
+                control and at times hard to handle. But if you can't handle me
+                at my worst, then you sure as hell don't deserve me at my best.”📷✈️🏕️
               </p>
             </div>
           </div>
