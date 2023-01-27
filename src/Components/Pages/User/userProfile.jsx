@@ -26,12 +26,12 @@ const userProfile = () => {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  <i class="bi bi-three-dots-vertical"></i>
+                  <i className="bi bi-three-dots-vertical"></i>
                 </button>
                 <ul className="dropdown-menu drop-profile">
                   <li>
                     <a className="dropdown-item" href="/userwall">
-                    मेरे वीडियो
+                      मेरे वीडियो
                     </a>
                   </li>
                   {/* <li>
@@ -41,7 +41,7 @@ const userProfile = () => {
                   </li> */}
                   <li>
                     <a className="dropdown-item" href="/mynews">
-                    स्थानीय समाचार साझा करना
+                      स्थानीय समाचार साझा करना
                     </a>
                   </li>
                   <li>
@@ -49,7 +49,7 @@ const userProfile = () => {
                   </li>
                   <li>
                     <Link className="dropdown-item" to={"/UserP"}>
-                    संपादन करना
+                      संपादन करना
                     </Link>
                   </li>
                 </ul>
@@ -79,10 +79,11 @@ const userProfile = () => {
 
             <div className="profile-bio">
               <p>
-                <span className="profile-real-name">Jane Doe</span> abhay singh is a web developer and a youtuber. “I'm selfish,
-                impatient and a little insecure. I make mistakes, I am out of
-                control and at times hard to handle. But if you can't handle me
-                at my worst, then you sure as hell don't deserve me at my best.”📷✈️🏕️
+                <span className="profile-real-name">Jane Doe</span> abhay singh
+                is a web developer and a youtuber. “I'm selfish, impatient and a
+                little insecure. I make mistakes, I am out of control and at
+                times hard to handle. But if you can't handle me at my worst,
+                then you sure as hell don't deserve me at my best.”📷✈️🏕️
               </p>
             </div>
           </div>

@@ -15,6 +15,7 @@ const UserPhotoUpload = () => {
     const config = {
       headers: {
         token: localStorage.getItem("accessToken"),
+        "Content-Type": "multipart/form-data",
       },
     };
     let formData = new FormData();

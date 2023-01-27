@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 import "./userEditProfile.css";
 
 const userEditProfile = () => {
-  const UserNews = ()=>{
-    const data = axios.post(`/user/usernews`)
-  }
+  const UserNews = () => {
+    const data = axios.post(`/user/usernews`);
+  };
   return (
     <>
       <div className="editProfile">
@@ -91,12 +91,12 @@ const userEditProfile = () => {
           <div className="editProfileRightBox2">
             <div className="editProfileLeftBoxSingle">
               <Link to="/user/photoupload">
-                <button class="button">
-                  <i class="bi bi-file-post"></i> Upload my post
+                <button className="button">
+                  <i className="bi bi-file-post"></i> Upload my post
                 </button>
               </Link>
-              <button class="button">
-                <i class="bi bi-save"></i> &nbsp; saved post
+              <button className="button">
+                <i className="bi bi-save"></i> &nbsp; saved post
               </button>
             </div>
           </div>

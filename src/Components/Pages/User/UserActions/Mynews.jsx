@@ -1,7 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import Axios from "../../../Axios/Axios";
 import "./mynews.css";
 
 const Mynews = () => {
+  const navigate = useNavigate();
+  const [form, setForm] = useState({
+    first_name: "",
+    last_name: "",
+    phone: "",
+    message: "",
+  });
+  const { first_name, last_name, phone, message } = form;
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const config = {
+      headers: {
+        token: localStorage.getItem("accessToken"),
+        "Content-Type": "multipart/form-data",
+      },
+    };
+    const data = new FormData(e.target);
+    try {
+      await Axios.post("/user/usernews", data, config);
+      navigate("/user");
+      setForm({
+        first_name: "",
+        last_name: "",
+        phone: "",
+        message: "",
+        file: "",
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+  useEffect(() => {
+    Axios.get("/userNews").then((res) => {
+      console.log(res.data.userNews);
+    });
+  }, []);
   return (
     <div>
       <h1 className="lokdeshh1">
@@ -11,41 +53,46 @@ const Mynews = () => {
 
       <div className="mynewsmain">
         <div className="Mynewsform">
-          <form className="contact_form" name="contact_form" method="post">
+          <form
+            onSubmit={handleSubmit}
+            className="contact_form"
+            name="contact_form"
+          >
             <div className="mb-5 row">
-              <div className="col p-3">
+              <div className="col">
                 <label>First Name</label>
                 <input
                   type="text"
-                  required
                   maxLength="50"
                   className="form-control"
                   id="first_name"
                   name="first_name"
+                  onChange={handleChange}
+                  value={first_name}
                 />
               </div>
               <div className="col">
                 <label>Last Name</label>
                 <input
                   type="text"
-                  required
                   maxLength="50"
                   className="form-control"
                   id="last_name"
                   name="last_name"
+                  onChange={handleChange}
+                  value={last_name}
                 />
               </div>
             </div>
             <div className="mb-5 row">
               <div className="col">
-                <label htmlFor="email_addr">Email address</label>
+                <label htmlFor="image">Image</label>
                 <input
-                  type="email"
-                  required
+                  type="file"
                   maxLength="50"
                   className="form-control"
-                  id="email_addr"
-                  name="email"
+                  id="image"
+                  name="file"
                   placeholder="name@example.com"
                 />
               </div>
@@ -53,12 +100,13 @@ const Mynews = () => {
                 <label htmlFor="phone_input">Phone</label>
                 <input
                   type="tel"
-                  required
                   maxLength="50"
                   className="form-control"
                   id="phone_input"
-                  name="Phone"
                   placeholder="Phone"
+                  name="phone"
+                  onChange={handleChange}
+                  value={phone}
                 />
               </div>
             </div>
@@ -69,6 +117,8 @@ const Mynews = () => {
                 id="message"
                 name="message"
                 rows="5"
+                onChange={handleChange}
+                value={message}
               ></textarea>
             </div>
             <button type="submit" className="btn btn-primary px-4 btn-lg">

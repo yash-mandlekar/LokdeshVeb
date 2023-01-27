@@ -84,7 +84,7 @@ const SingleVideo = () => {
                   },
                 ],
               }}
-              class="showvideoLeftt"
+              className="showvideoLeftt"
             />
           )}
         </div>

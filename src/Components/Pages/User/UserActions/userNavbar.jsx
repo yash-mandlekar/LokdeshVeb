@@ -493,16 +493,11 @@ const userNavbar = () => {
                 </div>
               </article>
             </div>
-            
           </div>
 
           <section className="side-menu">
             <div className="side-menu__user-profile">
-              <a
-                href=""
-                target="_blank"
-                className="side-menu__user-avatar"
-              >
+              <a href="" target="_blank" className="side-menu__user-avatar">
                 <img src={userphoto} alt="User Picture" />
               </a>
               <div className="side-menu__user-info">
@@ -524,23 +519,20 @@ const userNavbar = () => {
                   <ul className="dropdown-menu">
                     <li>
                       <Link className="dropdown-item" to="/UserReels">
-                      <i class="bi bi-caret-right"></i> वीडियो
+                        <i className="bi bi-caret-right"></i> वीडियो
                       </Link>
                     </li>
                     <li>
-                      <a className="dropdown-item" href="#">
-                        
-                      </a>
+                      <a className="dropdown-item" href="#"></a>
                     </li>
                     <li>
                       <Link className="dropdown-item" to="/user/photoupload">
-                      <i class="bi bi-paragraph"></i> पोस्ट अपलोड करें
+                        <i className="bi bi-paragraph"></i> पोस्ट अपलोड करें
                       </Link>
                     </li>
                   </ul>
                 </div>
               </button>
-              
             </div>
 
             <div className="side-menu__suggestions-section">
