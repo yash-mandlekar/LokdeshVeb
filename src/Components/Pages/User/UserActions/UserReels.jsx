@@ -11,35 +11,20 @@ const UserReels = () => {
         <div className="userallreels">
         <div className="usermainreels"><img src="https://images.unsplash.com/photo-1674295648958-d7883814585d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80" alt="" /></div>
         <div className="usermainreels"><img src="https://images.unsplash.com/photo-1674295648958-d7883814585d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80" alt="" /></div>
-
-        <div className="usermainreels"><img src="https://images.unsplash.com/photo-1674295648958-d7883814585d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80" alt="" /></div>
-
-        <div className="usermainreels"><img src="https://images.unsplash.com/photo-1674295648958-d7883814585d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80" alt="" /></div>
-
         <div className="usermainreels"><img src="https://images.unsplash.com/photo-1674295648958-d7883814585d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80" alt="" /></div>
         <div className="usermainreels"><img src="https://images.unsplash.com/photo-1674295648958-d7883814585d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80" alt="" /></div>
-
         <div className="usermainreels"><img src="https://images.unsplash.com/photo-1674295648958-d7883814585d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80" alt="" /></div>
-
         <div className="usermainreels"><img src="https://images.unsplash.com/photo-1674295648958-d7883814585d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80" alt="" /></div>
-
         <div className="usermainreels"><img src="https://images.unsplash.com/photo-1674295648958-d7883814585d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80" alt="" /></div>
-
         <div className="usermainreels"><img src="https://images.unsplash.com/photo-1674295648958-d7883814585d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80" alt="" /></div>
-
         <div className="usermainreels"><img src="https://images.unsplash.com/photo-1674295648958-d7883814585d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80" alt="" /></div>
-
         <div className="usermainreels"><img src="https://images.unsplash.com/photo-1674295648958-d7883814585d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80" alt="" /></div>
-
         <div className="usermainreels"><img src="https://images.unsplash.com/photo-1674295648958-d7883814585d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80" alt="" /></div>
-
         <div className="usermainreels"><img src="https://images.unsplash.com/photo-1674295648958-d7883814585d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80" alt="" /></div>
-
         <div className="usermainreels"><img src="https://images.unsplash.com/photo-1674295648958-d7883814585d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80" alt="" /></div>
-
         <div className="usermainreels"><img src="https://images.unsplash.com/photo-1674295648958-d7883814585d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80" alt="" /></div>
-
-
+        <div className="usermainreels"><img src="https://images.unsplash.com/photo-1674295648958-d7883814585d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80" alt="" /></div>
+        <div className="usermainreels"><img src="https://images.unsplash.com/photo-1674295648958-d7883814585d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80" alt="" /></div>
         </div>
       </div>
     </>

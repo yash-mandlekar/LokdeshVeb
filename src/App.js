@@ -25,6 +25,7 @@ import { loadCategories } from "./Store/Actions/Categories";
 import { loadShorts } from "./Store/Actions/Shorts";
 import { loadUser } from "./Store/Actions/User";
 import { loadNews } from "./Store/Actions/News";
+import Mynews from "./Components/Pages/User/UserActions/Mynews";
 const App = () => {
   console.log();
   const dispatch = useDispatch();
@@ -41,7 +42,7 @@ const App = () => {
   return (
     <div>
       <BrowserRouter>
-        {window.location.href.slice(21) === "/userwall" ? "" : <Navbar />}
+        <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
@@ -60,6 +61,7 @@ const App = () => {
           <Route path="/userwall" element={<UserWall />} />
           <Route path="/UserReels" element={<UserReels />} />
           <Route path="/user/photoupload" element={<UserPhotoUpload />} />
+          <Route path="/mynews" element={<Mynews />} />
           <Route path="/Language" element={<Language />} />
         </Routes>
       </BrowserRouter>

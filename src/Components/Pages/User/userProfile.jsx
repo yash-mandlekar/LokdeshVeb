@@ -28,20 +28,20 @@ const userProfile = () => {
                 >
                   <i class="bi bi-three-dots-vertical"></i>
                 </button>
-                <ul className="dropdown-menu">
+                <ul className="dropdown-menu drop-profile">
                   <li>
                     <a className="dropdown-item" href="/userwall">
-                      My Wall
+                    मेरे वीडियो
                     </a>
                   </li>
-                  <li>
+                  {/* <li>
                     <a className="dropdown-item" href="#">
                       Another
                     </a>
-                  </li>
+                  </li> */}
                   <li>
-                    <a className="dropdown-item" href="#">
-                      Something
+                    <a className="dropdown-item" href="/mynews">
+                    स्थानीय समाचार साझा करना
                     </a>
                   </li>
                   <li>
@@ -49,7 +49,7 @@ const userProfile = () => {
                   </li>
                   <li>
                     <Link className="dropdown-item" to={"/UserP"}>
-                      Edit
+                    संपादन करना
                     </Link>
                   </li>
                 </ul>

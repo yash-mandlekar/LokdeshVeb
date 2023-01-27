@@ -448,9 +448,13 @@
 .dropdown-menu{
     width: 35vw;
 }
+.dropdown-toggle{
+    margin-right: 15%;
+}
 .dropdown-item{
     background-color: none;
     font-size: 2vmax;
     color: black;
 }
+
 }
