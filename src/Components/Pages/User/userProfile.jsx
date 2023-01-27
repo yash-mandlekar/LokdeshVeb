@@ -31,7 +31,7 @@ const userProfile = () => {
                 <ul className="dropdown-menu drop-profile">
                   <li>
                     <a className="dropdown-item" href="/userwall">
-                      मेरे वीडियो
+                    मेरी पोस्ट
                     </a>
                   </li>
                   {/* <li>

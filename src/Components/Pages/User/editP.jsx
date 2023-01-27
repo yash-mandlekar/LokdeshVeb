@@ -70,11 +70,29 @@ const userEditProfile = () => {
               <br />
               <label htmlFor="">gender</label>
               <br />
-              <input type="text" placeholder="gender" />
+              <input
+                type="text"
+                list="gender"
+                placeholder="Enter Here"
+              />
+              <datalist id="gender">
+                <option value="male">male</option>
+                <option value="female">female</option>
+                
+              </datalist>
               <br />
               <label htmlFor="">business acc</label>
               <br />
-              <input type="text" placeholder="business acc" />
+              <input
+                type="text"
+                list="bussiness"
+                placeholder="Enter Here"
+              />
+              <datalist id="bussiness">
+                <option value="yes">yes</option>
+                <option value="no">no</option>
+                
+              </datalist>
               <br />
 
               <button>Button</button>
@@ -87,18 +105,6 @@ const userEditProfile = () => {
             <button>
               <i className="bi bi-door-closed"></i>Logout
             </button>
-          </div>
-          <div className="editProfileRightBox2">
-            <div className="editProfileLeftBoxSingle">
-              <Link to="/user/photoupload">
-                <button className="button">
-                  <i className="bi bi-file-post"></i> Upload my post
-                </button>
-              </Link>
-              <button className="button">
-                <i className="bi bi-save"></i> &nbsp; saved post
-              </button>
-            </div>
           </div>
         </div>
       </div>
