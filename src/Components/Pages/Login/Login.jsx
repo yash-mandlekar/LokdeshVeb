@@ -6,8 +6,11 @@ import Axios from "../../Axios/Axios";
 import Otp from "./Otp";
 import { RaceBy } from "@uiball/loaders";
 import { useNavigate } from "react-router-dom";
+import { loadUser } from "../../../Store/Actions/User";
+import { useDispatch } from "react-redux";
 
 const Login = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const inpRef = useRef(null);
   const [inp, setInp] = useState({
@@ -44,12 +47,11 @@ const Login = () => {
   };
   const handleSignUp = async (e) => {
     e.preventDefault();
-    console.log({ phone: value, otp: otp });
     const res = await Axios.post("/user/signup", { phone: value, otp: otp });
     if (res.data.status === "success") {
-      console.log(res.data);
       localStorage.setItem("accessToken", res.data.token);
       localStorage.setItem("refreshToken", res.data.user.refreshToken);
+      dispatch(loadUser());
       navigate(-1);
     }
   };
@@ -102,7 +104,7 @@ const Login = () => {
                     value={value}
                     onChange={changeHandler}
                   />
-                  
+
                   <small>{error}</small>
                 </div>
               </div>

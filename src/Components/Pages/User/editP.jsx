@@ -1,115 +1,186 @@
-import axios from "axios";
 import React from "react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import Axios from "../../Axios/Axios";
 import "./userEditProfile.css";
-
-const userEditProfile = () => {
-  const UserNews = () => {
-    const data = axios.post(`/user/usernews`);
+import { loadUser } from "../../../Store/Actions/User";
+import { useNavigate } from "react-router-dom";
+const UserEditProfile = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { loading, user } = useSelector((state) => state.auth);
+  console.log(user);
+  const [img, setImg] = useState("");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const config = {
+      headers: {
+        token: localStorage.getItem("accessToken"),
+      },
+    };
+    const formdata = new FormData(e.target);
+    await Axios.put("/user/profile", formdata, config);
+    alert("profile updated");
+  };
+  const handleLogout = async () => {
+    try {
+      await Axios.post("/user/logout");
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken");
+      alert("logout success");
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const handleProfileImage = async (e) => {
+    setImg(e.target.files[0]);
+    const formdata = new FormData();
+    formdata.append("profileImage", e.target.files[0]);
+    const res = await Axios.post("/user/profile/pic", formdata, {
+      headers: {
+        token: localStorage.getItem("accessToken"),
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    if (res.status == 200) {
+      dispatch(loadUser());
+    }
   };
   return (
     <>
-      <div className="editProfile">
-        <div className="editProfileLeft">
-          <div className="editProfileLeftBox"></div>
+      {loading ? (
+        <div className="loading">
+          <h1>Loading...</h1>
+          <h1>Loading...</h1>
+          <h1>Loading...</h1>
+          <h1>Loading...</h1>
+          <h1>Loading...</h1>
+          <h1>Loading...</h1>
+          <h1>Loading...</h1>
+          <h1>Loading...</h1>
+          <h1>Loading...</h1>
+          <h1>Loading...</h1>
+          <h1>Loading...</h1>
+          <h1>Loading...</h1>
         </div>
-
-        <div className="editProfileCenter">
-          <div className="editProfileCenterBox1">
-            <div className="editProfileCenterBox1Left">
-              <img
-                src="https://images.unsplash.com/photo-1671509774803-1640e8853b50?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80"
-                alt=""
-              />
-            </div>
-            <div className="editProfileCenterBox1Right">
-              <h3>abhay singh</h3>
-              <h4>@abhaa.yy</h4>
-              <p>
-                abhay singh is a web developer and a youtuber. “I'm selfish,
-                impatient and a little insecure. I make mistakes, I am out of
-                control and at times hard to handle. But if you can't handle me
-                at my worst, then you sure as hell don't deserve me at my best.”
-              </p>
+      ) : (
+        <div className="editProfile">
+          <div className="editProfileLeft">
+            <div className="editProfileLeftBox">
+              <img src={img && URL.createObjectURL(img)} alt="" />
             </div>
           </div>
-          <div className="editPRofileCenter">
-            <ul>
-              <label htmlFor="">name</label>
-              <br />
-              <input type="text" placeholder="abhay singh" />
-              <br />
-              <label htmlFor="">username</label>
-              <br />
-              <input type="text" placeholder="abhaa.yy" />
-              <br />
-              <label htmlFor="">email</label>
-              <br />
-              <input type="text" placeholder="abhaysinghsh01@gmail.com" />
-              <br />
-              <label htmlFor="">location</label>
-              <br />
-              <input type="text" placeholder="enter your location" />
-              <br />
-              <label htmlFor="">bio</label>
-              <br />
-              <input
-                type="text"
-                placeholder="abhay singh is a web developer and a youtuber.
-                “I'm selfish, impatient and a little insecure. I make mistakes, I am out of control and at times hard to handle. But if you can't handle me at my worst, then you sure as hell don't deserve me at my best.”
-                "
-              />
-              <br />
-              <label htmlFor="">date Of Birth</label>
-              <br />
-              <input type="text" placeholder="date Of Birth" />
-              <br />
-              <label htmlFor=""> phone</label>
-              <br />
-              <input type="text" placeholder=" phone" />
-              <br />
-              <label htmlFor="">gender</label>
-              <br />
-              <input
-                type="text"
-                list="gender"
-                placeholder="Enter Here"
-              />
-              <datalist id="gender">
-                <option value="male">male</option>
-                <option value="female">female</option>
-                
-              </datalist>
-              <br />
-              <label htmlFor="">business acc</label>
-              <br />
-              <input
-                type="text"
-                list="bussiness"
-                placeholder="Enter Here"
-              />
-              <datalist id="bussiness">
-                <option value="yes">yes</option>
-                <option value="no">no</option>
-                
-              </datalist>
-              <br />
 
-              <button>Button</button>
-            </ul>
+          <div className="editProfileCenter">
+            <div className="editProfileCenterBox1">
+              <div className="editProfileCenterBox1Left">
+                <img
+                  src={
+                    user?.profileImage?.includes("http")
+                      ? user?.profileImage
+                      : `data:video/mp4;base64,${user?.profileImage}`
+                  }
+                  alt=""
+                />
+              </div>
+              <div className="editProfileCenterBox1Right">
+                <h3>{user?.name}</h3>
+                <h4>@{user?.username}</h4>
+                <p>{user?.bio}</p>
+              </div>
+            </div>
+            <input
+              type="file"
+              name="profileImage"
+              onChange={handleProfileImage}
+            />
+            <form onSubmit={handleSubmit} className="editPRofileCenter">
+              <ul>
+                <label htmlFor="">name</label>
+                <br />
+                <input type="text" name="name" defaultValue={user?.name} />
+                <br />
+                <label htmlFor="">username</label>
+                <br />
+                <input
+                  type="text"
+                  name="username"
+                  defaultValue={user?.username}
+                />
+                <br />
+                <label htmlFor="">email</label>
+                <br />
+                <input type="text" name="email" defaultValue={user?.email} />
+                <br />
+                <label htmlFor="">location</label>
+                <br />
+                <input
+                  type="text"
+                  name="district"
+                  defaultValue={user?.district}
+                />
+                <br />
+                <label htmlFor="">bio</label>
+                <br />
+                <input type="text" name="bio" defaultValue={user?.bio} />
+                <br />
+                <label htmlFor="">date Of Birth</label>
+                <br />
+                <input
+                  type="text"
+                  name="dateOfBirth"
+                  defaultValue={user?.dateOfBirth.split("T")[0]}
+                />
+                <br />
+                <label htmlFor=""> phone</label>
+                <br />
+                <input type="text" name="phone" defaultValue={user?.phone} />
+                <br />
+                <label htmlFor="">gender</label>
+                <br />
+                <input
+                  type="text"
+                  list="gender"
+                  name="gender"
+                  placeholder="Enter Here"
+                />
+                <datalist id="gender">
+                  <option value="male">male</option>
+                  <option value="female">female</option>
+                </datalist>
+                <br />
+                <label htmlFor="">business acc</label>
+                <br />
+                <input
+                  type="text"
+                  list="bussiness"
+                  name="business"
+                  placeholder="Enter Here"
+                />
+                <datalist id="bussiness">
+                  <option value="yes">yes</option>
+                  <option value="no">no</option>
+                </datalist>
+                <br />
+
+                <button>Cancel</button>
+                <button type="submit">Update</button>
+              </ul>
+            </form>
+          </div>
+
+          <div className="editProfileRight">
+            <div className="editProfileRightBox">
+              <button onClick={handleLogout}>
+                <i className="bi bi-door-closed"></i>Logout
+              </button>
+            </div>
           </div>
         </div>
-
-        <div className="editProfileRight">
-          <div className="editProfileRightBox">
-            <button>
-              <i className="bi bi-door-closed"></i>Logout
-            </button>
-          </div>
-        </div>
-      </div>
+      )}
     </>
   );
 };
 
-export default userEditProfile;
+export default UserEditProfile;

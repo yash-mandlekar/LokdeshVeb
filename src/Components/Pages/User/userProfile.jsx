@@ -2,8 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./user.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useSelector } from "react-redux";
 
-const userProfile = () => {
+const UserProfile = () => {
+  const { user, loading } = useSelector((state) => state.auth);
+  console.log(user);
   return (
     <div>
       <header>
@@ -11,13 +14,18 @@ const userProfile = () => {
           <div className="profile">
             <div className="profile-image">
               <img
-                src="https://images.unsplash.com/photo-1513721032312-6a18a42c8763?w=152&h=152&fit=crop&crop=faces"
+                // src="https://images.unsplash.com/photo-1513721032312-6a18a42c8763?w=152&h=152&fit=crop&crop=faces"
+                src={
+                  user?.profileImage?.includes("http")
+                    ? user?.profileImage
+                    : `data:video/mp4;base64,${user?.profileImage}`
+                }
                 alt=""
               />
             </div>
 
             <div className="profile-user-settings">
-              <h1 className="profile-user-name">janedoe_</h1>
+              <h1 className="profile-user-name">{user?.username}</h1>
               <button className="follow-unfollow">follow</button>
               <div className="btn-group">
                 <button
@@ -31,7 +39,7 @@ const userProfile = () => {
                 <ul className="dropdown-menu drop-profile">
                   <li>
                     <a className="dropdown-item" href="/userwall">
-                    मेरी पोस्ट
+                      मेरी पोस्ट
                     </a>
                   </li>
                   {/* <li>
@@ -66,24 +74,20 @@ const userProfile = () => {
             <div className="profile-stats">
               <ul>
                 <li>
-                  <span className="profile-stat-count">164</span> posts
+                  <span className="profile-stat-count">{user?.posts.length}</span> posts
                 </li>
                 <li>
-                  <span className="profile-stat-count">188</span> followers
+                  <span className="profile-stat-count">{user?.followers.length}</span> followers
                 </li>
                 <li>
-                  <span className="profile-stat-count">206</span> following
+                  <span className="profile-stat-count">{user?.following.length}</span> following
                 </li>
               </ul>
             </div>
 
             <div className="profile-bio">
               <p>
-                <span className="profile-real-name">Jane Doe</span> abhay singh
-                is a web developer and a youtuber. “I'm selfish, impatient and a
-                little insecure. I make mistakes, I am out of control and at
-                times hard to handle. But if you can't handle me at my worst,
-                then you sure as hell don't deserve me at my best.”📷✈️🏕️
+                <span className="profile-real-name">{user?.name} </span>{user?.bio}
               </p>
             </div>
           </div>
@@ -383,4 +387,4 @@ const userProfile = () => {
   );
 };
 
-export default userProfile;
+export default UserProfile;
