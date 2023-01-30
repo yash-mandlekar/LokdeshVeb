@@ -3,10 +3,28 @@ import { Link } from "react-router-dom";
 import "./user.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useSelector } from "react-redux";
-
+import Axios from "../../Axios/Axios";
+import { useEffect } from "react";
+import { useState } from "react";
 const UserProfile = () => {
   const { user, loading } = useSelector((state) => state.auth);
-  console.log(user);
+  const [posts, setPosts] = useState([]);
+  const [postloading, setPostloading] = useState(true);
+  const getposts = async () => {
+    setPostloading(true);
+    const config = {
+      headers: {
+        token: localStorage.getItem("accessToken"),
+      },
+    };
+    const { data } = await Axios.get("/user/post", config);
+    setPosts(data.post.posts);
+    console.log(data.post.posts);
+    setPostloading(false);
+  };
+  useEffect(() => {
+    getposts();
+  }, []);
   return (
     <div>
       <header>
@@ -42,11 +60,6 @@ const UserProfile = () => {
                       मेरी पोस्ट
                     </a>
                   </li>
-                  {/* <li>
-                    <a className="dropdown-item" href="#">
-                      Another
-                    </a>
-                  </li> */}
                   <li>
                     <a className="dropdown-item" href="/mynews">
                       स्थानीय समाचार साझा करना
@@ -74,20 +87,30 @@ const UserProfile = () => {
             <div className="profile-stats">
               <ul>
                 <li>
-                  <span className="profile-stat-count">{user?.posts.length}</span> posts
+                  <span className="profile-stat-count">
+                    {user?.posts.length}
+                  </span>{" "}
+                  posts
                 </li>
                 <li>
-                  <span className="profile-stat-count">{user?.followers.length}</span> followers
+                  <span className="profile-stat-count">
+                    {user?.followers.length}
+                  </span>{" "}
+                  followers
                 </li>
                 <li>
-                  <span className="profile-stat-count">{user?.following.length}</span> following
+                  <span className="profile-stat-count">
+                    {user?.following.length}
+                  </span>{" "}
+                  following
                 </li>
               </ul>
             </div>
 
             <div className="profile-bio">
               <p>
-                <span className="profile-real-name">{user?.name} </span>{user?.bio}
+                <span className="profile-real-name">{user?.name} </span>
+                {user?.bio}
               </p>
             </div>
           </div>
@@ -96,291 +119,37 @@ const UserProfile = () => {
 
       <main>
         <div className="container">
-          <div className="gallery">
-            <div className="gallery-item" tabIndex="0">
-              <img
-                src="https://images.unsplash.com/photo-1511765224389-37f0e77cf0eb?w=500&h=500&fit=crop"
-                className="gallery-image"
-                alt=""
-              />
-
-              <div className="gallery-item-info">
-                <ul>
-                  <li className="gallery-item-likes">
-                    <span className="visually-hidden">Likes:</span>
-                    <i className="fas fa-heart" aria-hidden="true"></i> 56
-                  </li>
-                  <li className="gallery-item-comments">
-                    <span className="visually-hidden">Comments:</span>
-                    <i className="fas fa-comment" aria-hidden="true"></i> 2
-                  </li>
-                </ul>
-              </div>
+          {postloading ? (
+            <div className="loader"></div>
+          ) : (
+            <div className="gallery">
+              {posts?.map((post, i) => (
+                <div key={i} className="gallery-item" tabIndex="0">
+                  <img
+                    src={
+                      post?.file?.includes("http")
+                        ? post?.file
+                        : `data:video/mp4;base64,${post?.file}`
+                    }
+                  />
+                  <div className="gallery-item-info">
+                    <ul>
+                      <li className="gallery-item-likes">
+                        <span className="visually-hidden">Likes:</span>
+                        <i className="bi bi-heart-fill"></i>
+                        {post?.likes?.length}
+                      </li>
+                      <li className="gallery-item-comments">
+                        <span className="visually-hidden">Comments:</span>
+                        <i className="bi bi-chat-fill"></i>
+                        {post?.comments?.length}
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              ))}
             </div>
-
-            <div className="gallery-item" tabIndex="0">
-              <img
-                src="https://images.unsplash.com/photo-1497445462247-4330a224fdb1?w=500&h=500&fit=crop"
-                className="gallery-image"
-                alt=""
-              />
-
-              <div className="gallery-item-info">
-                <ul>
-                  <li className="gallery-item-likes">
-                    <span className="visually-hidden">Likes:</span>
-                    <i className="fas fa-heart" aria-hidden="true"></i> 89
-                  </li>
-                  <li className="gallery-item-comments">
-                    <span className="visually-hidden">Comments:</span>
-                    <i className="fas fa-comment" aria-hidden="true"></i> 5
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="gallery-item" tabIndex="0">
-              <img
-                src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=500&h=500&fit=crop"
-                className="gallery-image"
-                alt=""
-              />
-
-              <div className="gallery-item-type">
-                <span className="visually-hidden">Gallery</span>
-                <i className="fas fa-clone" aria-hidden="true"></i>
-              </div>
-
-              <div className="gallery-item-info">
-                <ul>
-                  <li className="gallery-item-likes">
-                    <span className="visually-hidden">Likes:</span>
-                    <i className="fas fa-heart" aria-hidden="true"></i> 42
-                  </li>
-                  <li className="gallery-item-comments">
-                    <span className="visually-hidden">Comments:</span>
-                    <i className="fas fa-comment" aria-hidden="true"></i> 1
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="gallery-item" tabIndex="0">
-              <img
-                src="https://images.unsplash.com/photo-1502630859934-b3b41d18206c?w=500&h=500&fit=crop"
-                className="gallery-image"
-                alt=""
-              />
-
-              <div className="gallery-item-type">
-                <span className="visually-hidden">Video</span>
-                <i className="fas fa-video" aria-hidden="true"></i>
-              </div>
-
-              <div className="gallery-item-info">
-                <ul>
-                  <li className="gallery-item-likes">
-                    <span className="visually-hidden">Likes:</span>
-                    <i className="fas fa-heart" aria-hidden="true"></i> 38
-                  </li>
-                  <li className="gallery-item-comments">
-                    <span className="visually-hidden">Comments:</span>
-                    <i className="fas fa-comment" aria-hidden="true"></i> 0
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="gallery-item" tabIndex="0">
-              <img
-                src="https://images.unsplash.com/photo-1498471731312-b6d2b8280c61?w=500&h=500&fit=crop"
-                className="gallery-image"
-                alt=""
-              />
-
-              <div className="gallery-item-type">
-                <span className="visually-hidden">Gallery</span>
-                <i className="fas fa-clone" aria-hidden="true"></i>
-              </div>
-
-              <div className="gallery-item-info">
-                <ul>
-                  <li className="gallery-item-likes">
-                    <span className="visually-hidden">Likes:</span>
-                    <i className="fas fa-heart" aria-hidden="true"></i> 47
-                  </li>
-                  <li className="gallery-item-comments">
-                    <span className="visually-hidden">Comments:</span>
-                    <i className="fas fa-comment" aria-hidden="true"></i> 1
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="gallery-item" tabIndex="0">
-              <img
-                src="https://images.unsplash.com/photo-1515023115689-589c33041d3c?w=500&h=500&fit=crop"
-                className="gallery-image"
-                alt=""
-              />
-
-              <div className="gallery-item-info">
-                <ul>
-                  <li className="gallery-item-likes">
-                    <span className="visually-hidden">Likes:</span>
-                    <i className="fas fa-heart" aria-hidden="true"></i> 94
-                  </li>
-                  <li className="gallery-item-comments">
-                    <span className="visually-hidden">Comments:</span>
-                    <i className="fas fa-comment" aria-hidden="true"></i> 3
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="gallery-item" tabIndex="0">
-              <img
-                src="https://images.unsplash.com/photo-1504214208698-ea1916a2195a?w=500&h=500&fit=crop"
-                className="gallery-image"
-                alt=""
-              />
-
-              <div className="gallery-item-type">
-                <span className="visually-hidden">Gallery</span>
-                <i className="fas fa-clone" aria-hidden="true"></i>
-              </div>
-
-              <div className="gallery-item-info">
-                <ul>
-                  <li className="gallery-item-likes">
-                    <span className="visually-hidden">Likes:</span>
-                    <i className="fas fa-heart" aria-hidden="true"></i> 52
-                  </li>
-                  <li className="gallery-item-comments">
-                    <span className="visually-hidden">Comments:</span>
-                    <i className="fas fa-comment" aria-hidden="true"></i> 4
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="gallery-item" tabIndex="0">
-              <img
-                src="https://images.unsplash.com/photo-1515814472071-4d632dbc5d4a?w=500&h=500&fit=crop"
-                className="gallery-image"
-                alt=""
-              />
-
-              <div className="gallery-item-info">
-                <ul>
-                  <li className="gallery-item-likes">
-                    <span className="visually-hidden">Likes:</span>
-                    <i className="fas fa-heart" aria-hidden="true"></i> 66
-                  </li>
-                  <li className="gallery-item-comments">
-                    <span className="visually-hidden">Comments:</span>
-                    <i className="fas fa-comment" aria-hidden="true"></i> 2
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="gallery-item" tabIndex="0">
-              <img
-                src="https://images.unsplash.com/photo-1511407397940-d57f68e81203?w=500&h=500&fit=crop"
-                className="gallery-image"
-                alt=""
-              />
-
-              <div className="gallery-item-type">
-                <span className="visually-hidden">Gallery</span>
-                <i className="fas fa-clone" aria-hidden="true"></i>
-              </div>
-
-              <div className="gallery-item-info">
-                <ul>
-                  <li className="gallery-item-likes">
-                    <span className="visually-hidden">Likes:</span>
-                    <i className="fas fa-heart" aria-hidden="true"></i> 45
-                  </li>
-                  <li className="gallery-item-comments">
-                    <span className="visually-hidden">Comments:</span>
-                    <i className="fas fa-comment" aria-hidden="true"></i> 0
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="gallery-item" tabIndex="0">
-              <img
-                src="https://images.unsplash.com/photo-1518481612222-68bbe828ecd1?w=500&h=500&fit=crop"
-                className="gallery-image"
-                alt=""
-              />
-
-              <div className="gallery-item-info">
-                <ul>
-                  <li className="gallery-item-likes">
-                    <span className="visually-hidden">Likes:</span>
-                    <i className="fas fa-heart" aria-hidden="true"></i> 34
-                  </li>
-                  <li className="gallery-item-comments">
-                    <span className="visually-hidden">Comments:</span>
-                    <i className="fas fa-comment" aria-hidden="true"></i> 1
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="gallery-item" tabIndex="0">
-              <img
-                src="https://images.unsplash.com/photo-1505058707965-09a4469a87e4?w=500&h=500&fit=crop"
-                className="gallery-image"
-                alt=""
-              />
-
-              <div className="gallery-item-info">
-                <ul>
-                  <li className="gallery-item-likes">
-                    <span className="visually-hidden">Likes:</span>
-                    <i className="fas fa-heart" aria-hidden="true"></i> 41
-                  </li>
-                  <li className="gallery-item-comments">
-                    <span className="visually-hidden">Comments:</span>
-                    <i className="fas fa-comment" aria-hidden="true"></i> 0
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="gallery-item" tabIndex="0">
-              <img
-                src="https://images.unsplash.com/photo-1423012373122-fff0a5d28cc9?w=500&h=500&fit=crop"
-                className="gallery-image"
-                alt=""
-              />
-
-              <div className="gallery-item-type">
-                <span className="visually-hidden">Video</span>
-                <i className="fas fa-video" aria-hidden="true"></i>
-              </div>
-
-              <div className="gallery-item-info">
-                <ul>
-                  <li className="gallery-item-likes">
-                    <span className="visually-hidden">Likes:</span>
-                    <i className="fas fa-heart" aria-hidden="true"></i> 30
-                  </li>
-                  <li className="gallery-item-comments">
-                    <span className="visually-hidden">Comments:</span>
-                    <i className="fas fa-comment" aria-hidden="true"></i> 2
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div className="loader"></div>
+          )}
         </div>
       </main>
     </div>
