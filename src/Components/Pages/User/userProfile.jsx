@@ -125,13 +125,26 @@ const UserProfile = () => {
             <div className="gallery">
               {posts?.map((post, i) => (
                 <div key={i} className="gallery-item" tabIndex="0">
-                  <img
-                    src={
-                      post?.file?.includes("http")
-                        ? post?.file
-                        : `data:video/mp4;base64,${post?.file}`
-                    }
-                  />
+                  {post.fileType === "image" && (
+                    <img
+                      src={
+                        post?.file?.includes("http")
+                          ? post?.file
+                          : `data:video/mp4;base64,${post?.file}`
+                      }
+                    />
+                  )}
+                  {post.fileType === "video" && (
+                    <video
+                      src={
+                        post?.file?.includes("http")
+                          ? post?.file
+                          : `data:video/mp4;base64,${post?.file}`
+                      }
+                      controls
+                    />
+                  )}
+
                   <div className="gallery-item-info">
                     <ul>
                       <li className="gallery-item-likes">
