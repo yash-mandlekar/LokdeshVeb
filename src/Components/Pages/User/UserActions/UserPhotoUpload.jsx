@@ -32,7 +32,7 @@ const UserPhotoUpload = () => {
 
   return (
     <>
-      {/* <form onSubmit={handleSubmit} className="uploadphoto">
+      <form onSubmit={handleSubmit} className="uploadphoto">
         <h1>Upload your posts</h1>
         <div className="uploadform">
           <FileUploader
@@ -70,8 +70,8 @@ const UserPhotoUpload = () => {
             </div>
           )}
         </div>
-      </form> */}
-       <div className="myphotomain">
+      </form>
+      {/* <div className="myphotomain">
         <div className="Myphotform">
           <h1>Post upload</h1>
           <form className="contact_form" name="contact_form" method="post">
@@ -139,7 +139,7 @@ const UserPhotoUpload = () => {
             </button>
           </form>
         </div>
-      </div>
+      </div> */}
     </>
   );
 };

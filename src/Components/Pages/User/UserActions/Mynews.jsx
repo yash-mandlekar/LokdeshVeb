@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Axios from "../../../Axios/Axios";
 import "./mynews.css";
@@ -39,11 +38,6 @@ const Mynews = () => {
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
-  useEffect(() => {
-    Axios.get("/userNews").then((res) => {
-      console.log(res.data.userNews);
-    });
-  }, []);
   return (
     <div>
       <h1 className="lokdeshh1">

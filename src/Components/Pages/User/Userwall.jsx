@@ -14,12 +14,11 @@ const Userwall = () => {
       },
     };
     const res = await Axios.get("/user/post", config);
-    console.log(res);
+    console.log(res.data);
   };
   return (
     <>
       <UserwallNavbar />
-    
     </>
   );
 };
