@@ -148,6 +148,7 @@ const UserProfile = () => {
                 <div key={i} className="gallery-item" tabIndex="0">
                   {post.fileType === "image" && (
                     <img
+                     onClick={() => navigate(`/singlepost/${post._id}`)}
                       src={
                         post?.file?.includes("http")
                           ? post?.file
@@ -169,17 +170,6 @@ const UserProfile = () => {
               ))}
             </div>
           )}
-          {/* <div className="gallery">
-          <div className="gallery-item"></div>
-
-          <div className="gallery-item"></div>
-
-          <div className="gallery-item"></div>
-
-          <div className="gallery-item"></div>
-
-
-          </div> */}
         </div>
       </main>
     </div>

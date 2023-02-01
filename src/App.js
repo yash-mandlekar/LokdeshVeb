@@ -26,6 +26,7 @@ import { loadShorts } from "./Store/Actions/Shorts";
 import { loadUser } from "./Store/Actions/User";
 import { loadNews } from "./Store/Actions/News";
 import Mynews from "./Components/Pages/User/UserActions/Mynews";
+import UserSinglePosts from "./Components/Pages/User/UserActions/UserSinglePosts";
 const App = () => {
   console.log();
   const dispatch = useDispatch();
@@ -63,6 +64,7 @@ const App = () => {
           <Route path="/user/photoupload" element={<UserPhotoUpload />} />
           <Route path="/mynews" element={<Mynews />} />
           <Route path="/Language" element={<Language />} />
+          <Route path="/singlepost/:id" element={<UserSinglePosts />} />
         </Routes>
       </BrowserRouter>
     </div>
