@@ -513,14 +513,12 @@ const userNavbar = () => {
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
-                    <i className="bi bi-signpost-split"></i>
+                    <i class="bi bi-upload"></i>
                   </a>
 
                   <ul className="dropdown-menu">
                     <li>
-                      <Link className="dropdown-item" to="/UserReels">
-                        <i className="bi bi-caret-right"></i> वीडियो
-                      </Link>
+                     
                     </li>
                     <li>
                       <a className="dropdown-item" href="#"></a>
