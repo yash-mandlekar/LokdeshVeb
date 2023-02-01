@@ -18,6 +18,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { likeShort, loadShort } from "../../../Store/Actions/Shorts";
 const SingleVideo = () => {
   const { shorts, auth } = useSelector((state) => state);
+  const [likes, setLikes] = useState(shorts.short.likes);
+  const [comments, setComments] = useState(shorts.short.comments);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
@@ -25,8 +27,12 @@ const SingleVideo = () => {
   useEffect(() => {
     dispatch(loadShort(id));
   }, []);
+  useEffect(() => {
+    setLikes(shorts.short.likes);
+    setComments(shorts.short.comments);
+  }, [shorts.short.likes, shorts.short.comments]);
   const handleHeart = async () => {
-    dispatch(likeShort(id));
+    // dispatch(likeShort(id));
     const config = {
       headers: {
         token: localStorage.getItem("accessToken"),
@@ -34,8 +40,8 @@ const SingleVideo = () => {
     };
     if (localStorage.getItem("accessToken")?.length > 25) {
       try {
-        const res = await Axios.get(`/user/shorts/like/${id}`, config);
-        setVideoData({ ...VideoData, likes: res.data.likes });
+        const { data } = await Axios.get(`/user/shorts/like/${id}`, config);
+        setLikes(data.short.likes);
       } catch (error) {
         console.log(error);
       }
@@ -57,6 +63,7 @@ const SingleVideo = () => {
           { comment: e.target.comment.value },
           config
         );
+        setComments(res.data.short.comments);
         setVideoData({ ...VideoData, comments: res.data.comments });
       } catch (error) {
         console.log(error);
@@ -158,7 +165,7 @@ const SingleVideo = () => {
                   onClick={handleHeart}
                   className="showvideoRightBottomTopLeft"
                 >
-                  {shorts.short?.likes?.includes(auth.user?._id) ? (
+                  {likes?.includes(auth.user?._id) ? (
                     <i
                       style={{ color: "red" }}
                       className="bi bi-heart-fill"
@@ -166,7 +173,7 @@ const SingleVideo = () => {
                   ) : (
                     <i className="bi bi-heart"> </i>
                   )}
-                  <a>{shorts.short?.likes?.length} Likes</a>
+                  <a>{likes?.length} Likes</a>
                 </div>
               )}
               <div className="showvideoRightBottomTopLeftTop">
