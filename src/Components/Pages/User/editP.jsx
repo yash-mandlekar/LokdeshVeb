@@ -17,6 +17,7 @@ const UserEditProfile = () => {
       },
     };
     const formdata = new FormData(e.target);
+    console.log(Array.from(formdata));
     await Axios.put("/user/profile", formdata, config);
     alert("profile updated");
   };
