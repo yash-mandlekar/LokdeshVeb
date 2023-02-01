@@ -7,7 +7,8 @@ import Otp from "./Otp";
 import { RaceBy } from "@uiball/loaders";
 import { useNavigate } from "react-router-dom";
 import { loadUser } from "../../../Store/Actions/User";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -52,10 +53,9 @@ const Login = () => {
       localStorage.setItem("accessToken", res.data.token);
       localStorage.setItem("refreshToken", res.data.user.refreshToken);
       dispatch(loadUser());
-      navigate(-1);
+      navigate("/UserP");
     }
   };
-
   return (
     <div className="LoginPages">
       <div className="containersss">

@@ -1,5 +1,4 @@
 import React from "react";
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Axios from "../../Axios/Axios";
 import "./userEditProfile.css";
@@ -10,7 +9,6 @@ const UserEditProfile = () => {
   const navigate = useNavigate();
   const { loading, user } = useSelector((state) => state.auth);
   console.log(user);
-  const [img, setImg] = useState("");
   const handleSubmit = async (e) => {
     e.preventDefault();
     const config = {
@@ -34,7 +32,6 @@ const UserEditProfile = () => {
     }
   };
   const handleProfileImage = async (e) => {
-    setImg(e.target.files[0]);
     const formdata = new FormData();
     formdata.append("profileImage", e.target.files[0]);
     const res = await Axios.post("/user/profile/pic", formdata, {
@@ -67,9 +64,7 @@ const UserEditProfile = () => {
       ) : (
         <div className="editProfile">
           <div className="editProfileLeft">
-            <div className="editProfileLeftBox">
-              <img src={img && URL.createObjectURL(img)} alt="" />
-            </div>
+            <div className="editProfileLeftBox"></div>
           </div>
 
           <div className="editProfileCenter">
@@ -77,7 +72,7 @@ const UserEditProfile = () => {
               <div className="editProfileCenterBox1Left">
                 <img
                   src={
-                    user?.profileImage?.includes("http")
+                    user?.profileImage?.includes("/avtar")
                       ? user?.profileImage
                       : `data:video/mp4;base64,${user?.profileImage}`
                   }
@@ -164,7 +159,6 @@ const UserEditProfile = () => {
                 </datalist>
                 <br />
 
-                <button>Cancel</button>
                 <button type="submit">Update</button>
               </ul>
             </form>

@@ -1,13 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./user.css";
-import "bootstrap/dist/css/bootstrap.min.css";
 import { useSelector } from "react-redux";
 import Axios from "../../Axios/Axios";
 import { useEffect } from "react";
 import { useState } from "react";
 const UserProfile = () => {
   const { user, loading } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
   const [posts, setPosts] = useState([]);
   const [postloading, setPostloading] = useState(true);
   const getposts = async () => {
@@ -22,9 +22,26 @@ const UserProfile = () => {
     console.log(data.post.posts);
     setPostloading(false);
   };
+  const handleFollow = async (id) => {
+    const config = {
+      headers: {
+        token: localStorage.getItem("accessToken"),
+      },
+    };
+    const { data } = await Axios.put(
+      "/user/followRequest/" + id,
+      { userId: user._id },
+      config
+    );
+    console.log(data);
+  };
   useEffect(() => {
-    getposts();
-  }, []);
+    if (user) {
+      getposts();
+    } else {
+      navigate("/login");
+    }
+  }, [loading]);
   return (
     <div>
       <header>
@@ -32,9 +49,8 @@ const UserProfile = () => {
           <div className="profile">
             <div className="profile-image">
               <img
-                // src="https://images.unsplash.com/photo-1513721032312-6a18a42c8763?w=152&h=152&fit=crop&crop=faces"
                 src={
-                  user?.profileImage?.includes("http")
+                  user?.profileImage?.includes("/avtar")
                     ? user?.profileImage
                     : `data:video/mp4;base64,${user?.profileImage}`
                 }
@@ -44,7 +60,12 @@ const UserProfile = () => {
 
             <div className="profile-user-settings">
               <h1 className="profile-user-name">{user?.username}</h1>
-              <button className="follow-unfollow">follow</button>
+              <button
+                className="follow-unfollow"
+                onClick={() => handleFollow()}
+              >
+                follow
+              </button>
               <div className="btn-group">
                 <button
                   type="button"
