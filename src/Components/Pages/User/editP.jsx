@@ -17,7 +17,7 @@ const UserEditProfile = () => {
       },
     };
     const formdata = new FormData(e.target);
-    console.log(Array.from(formdata));
+    console.log(Array.from(formdata));  
     await Axios.put("/user/profile", formdata, config);
     alert("profile updated");
   };
@@ -82,7 +82,7 @@ const UserEditProfile = () => {
               </div>
               <div className="editProfileCenterBox1Right">
                 <h3>{user?.name}</h3>
-                <h4>@{user?.username}</h4>
+                <h4>@{user?.userName}</h4>
                 <p>{user?.bio}</p>
               </div>
             </div>
@@ -101,8 +101,8 @@ const UserEditProfile = () => {
                 <br />
                 <input
                   type="text"
-                  name="username"
-                  defaultValue={user?.username}
+                  name="userName"
+                  defaultValue={user?.userName}
                 />
                 <br />
                 <label htmlFor="">email</label>

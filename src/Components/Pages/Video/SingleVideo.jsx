@@ -64,6 +64,7 @@ const SingleVideo = () => {
           config
         );
         setComments(res.data.comments);
+        console.log(res.data.comments);
       } catch (error) {
         console.log(error);
       }

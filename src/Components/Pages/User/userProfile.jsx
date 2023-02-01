@@ -59,13 +59,13 @@ const UserProfile = () => {
             </div>
 
             <div className="profile-user-settings">
-              <h1 className="profile-user-name">{user?.username}</h1>
-              <button
+              <h1 className="profile-user-name">{user?.userName}</h1>
+              {/* <button
                 className="follow-unfollow"
                 onClick={() => handleFollow()}
               >
                 follow
-              </button>
+              </button> */}
               <div className="btn-group">
                 <button
                   type="button"
