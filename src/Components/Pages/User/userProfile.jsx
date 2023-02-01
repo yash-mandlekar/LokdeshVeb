@@ -165,25 +165,21 @@ const UserProfile = () => {
                       controls
                     />
                   )}
-
-                  <div className="gallery-item-info">
-                    <ul>
-                      <li className="gallery-item-likes">
-                        <span className="visually-hidden">Likes:</span>
-                        <i className="bi bi-heart-fill"></i>
-                        {post?.likes?.length}
-                      </li>
-                      <li className="gallery-item-comments">
-                        <span className="visually-hidden">Comments:</span>
-                        <i className="bi bi-chat-fill"></i>
-                        {post?.comments?.length}
-                      </li>
-                    </ul>
-                  </div>
                 </div>
               ))}
             </div>
           )}
+          {/* <div className="gallery">
+          <div className="gallery-item"></div>
+
+          <div className="gallery-item"></div>
+
+          <div className="gallery-item"></div>
+
+          <div className="gallery-item"></div>
+
+
+          </div> */}
         </div>
       </main>
     </div>
