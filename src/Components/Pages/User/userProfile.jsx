@@ -18,8 +18,8 @@ const UserProfile = () => {
       },
     };
     const { data } = await Axios.get("/user/post", config);
-    setPosts(data.post.posts);
-    console.log(data.post.posts);
+    console.log(data.user.posts);
+    setPosts(data.user.posts);
     setPostloading(false);
   };
   const handleFollow = async (id) => {
