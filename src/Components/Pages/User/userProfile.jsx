@@ -18,8 +18,8 @@ const UserProfile = () => {
       },
     };
     const { data } = await Axios.get("/user/post", config);
-    setPosts(data.post.posts);
-    console.log(data.post.posts);
+    console.log(data.user.posts);
+    setPosts(data.user.posts);
     setPostloading(false);
   };
   const handleFollow = async (id) => {
@@ -59,13 +59,13 @@ const UserProfile = () => {
             </div>
 
             <div className="profile-user-settings">
-              <h1 className="profile-user-name">{user?.username}</h1>
-              <button
+              <h1 className="profile-user-name">{user?.userName}</h1>
+              {/* <button
                 className="follow-unfollow"
                 onClick={() => handleFollow()}
               >
                 follow
-              </button>
+              </button> */}
               <div className="btn-group">
                 <button
                   type="button"

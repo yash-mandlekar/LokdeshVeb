@@ -63,8 +63,8 @@ const SingleVideo = () => {
           { comment: e.target.comment.value },
           config
         );
-        setComments(res.data.short.comments);
-        setVideoData({ ...VideoData, comments: res.data.comments });
+        setComments(res.data.comments);
+        console.log(res.data.comments);
       } catch (error) {
         console.log(error);
       }
@@ -140,9 +140,25 @@ const SingleVideo = () => {
                 युवती भी शामिल है।
               </h1>
             </div>
-            {shorts.short?.comments?.map((comment, i) => (
+            {comments?.map((comment, i) => (
               <div className="userComment" key={i}>
-                <div className="userprofileComment"></div>
+                <img
+                  className="userprofileComment"
+                  src={
+                    comment.user?.profileImage?.includes("/avtar")
+                      ? comment.user?.profileImage
+                      : `data:video/mp4;base64,${comment.user?.profileImage}`
+                  }
+                />
+                <h5
+                  style={{
+                    marginLeft: "10px",
+                    fontWeight: "bold",
+                  }}
+                >
+                  @{comment.user.name}
+                </h5>
+
                 <div className="userCommentText">
                   <h2>{comment.comment}</h2>
                 </div>

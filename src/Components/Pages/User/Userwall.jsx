@@ -4,18 +4,6 @@ import UserwallNavbar from "./UserActions/userNavbar";
 import "./serWall.css";
 
 const Userwall = () => {
-  useEffect(() => {
-    getposts();
-  }, []);
-  const getposts = async () => {
-    const config = {
-      headers: {
-        token: localStorage.getItem("accessToken"),
-      },
-    };
-    const res = await Axios.get("/user/post", config);
-    console.log(res.data);
-  };
   return (
     <>
       <UserwallNavbar />
