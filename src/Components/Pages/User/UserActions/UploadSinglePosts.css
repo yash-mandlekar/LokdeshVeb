@@ -1,9 +1,12 @@
-.showvideoLeft img{
-    width: 100%;
-    height:80%;
-    object-fit: contain;
-    object-position: center;
+.showvideoLeft img {
+  width: 100%;
+  height: 80%;
+  object-fit: contain;
+  object-position: center;
 }
-.showvideoLeft{
-    background-color: rgb(255, 255, 255);
+.showvideoLeft {
+  background-color: rgb(255, 255, 255);
+}
+.userprofileComment {
+  overflow: hidden;
 }

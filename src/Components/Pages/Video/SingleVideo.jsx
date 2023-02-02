@@ -23,7 +23,6 @@ const SingleVideo = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
-  const [VideoData, setVideoData] = useState({});
   useEffect(() => {
     dispatch(loadShort(id));
   }, []);
@@ -72,6 +71,7 @@ const SingleVideo = () => {
       navigate("/login");
     }
   };
+  console.log(comments);
   return (
     <div className="SingleVideo">
       <div className="showSingleVideo">
@@ -156,11 +156,11 @@ const SingleVideo = () => {
                     fontWeight: "bold",
                   }}
                 >
-                  @{comment.user.name}
+                  @{comment?.user?.name}
                 </h5>
 
                 <div className="userCommentText">
-                  <h2>{comment.comment}</h2>
+                  <h2>{comment?.comment}</h2>
                 </div>
               </div>
             ))}
