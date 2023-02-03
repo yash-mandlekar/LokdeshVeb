@@ -23,10 +23,10 @@ const SingleNews = ({ handlePlayerReady }) => {
       {news.loading ? (
         <h1>Loading...</h1>
         
-      ) : news.news.length > 0 ? (
-        news.news.map(
+      ) : news?.news?.length > 0 ? (
+        news?.news?.map(
           (e, i) =>
-            e.showInSlider.toLowerCase() === "false" && (
+            e?.showInSlider.toLowerCase() === "false" && (
               <div
                 key={i}
                 className={
@@ -35,7 +35,7 @@ const SingleNews = ({ handlePlayerReady }) => {
               >
                 <div className="TrendingNewsLeft">
                   <div className="TrendingNewsLeftImg">
-                    {e.fileType === "video" && (
+                    {e?.fileType === "video" && (
                       <div
                         style={{
                           width: "100%",
@@ -48,7 +48,7 @@ const SingleNews = ({ handlePlayerReady }) => {
                             fluid: true,
                             sources: [
                               {
-                                src: `data:video/mp4;base64,${e.file}`,
+                                src: `data:video/mp4;base64,${e?.file}`,
                                 type: "video/mp4",
                               },
                             ],
@@ -58,7 +58,7 @@ const SingleNews = ({ handlePlayerReady }) => {
                       </div>
                     )}
 
-                    {e.fileType === "image" && (
+                    {e?.fileType === "image" && (
                       <div
                         className="Trendingimage"
                         onClick={() => navigate(`/news/${e._id}`)}
@@ -106,7 +106,7 @@ const SingleNews = ({ handlePlayerReady }) => {
                     }}
                   >
                     <span className={`red`}></span>
-                    {e.metaTitle.slice(0, 280)} ..
+                    {e?.metaTitle?.slice(0, 280)} ..
                   </h1>
                   <br />
                   <h3>
