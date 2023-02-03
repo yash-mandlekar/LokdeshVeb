@@ -5,13 +5,20 @@ export const loadUser = () => async (dispatch) => {
     dispatch({
       type: "loadUserRequest",
     });
-    const { data } = await Axios.post("/user/refreshtoken", {
-      token: localStorage.getItem("refreshToken"),
-    });
-    dispatch({
-      type: "loadUserSuccess",
-      payload: data.user,
-    });
+    if (localStorage.getItem("refreshToken")) {
+      const { data } = await Axios.post("/user/refreshtoken", {
+        token: localStorage.getItem("refreshToken"),
+      });
+      dispatch({
+        type: "loadUserSuccess",
+        payload: data.user,
+      });
+    } else {
+      dispatch({
+        type: "loadUserFail",
+        payload: "No user found",
+      });
+    }
   } catch (error) {
     dispatch({
       type: "loadUserFail",
