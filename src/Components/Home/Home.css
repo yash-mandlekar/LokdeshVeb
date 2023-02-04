@@ -240,6 +240,10 @@
   list-style: none;
   font-weight: bold;
 }
+.catagoryItem ul li{
+  display: flex;
+  align-items: center;
+}
 .catagoryItem ul li i {
   margin-right: 10%;
 }
@@ -569,7 +573,3 @@
 .purple {
   color: purple;
 }
-
-
-
-
