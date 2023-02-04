@@ -67,6 +67,7 @@ const App = () => {
           <Route path="/Language" element={<Language />} />
           <Route path="/singlepost/:id" element={<UserSinglePosts />} />
           <Route path="/Mywall" element={<Mywall />} />
+          <Route path="/UserP" element={<UserP />} />
         </Routes>
       </BrowserRouter>
     </div>
