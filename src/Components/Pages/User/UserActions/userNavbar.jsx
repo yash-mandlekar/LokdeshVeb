@@ -243,7 +243,11 @@ const UserNavbar = () => {
                       <div className="post__likes">
                         <a href="#" className="post__likes-avatar">
                           <img
-                            src="assets/default-user.png"
+                            src={
+                              user?.profileImage?.includes("/avtar")
+                                ? user?.profileImage
+                                : `data:video/mp4;base64,${user?.profileImage}`
+                            }
                             alt="User Picture"
                           />
                         </a>
@@ -283,11 +287,18 @@ const UserNavbar = () => {
           <section className="side-menu">
             <div className="side-menu__user-profile">
               <a href="" target="_blank" className="side-menu__user-avatar">
-                <img src={userphoto} alt="User Picture" />
+                <img
+                  src={
+                    user?.profileImage?.includes("/avtar")
+                      ? user?.profileImage
+                      : `data:video/mp4;base64,${user?.profileImage}`
+                  }
+                  alt="User Picture"
+                />
               </a>
               <div className="side-menu__user-info">
-                <a href="/">leocosta1</a>
-                <span>Leonardo Costa</span>
+                <a href="/">{user?.userName}</a>
+                {/* <span>Leonardo Costa</span> */}
               </div>
               <button className="side-menu__user-button">
                 <div className="dropdown">
@@ -298,7 +309,7 @@ const UserNavbar = () => {
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
-                    <i className="bi bi-upload"></i>
+                    <i class="bi bi-arrow-up-circle"></i>
                   </a>
 
                   <ul className="dropdown-menu">

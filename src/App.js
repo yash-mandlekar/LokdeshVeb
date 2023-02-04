@@ -27,6 +27,8 @@ import { loadUser } from "./Store/Actions/User";
 import { loadNews } from "./Store/Actions/News";
 import Mynews from "./Components/Pages/User/UserActions/Mynews";
 import UserSinglePosts from "./Components/Pages/User/UserActions/UserSinglePosts";
+import Pofile from "./Components/Pages/User/Profile/Pofile";
+import Mywall from "./Components/Pages/User/Profile/Mywall";
 const App = () => {
   console.log();
   const dispatch = useDispatch();
@@ -50,7 +52,7 @@ const App = () => {
           <Route path="/video" element={<Video />} />
           <Route path="/Epaper" element={<Epaper />} />
           <Route path="/news/:id" element={<SingleNews />} />
-          <Route path="/user" element={<UserProfile />} />
+          <Route path="/user" element={<Pofile />} />
           <Route path="/feedback" element={<Mailer />} />
           <Route path="/:category" element={<Categories />} />
           <Route path="/epaper/:city" element={<LocationEpaper />} />
@@ -58,13 +60,13 @@ const App = () => {
           <Route path="/otp" element={<Otp />} />
           <Route path="/Timer" element={<Timer />} />
           <Route path="/singleVideo/:id" element={<SingleVideo />} />
-          <Route path="/UserP" element={<UserP />} />
           <Route path="/userwall" element={<UserWall />} />
           <Route path="/UserReels" element={<UserReels />} />
           <Route path="/user/photoupload" element={<UserPhotoUpload />} />
           <Route path="/mynews" element={<Mynews />} />
           <Route path="/Language" element={<Language />} />
           <Route path="/singlepost/:id" element={<UserSinglePosts />} />
+          <Route path="/Mywall" element={<Mywall />} />
         </Routes>
       </BrowserRouter>
     </div>

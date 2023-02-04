@@ -17,7 +17,7 @@ const UserEditProfile = () => {
       },
     };
     const formdata = new FormData(e.target);
-    console.log(Array.from(formdata));  
+    console.log(Array.from(formdata));
     await Axios.put("/user/profile", formdata, config);
     navigate("/User");
   };
@@ -48,29 +48,12 @@ const UserEditProfile = () => {
   return (
     <>
       {loading ? (
-        <div className="loading">
-          <h1>Loading...</h1>
-          <h1>Loading...</h1>
-          <h1>Loading...</h1>
-          <h1>Loading...</h1>
-          <h1>Loading...</h1>
-          <h1>Loading...</h1>
-          <h1>Loading...</h1>
-          <h1>Loading...</h1>
-          <h1>Loading...</h1>
-          <h1>Loading...</h1>
-          <h1>Loading...</h1>
-          <h1>Loading...</h1>
-        </div>
+        <div className="loading"></div>
       ) : (
         <div className="editProfile">
           <div className="editProfileLeft">
-            <div className="editProfileLeftBox"></div>
-          </div>
-
-          <div className="editProfileCenter">
-            <div className="editProfileCenterBox1">
-              <div className="editProfileCenterBox1Left">
+            <div className="editProfileLeftBox">
+              <div className="editpofileleft">
                 <img
                   src={
                     user?.profileImage?.includes("/avtar")
@@ -80,17 +63,19 @@ const UserEditProfile = () => {
                   alt=""
                 />
               </div>
-              <div className="editProfileCenterBox1Right">
-                <h3>{user?.name}</h3>
-                <h4>@{user?.userName}</h4>
-                <p>{user?.bio}</p>
-              </div>
+              <h2>@abhaa.yy</h2>
+              <h1>abhay singh</h1>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos nulla optio id exercitationem adipisci officia, corporis tenetur ratione neque rerum, tempora explicabo repudiandae hic fugit animi officiis delectus, culpa commodi!
+              Et labore placeat ducimus earum incidunt commodi at. Quasi laborum consequatur est! Ea perspiciatis expedita dolorem unde aliquid? Dicta libero aut inventore corrupti, necessitatibus nisi error officiis omnis natus maxime?
+              Provident dolorum adipisci maxime nemo, eius, culpa cumque earum, architecto unde debitis mollitia incidunt! Debitis, veritatis eaque necessitatibus quos recusandae dolorum veniam repellendus, quaerat laborum architecto labore doloremque fugit voluptatum?</p>
+              {/* <h1>{user?.name}</h1>
+              <h1>@{user?.userName}</h1>
+              <p>{user?.bio}</p> */}
             </div>
-            <input
-              type="file"
-              name="profileImage"
-              onChange={handleProfileImage}
-            />
+          </div>
+
+          <div className="editProfileCenter">
+
             <form onSubmit={handleSubmit} className="editPRofileCenter">
               <ul>
                 <label htmlFor="">name</label>
@@ -99,10 +84,18 @@ const UserEditProfile = () => {
                 <br />
                 <label htmlFor="">username</label>
                 <br />
+              
                 <input
                   type="text"
                   name="userName"
                   defaultValue={user?.userName}
+                />
+                <br/>
+                <label htmlFor="">upload your photo</label>
+                <input
+                  type="file"
+                  name="profileImage"
+                  onChange={handleProfileImage}
                 />
                 <br />
                 <label htmlFor="">email</label>

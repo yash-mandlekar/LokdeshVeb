@@ -8,6 +8,49 @@
   float: left;
   background-color: #f4fbff;
 }
+.editProfileLeftBox{
+}
+.editpofileleft{
+  height: 160px;
+  width: 160px;
+  overflow: hidden;
+  border-radius: 50%;
+  margin-left: 17%;
+}
+.editProfileLeftBox h1{
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #848484;
+}
+.editProfileLeftBox p{
+  text-align: justify;
+  font-size: 1rem;
+  font-weight:500;
+  color: rgb(68, 68, 68);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  margin-top: 7px;
+}
+.editProfileLeftBox h3{
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight:100;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  margin-top: 7px;
+}
+.editProfileLeftBox h2{
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight:100;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  margin-top: 22px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.editpofileleft img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 .editProfileCenter button {
   position: relative;
   background: none;
@@ -224,14 +267,13 @@ button a{
   padding: 20px;
   margin-left: 10%;
   width: 80%;
-  height: 20vh;
   box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
     6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
     12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
     22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
     41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05),
     100px 100px 80px rgba(0, 0, 0, 0.07);
-  background-color: rgb(239, 239, 239);
+  background-color: rgb(239, 252, 254);
 }
 .editProfileLeftBoxSingle{
   width: 100%;
@@ -253,7 +295,9 @@ button a{
 }
 
 .editProfileCenter {
-  width: 60%;
+  border-left: 1px solid rgb(232, 232, 232);
+  border-right: 1px solid rgb(232, 232, 232);
+    width: 60%;
   height: 100%;
   background-color: rgb(255, 255, 255);
 }

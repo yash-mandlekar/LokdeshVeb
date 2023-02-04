@@ -86,10 +86,7 @@ const UserSinglePosts = () => {
           <div className="showvideoRightCenter">
             <div className="VideoDesc">
               <h1>
-                महाराष्ट्र में मध्यप्रदेश के मजदूरों से भरी ट्रैक्टर-ट्रॉली
-                पलटने से 5 की मौत हो गई। इनमें दो बच्चे हैं। मारे गए लोग सेंधवा
-                के कोलकी मांग (जिला बड़वानी) के हैं। मृतकों में दो महिलाएं और एक
-                युवती भी शामिल है।
+                {Post?.caption}
               </h1>
             </div>
             {comments?.map((comment, i) => (

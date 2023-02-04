@@ -35,7 +35,7 @@ const UserPhotoUpload = () => {
 
   return (
     <>
-      <div className="photouploadform">
+      {/* <div className="photouploadform">
         <div className="photouploadmain">
           <form onSubmit={handleSubmit} className="uploadphoto">
             <h1>Upload your posts</h1>
@@ -81,9 +81,39 @@ const UserPhotoUpload = () => {
             </div>
           </form>
         </div>
+      </div> */}
+       <div className="photouploadform">
+        <div className="photouploadmain">
+          <form onSubmit={handleSubmit} className="uploadphoto">
+            <h1>Create Post</h1>
+            <hr />
+            <div className="userdets">
+              <img className="img5" src="" alt="" />
+              <h4>abhay singh</h4>
+            </div>
+            <p>What's on your mind, Ankit</p>
+            <div className="uploadform">
+              <FileUploader
+                className="fileupload"
+                handleChange={handleChange}
+                name="file"
+                types={fileTypes}
+                value={file}
+              />
+              <input type="text" name="caption" className="postcaption" placeholder="Enter your caption"/>
+              {/* <textarea name="caption" rows="5" cols="81" id=""></textarea> */}
+            </div>
+            <button type="submit">
+              <b>Post</b>
+            </button>
+           
+          </form>
+        </div>
       </div>
     </>
   );
+  
+  
 };
 
 export default UserPhotoUpload;
