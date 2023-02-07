@@ -19,7 +19,7 @@ import SingleVideo from "./Components/Pages/Video/SingleVideo";
 import Timer from "./Components/Timer/Timer";
 import Language from "./Components/Pages/Language/Language.jsx";
 import UserWall from "./Components/Pages/User/Userwall";
-import UserReels from "./Components/Pages/User/UserActions/UserReels.jsx";
+import UserPhotos from "./Components/Pages/User/UserActions/UsersPhoto.jsx";
 import { useDispatch } from "react-redux";
 import { loadCategories } from "./Store/Actions/Categories";
 import { loadShorts } from "./Store/Actions/Shorts";
@@ -29,7 +29,6 @@ import Mynews from "./Components/Pages/User/UserActions/Mynews";
 import UserSinglePosts from "./Components/Pages/User/UserActions/UserSinglePosts";
 import Findfriends from "./Components/Pages/User/Profile/Findfriends";
 import UserEditProfile from "./Components/Pages/User/editP";
-import Error from "./Components/Pages/Error/Error";
 const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -61,14 +60,13 @@ const App = () => {
           <Route path="/Timer" element={<Timer />} />
           <Route path="/singleVideo/:id" element={<SingleVideo />} />
           <Route path="/userwall" element={<UserWall />} />
-          <Route path="/UserReels" element={<UserReels />} />
           <Route path="/user/photoupload" element={<UserPhotoUpload />} />
           <Route path="/mynews" element={<Mynews />} />
           <Route path="/Language" element={<Language />} />
           <Route path="/singlepost/:id" element={<UserSinglePosts />} />
           <Route path="/user/editprofile" element={<UserP />} />
           <Route path="/findfriends" element={<Findfriends />} />
-          <Route path="/error" element={<Error />} />
+          <Route path="/usersphotos" element={<UserPhotos />} />
         </Routes>
       </BrowserRouter>
     </div>
