@@ -52,7 +52,7 @@ const App = () => {
           <Route path="/video" element={<Video />} />
           <Route path="/Epaper" element={<Epaper />} />
           <Route path="/news/:id" element={<SingleNews />} />
-          <Route path="/user" element={< UserProfile/>} />
+          <Route path="/user/:username" element={<UserProfile />} />
           <Route path="/feedback" element={<Mailer />} />
           <Route path="/:category" element={<Categories />} />
           <Route path="/epaper/:city" element={<LocationEpaper />} />
@@ -68,7 +68,6 @@ const App = () => {
           <Route path="/singlepost/:id" element={<UserSinglePosts />} />
           <Route path="/user/editprofile" element={<UserP />} />
           <Route path="/findfriends" element={<Findfriends />} />
-           
         </Routes>
       </BrowserRouter>
     </div>

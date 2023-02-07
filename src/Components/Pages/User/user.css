@@ -99,7 +99,7 @@
   width: 53vw;
   justify-content: flex-end;
 }
-.addmyprofile button{
+.addmyprofile button {
   height: 6vh;
   width: 8vw;
   margin-left: 2%;
@@ -109,13 +109,13 @@
   background-color: rgb(14, 97, 164);
   border-radius: 10px;
 }
-.addmyprofile button:nth-child(2){
+.addmyprofile button:nth-child(1) {
   background-color: rgb(255, 255, 255);
   color: rgb(0, 0, 0);
   border: 1px solid rgb(227, 227, 227);
 }
 
-  .userProfile hr {
+.userProfile hr {
   margin-top: -2%;
 }
 .userprofileinfo {
@@ -172,7 +172,7 @@
   padding-left: 20px;
   width: 60%;
 }
-.userBottompostBottom::-webkit-scrollbar{
+.userBottompostBottom::-webkit-scrollbar {
   display: none;
 }
 .intro {
@@ -313,16 +313,15 @@
   background-color: white;
   border-radius: 10px;
   border: 1px solid rgb(218, 216, 216);
-  box-shadow:  25px 25px 50px #797979,
-             -25px -25px 50px #ffffff;
+  box-shadow: 25px 25px 50px #797979, -25px -25px 50px #ffffff;
 }
-.whatsyoutmindtop{
+.whatsyoutmindtop {
   display: flex;
   align-items: center;
   height: 50%;
   width: 100%;
 }
-.whatsyoutmindtopPhoto{
+.whatsyoutmindtopPhoto {
   height: 40px;
   width: 40px;
   background-color: black;
@@ -330,16 +329,16 @@
   overflow: hidden;
   margin-left: 4%;
 }
-.whatsyoutmindtopPhoto img{
+.whatsyoutmindtopPhoto img {
   height: 100%;
   width: 100%;
   object-fit: cover;
 }
-.whatsyoutmindbottom{
+.whatsyoutmindbottom {
   height: 50%;
   width: 100%;
 }
-.whatsyoutmindtop input{
+.whatsyoutmindtop input {
   margin-left: 2%;
   border: 1px solid rgb(231, 231, 231);
   background-color: rgb(241, 241, 241);
@@ -353,44 +352,43 @@
   font-family: sans-serif;
   color: black;
 }
-.whatsyoutmindtop{
+.whatsyoutmindtop {
   border-bottom: 1px solid rgb(231, 231, 231);
 }
-.whatsyoutmindbottom{
+.whatsyoutmindbottom {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0px 100px;
 }
-.whatsyoutmindbottom h1{
+.whatsyoutmindbottom h1 {
   font-size: 1.2vmax;
   font-weight: 600;
   color: rgb(134, 134, 134);
 }
-.whatsyoutmindbottom h1 i{
+.whatsyoutmindbottom h1 i {
   font-size: 1.2vmax;
   font-weight: 600;
 }
-.whatsyoutmindbottom h1 i:nth-child(1){
+.whatsyoutmindbottom h1 i:nth-child(1) {
   color: rgb(80, 40, 77);
 }
-.myposts{
+.myposts {
   width: 100%;
   background-color: white;
   margin-top: 2%;
   border-radius: 10px;
   border: 1px solid rgb(218, 216, 216);
-  box-shadow:  25px 25px 50px #797979,
-             -25px -25px 50px #ffffff;
+  box-shadow: 25px 25px 50px #797979, -25px -25px 50px #ffffff;
 }
-.mypostsTop{
+.mypostsTop {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
   height: 8vh;
 }
-.mypostsTop1{
+.mypostsTop1 {
   display: flex;
   align-items: center;
   height: 40px;
@@ -401,29 +399,29 @@
   overflow: hidden;
   margin-top: 1%;
 }
-.mypostsTop1 img{
+.mypostsTop1 img {
   height: 100%;
   width: 100%;
   object-fit: cover;
 }
-.mypostsTop2{
+.mypostsTop2 {
   height: 100%;
   width: 70%;
 }
-.mypostsTop2 h1{
+.mypostsTop2 h1 {
   margin-top: 2.4%;
   font-size: 1.2vmax;
   font-weight: 600;
   color: rgb(0, 0, 0);
   margin-left: 4%;
 }
-.mypostsTop2 h5{
-  font-size: .8vmax;
+.mypostsTop2 h5 {
+  font-size: 0.8vmax;
   color: rgb(145, 144, 144);
   margin-left: 4%;
   margin-top: -1%;
 }
-.mypostsTop3{
+.mypostsTop3 {
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -431,57 +429,56 @@
   width: 20%;
   margin-right: 5%;
 }
-.mypostsCenter{
+.mypostsCenter {
   width: 100%;
   margin-top: 1%;
 }
-.mypostsCaption{
+.mypostsCaption {
   width: 100%;
   margin-top: 1%;
   padding: 0px 4%;
 }
-.mypostsCaption h3{
+.mypostsCaption h3 {
   font-size: 1vmax;
   display: flex;
   text-align: justify;
   color: rgb(60, 60, 60);
   font-weight: 600;
   margin-top: 1%;
-  
 }
-.mypostsimage{
+.mypostsimage {
   width: 100%;
   height: 70vh;
   margin-top: 3%;
 }
-.mypostsimage img{
+.mypostsimage img {
   height: 100%;
   width: 100%;
   object-fit: contain;
 }
-.mypostsBottom{
+.mypostsBottom {
   width: 100%;
   margin-top: 1%;
 }
-.mypostsBottom1{
+.mypostsBottom1 {
   padding: 10px;
   height: 5vh;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
- 
+
   padding: 0px 40px;
   margin-top: 2%;
 }
-.mypostsBottom1 h1{
+.mypostsBottom1 h1 {
   font-size: 1.2vmax;
   font-weight: 100;
   color: rgb(120, 120, 120);
   margin-left: 1%;
   font-family: sans-serif;
 }
-.mypostsBottom1 i{
+.mypostsBottom1 i {
   font-size: 1.2vmax;
   font-weight: 600;
   color: rgb(87, 86, 86);
@@ -564,7 +561,7 @@
     margin-top: 4%;
     margin-right: 2%;
   }
-  .addmyprofile button{
+  .addmyprofile button {
     height: 4vh;
     width: 5vh;
     background-color: rgb(5, 115, 218);
@@ -608,7 +605,7 @@
     margin-top: 4%;
     width: 100%;
     padding-left: 0%;
-    overflow: auto;    
+    overflow: auto;
   }
   .intro {
     width: 100%;
@@ -673,43 +670,39 @@
     background-color: white;
     margin-top: 2%;
   }
-  .whatsyoutmindtop input{
+  .whatsyoutmindtop input {
     width: 81%;
     height: 5vh;
     padding: 0px 16px;
     font-size: 1.7vmax;
-      border: none;
+    border: none;
   }
-  .whatsyoutmindbottom{
+  .whatsyoutmindbottom {
     padding-left: 60px;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
   }
-  .whatsyoutmindbottom h1{
+  .whatsyoutmindbottom h1 {
     font-size: 1.7vmax;
     white-space: nowrap;
     margin-left: 22%;
   }
-  .mypostsTop2 h1{
+  .mypostsTop2 h1 {
     font-size: 1.7vmax;
     margin-top: 7%;
     margin-left: 9%;
   }
-  .mypostsTop2 h5{
+  .mypostsTop2 h5 {
     font-size: 1.2vmax;
     margin-top: -1%;
     margin-left: 9%;
   }
-  .mypostsCaption h3{
+  .mypostsCaption h3 {
     font-size: 1.5vmax;
-    
   }
-  .mypostsBottom1 h1{
+  .mypostsBottom1 h1 {
     margin-top: 1%;
     font-size: 2vmax;
-   
   }
-  
-
 }

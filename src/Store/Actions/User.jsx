@@ -48,3 +48,21 @@ export const logout = () => async (dispatch) => {
     });
   }
 };
+
+export const loadSingleUser = (username) => async (dispatch) => {
+  try {
+    dispatch({
+      type: "singleUserRequest",
+    });
+    const { data } = await Axios.get(`/user/profile/singleUser/${username}`);
+    dispatch({
+      type: "singleUserSuccess",
+      payload: data.user,
+    });
+  } catch (error) {
+    dispatch({
+      type: "singleUserFail",
+      payload: error.response.data.message,
+    });
+  }
+};
