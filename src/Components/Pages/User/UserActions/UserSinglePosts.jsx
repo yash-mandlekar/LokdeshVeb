@@ -65,76 +65,76 @@ const UserSinglePosts = () => {
     }
   };
   return (
-    <div className="SingleVideo">
-      <div className="showSingleVideo">
-        <div className="showvideoLeft">
-          <img src={`data:image/mp4;base64,${Post?.file}`} alt="" />
-        </div>
-        <div className="showvideoRight">
-          <div className="showvideoRightTop">
-            <div className="showvideoRightTopLeft">
-              <img
-                src="https://images.unsplash.com/photo-1657299156332-7e1aea73093b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
-                alt=""
-              />
-              <h2 style={{ marginLeft: "10px" }}>लोकदेश</h2>
-            </div>
-            <div className="showvideoRightTopShare">
-              <div className="allreelSharwee"></div>
-            </div>
+    <div className="singleVideoBackground">
+      <div className="SingleVideo">
+        <div className="showSingleVideo">
+          <div className="showvideoLeft">
+            <img src={`data:image/mp4;base64,${Post?.file}`} alt="" />
           </div>
-          <div className="showvideoRightCenter">
-            <div className="VideoDesc">
-              <h1>
-                {Post?.caption}
-              </h1>
+          <div className="showvideoRight">
+            <div className="showvideoRightTop">
+              <div className="showvideoRightTopLeft">
+                <img
+                  src="https://images.unsplash.com/photo-1657299156332-7e1aea73093b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
+                  alt=""
+                />
+                <h2 style={{ marginLeft: "10px" }}>लोकदेश</h2>
+              </div>
+              <div className="showvideoRightTopShare">
+                <div className="allreelSharwee"></div>
+              </div>
             </div>
-            {comments?.map((comment, i) => (
-              <div key={i} className="userComment">
-                <div className="userprofileComment">
-                  <img
-                    src={`data:video/mp4;base64,${comment?.user.profileImage}`}
-                    alt=""
-                  />
+            <div className="showvideoRightCenter">
+              <div className="VideoDesc">
+                <h1>{Post?.caption}</h1>
+              </div>
+              {comments?.map((comment, i) => (
+                <div key={i} className="userComment">
+                  <div className="userprofileComment">
+                    <img
+                      src={`data:video/mp4;base64,${comment?.user.profileImage}`}
+                      alt=""
+                    />
+                  </div>
+                  <div className="userCommentText">
+                    <h2>{comment.comment}</h2>
+                  </div>
                 </div>
-                <div className="userCommentText">
-                  <h2>{comment.comment}</h2>
+              ))}
+            </div>
+            <div className="showvideoRightBottom">
+              <div className="showvideoRightBottomTop">
+                <div
+                  onClick={handleHeart}
+                  className="showvideoRightBottomTopLeft"
+                >
+                  {likes?.includes(user?._id) ? (
+                    <i style={{ color: "red" }} className="bi bi-heart-fill">
+                      {" "}
+                    </i>
+                  ) : (
+                    <i className="bi bi-heart"> </i>
+                  )}
+                  <a>{likes?.length} Likes</a>
+                </div>
+                <div className="showvideoRightBottomTopLeftTop">
+                  <a href="">
+                    <i className="bi bi-bookmarks"></i>
+                  </a>
                 </div>
               </div>
-            ))}
-          </div>
-          <div className="showvideoRightBottom">
-            <div className="showvideoRightBottomTop">
-              <div
-                onClick={handleHeart}
-                className="showvideoRightBottomTopLeft"
+              <form
+                onSubmit={handleComment}
+                className="showvideoRightBottomBottom"
               >
-                {likes?.includes(user?._id) ? (
-                  <i style={{ color: "red" }} className="bi bi-heart-fill">
-                    {" "}
-                  </i>
-                ) : (
-                  <i className="bi bi-heart"> </i>
-                )}
-                <a>{likes?.length} Likes</a>
-              </div>
-              <div className="showvideoRightBottomTopLeftTop">
-                <a href="">
-                  <i className="bi bi-bookmarks"></i>
-                </a>
-              </div>
+                <input
+                  type="text"
+                  name="comment"
+                  placeholder="Add a comment..."
+                />
+                <button>send</button>
+              </form>
             </div>
-            <form
-              onSubmit={handleComment}
-              className="showvideoRightBottomBottom"
-            >
-              <input
-                type="text"
-                name="comment"
-                placeholder="Add a comment..."
-              />
-              <button>send</button>
-            </form>
           </div>
         </div>
       </div>

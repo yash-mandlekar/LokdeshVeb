@@ -127,7 +127,7 @@ const Mynews = () => {
                   >
                     {file ? (
                       <>
-                        <i class="bi bi-check2"></i>
+                        <i className="bi bi-check2"></i>
                         <span>File Attached</span>
                       </>
                     ) : (

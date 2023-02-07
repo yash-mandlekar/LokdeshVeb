@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Profiler, useEffect, useState } from "react";
 import Navbar from "./Components/Navbar/Navbar";
 import Home from "./Components/Home/Home";
 import "./App.css";
@@ -27,8 +27,8 @@ import { loadUser } from "./Store/Actions/User";
 import { loadNews } from "./Store/Actions/News";
 import Mynews from "./Components/Pages/User/UserActions/Mynews";
 import UserSinglePosts from "./Components/Pages/User/UserActions/UserSinglePosts";
-import Pofile from "./Components/Pages/User/Profile/Pofile";
-import Mywall from "./Components/Pages/User/Profile/Mywall";
+import Findfriends from "./Components/Pages/User/Profile/Findfriends";
+import UserEditProfile from "./Components/Pages/User/editP";
 const App = () => {
   console.log();
   const dispatch = useDispatch();
@@ -52,7 +52,7 @@ const App = () => {
           <Route path="/video" element={<Video />} />
           <Route path="/Epaper" element={<Epaper />} />
           <Route path="/news/:id" element={<SingleNews />} />
-          <Route path="/user" element={<Pofile />} />
+          <Route path="/user" element={< UserProfile/>} />
           <Route path="/feedback" element={<Mailer />} />
           <Route path="/:category" element={<Categories />} />
           <Route path="/epaper/:city" element={<LocationEpaper />} />
@@ -66,8 +66,9 @@ const App = () => {
           <Route path="/mynews" element={<Mynews />} />
           <Route path="/Language" element={<Language />} />
           <Route path="/singlepost/:id" element={<UserSinglePosts />} />
-          <Route path="/Mywall" element={<Mywall />} />
-          <Route path="/UserP" element={<UserP />} />
+          <Route path="/user/editprofile" element={<UserP />} />
+          <Route path="/findfriends" element={<Findfriends />} />
+           
         </Routes>
       </BrowserRouter>
     </div>

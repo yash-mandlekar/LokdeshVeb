@@ -88,9 +88,8 @@ const UserNavbar = () => {
                         {user?.userName}
                       </Link>
                     </div>
-
                     <button
-                      onClick={() => deletePost(post._id)}
+                      
                       className="post__more-options"
                     >
                       <svg
@@ -309,7 +308,7 @@ const UserNavbar = () => {
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
-                    <i class="bi bi-arrow-up-circle"></i>
+                    <i className="bi bi-arrow-up-circle"></i>
                   </a>
 
                   <ul className="dropdown-menu">

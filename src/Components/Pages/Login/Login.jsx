@@ -83,8 +83,8 @@ const Login = () => {
           />
         ) : (
           <div className="login">
-            <img src={Logo} alt="" />
             <h1>फोन नंबर के साथ लॉगिन करें</h1>
+            <h1>अपने शहर समेत 3 राज्यों के शहरों के ई-पेपर कहीं भी और कभी भी पढ़ें</h1>
             <h3>कृपया अपना फोन नंबर दर्ज करें</h3>
             <form onSubmit={handleLogin}>
               <div className="top">
