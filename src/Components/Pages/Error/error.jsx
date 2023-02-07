@@ -1,7 +1,7 @@
 import React from 'react'
 import './error.css'
 
-const error = () => {
+const Error = () => {
   return (
 
 	<div className="errorbox">
@@ -138,4 +138,4 @@ const error = () => {
 )
 }
 
-export default error
+export default Error

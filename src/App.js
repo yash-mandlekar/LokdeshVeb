@@ -29,8 +29,8 @@ import Mynews from "./Components/Pages/User/UserActions/Mynews";
 import UserSinglePosts from "./Components/Pages/User/UserActions/UserSinglePosts";
 import Findfriends from "./Components/Pages/User/Profile/Findfriends";
 import UserEditProfile from "./Components/Pages/User/editP";
+import Error from "./Components/Pages/Error/Error";
 const App = () => {
-  console.log();
   const dispatch = useDispatch();
   useEffect(() => {
     const lang = localStorage.getItem("language");
@@ -68,6 +68,7 @@ const App = () => {
           <Route path="/singlepost/:id" element={<UserSinglePosts />} />
           <Route path="/user/editprofile" element={<UserP />} />
           <Route path="/findfriends" element={<Findfriends />} />
+          <Route path="/error" element={<Error />} />
         </Routes>
       </BrowserRouter>
     </div>

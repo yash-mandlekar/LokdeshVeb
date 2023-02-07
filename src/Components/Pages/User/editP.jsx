@@ -4,13 +4,25 @@ import Axios from "../../Axios/Axios";
 import "./userEditProfile.css";
 import { loadUser } from "../../../Store/Actions/User";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const UserEditProfile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const fileRef = useRef();
   const { loading, user } = useSelector((state) => state.auth);
-  console.log(user);
+  const [form, setForm] = useState({
+    name: user?.name,
+    userName: user?.userName,
+    email: user?.email,
+    district: user?.district,
+    bio: user?.bio,
+    dateOfBirth: user?.dateOfBirth,
+    phone: user?.phone,
+    gender: user?.gender,
+    business: user?.business,
+  });
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const config = {
@@ -20,8 +32,13 @@ const UserEditProfile = () => {
     };
     const formdata = new FormData(e.target);
     console.log(Array.from(formdata));
-    await Axios.put("/user/profile", formdata, config);
-    navigate("/User");
+    try {
+      const res = await Axios.put("/user/profile", formdata, config);
+      console.log(res);
+    } catch (err) {
+      console.log(err.response.data.message);
+    }
+    // navigate("/User");
   };
   const handleLogout = async () => {
     try {
@@ -46,6 +63,9 @@ const UserEditProfile = () => {
     if (res.status == 200) {
       dispatch(loadUser());
     }
+  };
+  const handleInput = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
   };
   return (
     <>
@@ -75,7 +95,13 @@ const UserEditProfile = () => {
               <ul>
                 <label htmlFor="">name</label>
                 <br />
-                <input type="text" name="name" defaultValue={user?.name} />
+                <input
+                  onChange={handleInput}
+                  type="text"
+                  name="name"
+                  defaultValue={user?.name}
+                  value={form.name}
+                />
                 <br />
                 <label htmlFor="">username</label>
                 <br />
@@ -83,36 +109,59 @@ const UserEditProfile = () => {
                 <input
                   type="text"
                   name="userName"
+                  onChange={handleInput}
                   defaultValue={user?.userName}
+                  value={form.userName}
                 />
                 <br />
                 <label htmlFor="">email</label>
                 <br />
-                <input type="text" name="email" defaultValue={user?.email} />
+                <input
+                  onChange={handleInput}
+                  type="text"
+                  name="email"
+                  defaultValue={user?.email}
+                  value={form.email}
+                />
                 <br />
                 <label htmlFor="">location</label>
                 <br />
                 <input
                   type="text"
                   name="district"
+                  onChange={handleInput}
                   defaultValue={user?.district}
+                  value={form.district}
                 />
                 <br />
                 <label htmlFor="">bio</label>
                 <br />
-                <input type="text" name="bio" defaultValue={user?.bio} />
+                <input
+                  type="text"
+                  name="bio"
+                  onChange={handleInput}
+                  defaultValue={user?.bio}
+                  value={form.bio}
+                />
                 <br />
                 <label htmlFor="">date Of Birth</label>
                 <br />
                 <input
                   type="text"
                   name="dateOfBirth"
-                  defaultValue={user?.dateOfBirth.split("T")[0]}
+                  onChange={handleInput}
+                  defaultValue={form?.dateOfBirth?.split("T")[0]}
                 />
                 <br />
                 <label htmlFor=""> phone</label>
                 <br />
-                <input type="text" name="phone" defaultValue={user?.phone} />
+                <input
+                  type="text"
+                  name="phone"
+                  onChange={handleInput}
+                  defaultValue={user?.phone}
+                  value={form.phone}
+                />
                 <br />
                 <label htmlFor="">gender</label>
                 <br />
@@ -121,7 +170,9 @@ const UserEditProfile = () => {
                   list="gender"
                   name="gender"
                   placeholder="Enter Here"
+                  onChange={handleInput}
                   defaultValue={user?.gender}
+                  value={form.gender}
                 />
                 <datalist id="gender">
                   <option value="male">male</option>
@@ -135,7 +186,8 @@ const UserEditProfile = () => {
                   list="bussiness"
                   name="businessAcc"
                   placeholder="Enter Here"
-                  defaultValue={user?.business}
+                  onChange={handleInput}
+                  defaultValue={form?.business}
                 />
                 <datalist id="bussiness">
                   <option value="yes">yes</option>

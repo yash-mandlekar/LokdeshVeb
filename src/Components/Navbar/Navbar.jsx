@@ -11,34 +11,9 @@ import { changeTheme } from "../../Store/Actions/Theme";
 const Navbar = () => {
   const dispatch = useDispatch();
   const { theme } = useSelector((state) => state.theme);
+  const { user, loading } = useSelector((state) => state.auth);
   const [isOpen, setIsOpen] = useState(false);
-  const [navItems, setNavItems] = useState([
-    {
-      title: "भाषा",
-      path: "/Language",
-      icon: "bi bi-translate",
-    },
-    {
-      title: "वीडियो",
-      path: "/video",
-      icon: "bi bi-play-circle",
-    },
-    {
-      title: "ई-पेपर",
-      path: "/Epaper",
-      icon: "bi bi-newspaper",
-    },
-    {
-      title: "लॉग इन करें",
-      path: "/Login",
-      icon: "bi bi-box-arrow-in-right",
-    },
-    {
-      title: "उपयोगकर्ता",
-      path: "/User",
-      icon: "bi bi-person",
-    },
-  ]);
+  const [navItems, setNavItems] = useState([]);
   const handleNavItems = async () => {
     const lang2 = localStorage.getItem("language");
     const cpy = [];
@@ -58,7 +33,36 @@ const Navbar = () => {
   };
   useEffect(() => {
     handleNavItems();
-  }, []);
+    setTimeout(() => {
+      setNavItems([
+        {
+          title: "भाषा",
+          path: "/Language",
+          icon: "bi bi-translate",
+        },
+        {
+          title: "वीडियो",
+          path: "/video",
+          icon: "bi bi-play-circle",
+        },
+        {
+          title: "ई-पेपर",
+          path: "/Epaper",
+          icon: "bi bi-newspaper",
+        },
+        {
+          title: "लॉग इन करें",
+          path: "/Login",
+          icon: "bi bi-box-arrow-in-right",
+        },
+        {
+          title: "उपयोगकर्ता",
+          path: `/User/${user?.userName}`,
+          icon: "bi bi-person",
+        },
+      ]);
+    }, 500);
+  }, [loading, user, theme]);
   return (
     <div className={`Navbar ${theme === "light" ? "" : "Navbar-dark"}`}>
       <span className="nav-logo">
@@ -93,7 +97,7 @@ const Navbar = () => {
             </>
           )}
         </a>
-    
+
         {/* <div className="playstore">
           <img src={Playstorelogo} alt="" />
         </div>

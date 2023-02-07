@@ -17,23 +17,31 @@ const UserProfile = () => {
   const { user, loading } = useSelector((state) => state.auth);
   const { posts, singleUser } = useSelector((state) => state);
   const handleFollow = async (id) => {
-    const config = {
-      headers: {
-        token: localStorage.getItem("accessToken"),
-      },
-    };
-    const { data } = await Axios.put(
-      "/user/followRequest/" + id,
-      { userId: user._id },
-      config
-    );
-    console.log(data);
+    if (user) {
+      const config = {
+        headers: {
+          token: localStorage.getItem("accessToken"),
+        },
+      };
+      const { data } = await Axios.put(
+        "/user/followRequest/" + id,
+        { userId: user._id },
+        config
+      );
+      console.log(data);
+    } else {
+      alert("please login first");
+      navigate("/login");
+    }
   };
-  console.log(singleUser?.user);
   useEffect(() => {
     if (user) {
       dispatch(loadPosts());
-      username && dispatch(loadSingleUser(username));
+    }
+    if (username === "undefined") {
+      navigate("/login");
+    } else {
+      dispatch(loadSingleUser(username));
     }
   }, [loading]);
   const handleProfileImage = async (e) => {
@@ -131,8 +139,9 @@ const UserProfile = () => {
             ) : (
               <button
                 onClick={() => {
-                  handleFollow(user._id);
+                  handleFollow(user?._id);
                 }}
+                style={{ backgroundColor: "rgb(14, 97, 164)" }}
               >
                 {user?.following.includes(singleUser?.user?._id)
                   ? "unfollow"
