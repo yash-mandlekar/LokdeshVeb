@@ -15,6 +15,7 @@ const UserProfile = () => {
   const navigate = useNavigate();
   const { user, loading } = useSelector((state) => state.auth);
   const { posts, singleUser } = useSelector((state) => state);
+  // console.log(singleUser.user);
   const handleFollow = async (id) => {
     if (user) {
       const config = {
@@ -22,12 +23,14 @@ const UserProfile = () => {
           token: localStorage.getItem("accessToken"),
         },
       };
-      const { data } = await Axios.put(
-        "/user/followRequest/" + id,
-        { userId: user._id },
+      const { data } = await Axios.post(
+        "/user/followUnfollow/" + id,
+        {},
         config
       );
-      console.log(data);
+      if (data.status == "success") {
+        dispatch(loadUser());
+      }
     } else {
       alert("please login first");
       navigate("/login");
@@ -42,7 +45,7 @@ const UserProfile = () => {
     } else {
       dispatch(loadSingleUser(username));
     }
-  }, [loading]);
+  }, [loading, username]);
   const handleProfileImage = async (e) => {
     const formdata = new FormData();
     formdata.append("profileImage", e.target.files[0]);
@@ -81,22 +84,24 @@ const UserProfile = () => {
             }
             alt=""
           />
-          <div
-            className="coverphotobutton"
-            onClick={() => {
-              CoverRef.current.click();
-            }}
-          >
-            <i className="bi bi-camera-fill"></i>
-            <h6>Add Cover Photo</h6>
-            <input
-              type="file"
-              name="coverImage"
-              onChange={handleCoverImage}
-              style={{ display: "none" }}
-              ref={CoverRef}
-            />
-          </div>
+          {singleUser?.user?._id === user?._id && (
+            <div
+              className="coverphotobutton"
+              onClick={() => {
+                CoverRef.current.click();
+              }}
+            >
+              <i className="bi bi-camera-fill"></i>
+              <h6>Add Cover Photo</h6>
+              <input
+                type="file"
+                name="coverImage"
+                onChange={handleCoverImage}
+                style={{ display: "none" }}
+                ref={CoverRef}
+              />
+            </div>
+          )}
         </div>
         <div className="pofilephotodiv">
           <div className="profilephotodivm">
@@ -109,6 +114,7 @@ const UserProfile = () => {
                 }
                 alt=""
               />
+              {singleUser?.user?._id === user?._id&&
               <div
                 className="profileuploadbutton"
                 onClick={() => {
@@ -123,7 +129,7 @@ const UserProfile = () => {
                   style={{ display: "none" }}
                   ref={inputRef}
                 />
-              </div>
+              </div>}
             </div>
           </div>
           <div className="profilephototext">
@@ -138,9 +144,15 @@ const UserProfile = () => {
             ) : (
               <button
                 onClick={() => {
-                  handleFollow(user?._id);
+                  handleFollow(singleUser?.user?._id);
                 }}
-                style={{ backgroundColor: "rgb(14, 97, 164)" }}
+                style={{
+                  backgroundColor: user?.following.includes(
+                    singleUser?.user?._id
+                  )
+                    ? "white"
+                    : "blue",
+                }}
               >
                 {user?.following.includes(singleUser?.user?._id)
                   ? "unfollow"
@@ -252,9 +264,9 @@ const UserProfile = () => {
               <div className="whatsyoutmindtopPhoto">
                 <img
                   src={
-                    user?.profileImage?.includes("/avtar")
-                      ? user?.profileImage
-                      : `data:video/mp4;base64,${user?.profileImage}`
+                    singleUser?.user?.profileImage?.includes("/avtar")
+                      ? singleUser?.user?.profileImage
+                      : `data:video/mp4;base64,${singleUser?.user?.profileImage}`
                   }
                   alt=""
                 />
@@ -279,16 +291,16 @@ const UserProfile = () => {
                 <div className="mypostsTop1">
                   <img
                     src={
-                      user?.profileImage?.includes("/avtar")
-                        ? user?.profileImage
-                        : `data:video/mp4;base64,${user?.profileImage}`
+                      singleUser?.user?.profileImage?.includes("/avtar")
+                        ? singleUser?.user?.profileImage
+                        : `data:video/mp4;base64,${singleUser?.user?.profileImage}`
                     }
                     alt=""
                   />
                 </div>
                 <div className="mypostsTop2">
-                  <h1>{user?.userName} </h1>
-                  <h5> {user?.createdAt} </h5>
+                  <h1>{singleUser?.user?.userName} </h1>
+                  <h5> {singleUser?.user?.createdAt} </h5>
                 </div>
                 <div className="mypostsTop3">
                   <div className="btn-group dropstart">
@@ -337,8 +349,7 @@ const UserProfile = () => {
               <div className="mypostsBottom">
                 <div className="mypostsBottom1">
                   <h1>
-                    {" "}
-                    <i className="bi bi-heart"></i> 10 Like
+                    <i className="bi bi-heart"></i> {post.likes.length} Like
                   </h1>
                   <h1>
                     <i className="ri-message-line"></i> comment

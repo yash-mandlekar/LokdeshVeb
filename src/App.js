@@ -20,7 +20,7 @@ import Timer from "./Components/Timer/Timer";
 import Language from "./Components/Pages/Language/Language.jsx";
 import UserWall from "./Components/Pages/User/Userwall";
 import UserPhotos from "./Components/Pages/User/UserActions/UsersPhoto.jsx";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loadCategories } from "./Store/Actions/Categories";
 import { loadShorts } from "./Store/Actions/Shorts";
 import { loadUser } from "./Store/Actions/User";
@@ -31,6 +31,8 @@ import Findfriends from "./Components/Pages/User/Profile/Findfriends";
 import UserEditProfile from "./Components/Pages/User/editP";
 const App = () => {
   const dispatch = useDispatch();
+  const { loading } = useSelector((state) => state.auth);
+
   useEffect(() => {
     const lang = localStorage.getItem("language");
     if (!lang) {
@@ -44,7 +46,7 @@ const App = () => {
   return (
     <div>
       <BrowserRouter>
-        <Navbar />
+        {!loading && <Navbar />}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />

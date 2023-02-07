@@ -31,10 +31,12 @@ const UserEditProfile = () => {
       },
     };
     const formdata = new FormData(e.target);
-    console.log(Array.from(formdata));
     try {
       const res = await Axios.put("/user/profile", formdata, config);
-      console.log(res);
+      if (res.status == 200) {
+        alert("profile updated");
+        dispatch(loadUser());
+      }
     } catch (err) {
       console.log(err.response.data.message);
     }
@@ -140,7 +142,12 @@ const UserEditProfile = () => {
                 <br />
                 <label htmlFor="">date Of Birth</label>
                 <br />
-                <input type="text" name="dateOfBirth" onChange={handleInput} />
+                <input
+                  type="date"
+                  defaultValue={user?.dateOfBirth.split("T")[0]}
+                  name="dateOfBirth"
+                  onChange={handleInput}
+                />
                 <br />
                 <label htmlFor=""> phone</label>
                 <br />

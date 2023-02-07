@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import Axios from "../Axios/Axios";
 import { useDispatch, useSelector } from "react-redux";
 import { changeTheme } from "../../Store/Actions/Theme";
+import { loadUser } from "../../Store/Actions/User";
 const Navbar = () => {
   const dispatch = useDispatch();
   const { theme } = useSelector((state) => state.theme);
@@ -33,35 +34,33 @@ const Navbar = () => {
   };
   useEffect(() => {
     handleNavItems();
-    setTimeout(() => {
-      setNavItems([
-        {
-          title: "भाषा",
-          path: "/Language",
-          icon: "bi bi-translate",
-        },
-        {
-          title: "वीडियो",
-          path: "/video",
-          icon: "bi bi-play-circle",
-        },
-        {
-          title: "ई-पेपर",
-          path: "/Epaper",
-          icon: "bi bi-newspaper",
-        },
-        {
-          title: "लॉग इन करें",
-          path: "/Login",
-          icon: "bi bi-box-arrow-in-right",
-        },
-        {
-          title: "उपयोगकर्ता",
-          path: `/User/${user?.userName}`,
-          icon: "bi bi-person",
-        },
-      ]);
-    }, 500);
+    setNavItems([
+      {
+        title: "भाषा",
+        path: "/Language",
+        icon: "bi bi-translate",
+      },
+      {
+        title: "वीडियो",
+        path: "/video",
+        icon: "bi bi-play-circle",
+      },
+      {
+        title: "ई-पेपर",
+        path: "/Epaper",
+        icon: "bi bi-newspaper",
+      },
+      {
+        title: "लॉग इन करें",
+        path: "/Login",
+        icon: "bi bi-box-arrow-in-right",
+      },
+      {
+        title: "उपयोगकर्ता",
+        path: `/User/${user?.userName}`,
+        icon: "bi bi-person",
+      },
+    ]);
   }, [loading, user, theme]);
   return (
     <div className={`Navbar ${theme === "light" ? "" : "Navbar-dark"}`}>
