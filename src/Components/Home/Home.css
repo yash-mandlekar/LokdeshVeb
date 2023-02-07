@@ -265,7 +265,7 @@
   align-items: center;
   white-space: nowrap;
   font-size: 1vmax;
-  border: 1px solid rgb(226, 226, 226);
+  /* border: 1px solid rgb(226, 226, 226); */
 }
 .carder ul {
   list-style: none;

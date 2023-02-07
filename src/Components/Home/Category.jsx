@@ -1,3 +1,4 @@
+import { createElement } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { filterNews } from "../../Store/Actions/News";
@@ -9,143 +10,33 @@ const Category = () => {
     navigate("/" + e);
     dispatch(filterNews(e));
   };
-
+  function Carder() {
+    return createElement(
+      "div",
+      { className: "carder" },
+      createElement(
+        "ul",
+        null,
+        createElement(
+          "li",
+          null,
+          createElement("div", {
+            className: "carderLogo",
+          }),
+          createElement("div", {
+            className: "carderTitle",
+          })
+        )
+      )
+    );
+  }
   return (
     <div className={`catagory ${theme.theme === "light" ? "light" : "dark"}`}>
       {categories.loading ? (
         <>
-          <div className="carder">
-            <ul>
-              <li>
-                <div
-                  // src={`https://images.unsplash.com/photo-1675416757203-c6a85eb8134d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60`}
-                  className="carderLogo"
-                ></div>
-                <div className="carderTitle"></div>
-              </li>
-            </ul>
-          </div>
-          <div className="carder">
-            <ul>
-              <li>
-                <div
-                  // src={`https://images.unsplash.com/photo-1675416757203-c6a85eb8134d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60`}
-                  className="carderLogo"
-                ></div>
-                <div className="carderTitle"></div>
-              </li>
-            </ul>
-          </div>
-          <div className="carder">
-            <ul>
-              <li>
-                <div
-                  // src={`https://images.unsplash.com/photo-1675416757203-c6a85eb8134d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60`}
-                  className="carderLogo"
-                ></div>
-                <div className="carderTitle"></div>
-              </li>
-            </ul>
-          </div>
-          <div className="carder">
-            <ul>
-              <li>
-                <div
-                  // src={`https://images.unsplash.com/photo-1675416757203-c6a85eb8134d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60`}
-                  className="carderLogo"
-                ></div>
-                <div className="carderTitle"></div>
-              </li>
-            </ul>
-          </div>
-          <div className="carder">
-            <ul>
-              <li>
-                <div
-                  // src={`https://images.unsplash.com/photo-1675416757203-c6a85eb8134d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60`}
-                  className="carderLogo"
-                ></div>
-                <div className="carderTitle"></div>
-              </li>
-            </ul>
-          </div>
-          <div className="carder">
-            <ul>
-              <li>
-                <div
-                  // src={`https://images.unsplash.com/photo-1675416757203-c6a85eb8134d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60`}
-                  className="carderLogo"
-                ></div>
-                <div className="carderTitle"></div>
-              </li>
-            </ul>
-          </div>
-          <div className="carder">
-            <ul>
-              <li>
-                <div
-                  // src={`https://images.unsplash.com/photo-1675416757203-c6a85eb8134d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60`}
-                  className="carderLogo"
-                ></div>
-                <div className="carderTitle"></div>
-              </li>
-            </ul>
-          </div>
-          <div className="carder">
-            <ul>
-              <li>
-                <div
-                  // src={`https://images.unsplash.com/photo-1675416757203-c6a85eb8134d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60`}
-                  className="carderLogo"
-                ></div>
-                <div className="carderTitle"></div>
-              </li>
-            </ul>
-          </div>
-          <div className="carder">
-            <ul>
-              <li>
-                <div
-                  // src={`https://images.unsplash.com/photo-1675416757203-c6a85eb8134d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60`}
-                  className="carderLogo"
-                ></div>
-                <div className="carderTitle"></div>
-              </li>
-            </ul>
-          </div>
-          <div className="carder">
-            <ul>
-              <li>
-                <div
-                  // src={`https://images.unsplash.com/photo-1675416757203-c6a85eb8134d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60`}
-                  className="carderLogo"
-                ></div>
-                <div className="carderTitle"></div>
-              </li>
-            </ul>
-          </div>
-          <div className="carder">
-            <ul>
-              <li>
-                <div
-                  // src={`https://images.unsplash.com/photo-1675416757203-c6a85eb8134d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60`}
-                  className="carderLogo"
-                ></div>
-                <div className="carderTitle"></div>
-              </li>
-            </ul>
-          </div>
-          <div className="carder">
-            <ul>
-              <li>
-                <div
-                  // src={`https://images.unsplash.com/photo-1675416757203-c6a85eb8134d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60`}
-                  className="carderLogo"
-                ></div>
-                <div className="carderTitle"></div>
-              </li>
-            </ul>
-          </div>
+          {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((e, i) => (
+            <Carder key={i} />
+          ))}
         </>
       ) : (
         categories.categories.map((category, i) => (
