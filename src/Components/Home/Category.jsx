@@ -13,7 +13,140 @@ const Category = () => {
   return (
     <div className={`catagory ${theme.theme === "light" ? "light" : "dark"}`}>
       {categories.loading ? (
-        <h3>Loading...</h3>
+        <>
+          <div className="carder">
+            <ul>
+              <li>
+                <div
+                  // src={`https://images.unsplash.com/photo-1675416757203-c6a85eb8134d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60`}
+                  className="carderLogo"
+                ></div>
+                <div className="carderTitle"></div>
+              </li>
+            </ul>
+          </div>
+          <div className="carder">
+            <ul>
+              <li>
+                <div
+                  // src={`https://images.unsplash.com/photo-1675416757203-c6a85eb8134d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60`}
+                  className="carderLogo"
+                ></div>
+                <div className="carderTitle"></div>
+              </li>
+            </ul>
+          </div>
+          <div className="carder">
+            <ul>
+              <li>
+                <div
+                  // src={`https://images.unsplash.com/photo-1675416757203-c6a85eb8134d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60`}
+                  className="carderLogo"
+                ></div>
+                <div className="carderTitle"></div>
+              </li>
+            </ul>
+          </div>
+          <div className="carder">
+            <ul>
+              <li>
+                <div
+                  // src={`https://images.unsplash.com/photo-1675416757203-c6a85eb8134d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60`}
+                  className="carderLogo"
+                ></div>
+                <div className="carderTitle"></div>
+              </li>
+            </ul>
+          </div>
+          <div className="carder">
+            <ul>
+              <li>
+                <div
+                  // src={`https://images.unsplash.com/photo-1675416757203-c6a85eb8134d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60`}
+                  className="carderLogo"
+                ></div>
+                <div className="carderTitle"></div>
+              </li>
+            </ul>
+          </div>
+          <div className="carder">
+            <ul>
+              <li>
+                <div
+                  // src={`https://images.unsplash.com/photo-1675416757203-c6a85eb8134d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60`}
+                  className="carderLogo"
+                ></div>
+                <div className="carderTitle"></div>
+              </li>
+            </ul>
+          </div>
+          <div className="carder">
+            <ul>
+              <li>
+                <div
+                  // src={`https://images.unsplash.com/photo-1675416757203-c6a85eb8134d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60`}
+                  className="carderLogo"
+                ></div>
+                <div className="carderTitle"></div>
+              </li>
+            </ul>
+          </div>
+          <div className="carder">
+            <ul>
+              <li>
+                <div
+                  // src={`https://images.unsplash.com/photo-1675416757203-c6a85eb8134d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60`}
+                  className="carderLogo"
+                ></div>
+                <div className="carderTitle"></div>
+              </li>
+            </ul>
+          </div>
+          <div className="carder">
+            <ul>
+              <li>
+                <div
+                  // src={`https://images.unsplash.com/photo-1675416757203-c6a85eb8134d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60`}
+                  className="carderLogo"
+                ></div>
+                <div className="carderTitle"></div>
+              </li>
+            </ul>
+          </div>
+          <div className="carder">
+            <ul>
+              <li>
+                <div
+                  // src={`https://images.unsplash.com/photo-1675416757203-c6a85eb8134d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60`}
+                  className="carderLogo"
+                ></div>
+                <div className="carderTitle"></div>
+              </li>
+            </ul>
+          </div>
+          <div className="carder">
+            <ul>
+              <li>
+                <div
+                  // src={`https://images.unsplash.com/photo-1675416757203-c6a85eb8134d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60`}
+                  className="carderLogo"
+                ></div>
+                <div className="carderTitle"></div>
+              </li>
+            </ul>
+          </div>
+          <div className="carder">
+            <ul>
+              <li>
+                <div
+                  // src={`https://images.unsplash.com/photo-1675416757203-c6a85eb8134d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60`}
+                  className="carderLogo"
+                ></div>
+                <div className="carderTitle"></div>
+              </li>
+            </ul>
+          </div>
+        </>
       ) : (
         categories.categories.map((category, i) => (
           <div
