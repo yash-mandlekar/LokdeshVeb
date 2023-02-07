@@ -5,14 +5,23 @@ import "./userEditProfile.css";
 import { loadUser } from "../../../Store/Actions/User";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { useEffect } from "react";
 
 const UserEditProfile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const fileRef = useRef();
   const { loading, user } = useSelector((state) => state.auth);
-  const [form, setForm] = useState();
+  const [form, setForm] = useState({
+    name: "",
+    userName: "",
+    email: "",
+    district: "",
+    bio: "",
+    dateOfBirth: "",
+    phone: "",
+    gender: "",
+    business: "",
+  });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -58,19 +67,6 @@ const UserEditProfile = () => {
   const handleInput = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
-  useEffect(() => {
-    setForm({
-      name: user?.name,
-      userName: user?.userName,
-      email: user?.email,
-      district: user?.district,
-      bio: user?.bio,
-      dateOfBirth: user?.dateOfBirth,
-      phone: user?.phone,
-      gender: user?.gender,
-      business: user?.business,
-    });
-  }, [user]);
   return (
     <>
       {loading ? (
@@ -102,7 +98,7 @@ const UserEditProfile = () => {
                   onChange={handleInput}
                   type="text"
                   name="name"
-                  value={form.name}
+                  defaultValue={user?.name}
                 />
                 <br />
                 <label htmlFor="">username</label>
@@ -112,7 +108,7 @@ const UserEditProfile = () => {
                   type="text"
                   name="userName"
                   onChange={handleInput}
-                  value={form.userName}
+                  defaultValue={user?.userName}
                 />
                 <br />
                 <label htmlFor="">email</label>
@@ -121,7 +117,7 @@ const UserEditProfile = () => {
                   onChange={handleInput}
                   type="text"
                   name="email"
-                  value={form.email}
+                  defaultValue={user?.email}
                 />
                 <br />
                 <label htmlFor="">location</label>
@@ -130,7 +126,7 @@ const UserEditProfile = () => {
                   type="text"
                   name="district"
                   onChange={handleInput}
-                  value={form.district}
+                  defaultValue={user?.district}
                 />
                 <br />
                 <label htmlFor="">bio</label>
@@ -139,7 +135,7 @@ const UserEditProfile = () => {
                   type="text"
                   name="bio"
                   onChange={handleInput}
-                  value={form.bio}
+                  defaultValue={user?.bio}
                 />
                 <br />
                 <label htmlFor="">date Of Birth</label>
@@ -152,7 +148,7 @@ const UserEditProfile = () => {
                   type="text"
                   name="phone"
                   onChange={handleInput}
-                  value={form.phone}
+                  defaultValue={user?.phone}
                 />
                 <br />
                 <label htmlFor="">gender</label>
@@ -163,7 +159,7 @@ const UserEditProfile = () => {
                   name="gender"
                   placeholder="Enter Here"
                   onChange={handleInput}
-                  value={form.gender}
+                  defaultValue={user?.gender}
                 />
                 <datalist id="gender">
                   <option value="male">male</option>
