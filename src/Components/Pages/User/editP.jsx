@@ -5,23 +5,14 @@ import "./userEditProfile.css";
 import { loadUser } from "../../../Store/Actions/User";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useEffect } from "react";
 
 const UserEditProfile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const fileRef = useRef();
   const { loading, user } = useSelector((state) => state.auth);
-  const [form, setForm] = useState({
-    name: user?.name,
-    userName: user?.userName,
-    email: user?.email,
-    district: user?.district,
-    bio: user?.bio,
-    dateOfBirth: user?.dateOfBirth,
-    phone: user?.phone,
-    gender: user?.gender,
-    business: user?.business,
-  });
+  const [form, setForm] = useState();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -67,6 +58,19 @@ const UserEditProfile = () => {
   const handleInput = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
+  useEffect(() => {
+    setForm({
+      name: user?.name,
+      userName: user?.userName,
+      email: user?.email,
+      district: user?.district,
+      bio: user?.bio,
+      dateOfBirth: user?.dateOfBirth,
+      phone: user?.phone,
+      gender: user?.gender,
+      business: user?.business,
+    });
+  }, [user]);
   return (
     <>
       {loading ? (
@@ -89,7 +93,6 @@ const UserEditProfile = () => {
               </div>
             </div>
           </div>
-
           <div className="editProfileCenter">
             <form onSubmit={handleSubmit} className="editPRofileCenter">
               <ul>
@@ -99,7 +102,6 @@ const UserEditProfile = () => {
                   onChange={handleInput}
                   type="text"
                   name="name"
-                  defaultValue={user?.name}
                   value={form.name}
                 />
                 <br />
@@ -110,7 +112,6 @@ const UserEditProfile = () => {
                   type="text"
                   name="userName"
                   onChange={handleInput}
-                  defaultValue={user?.userName}
                   value={form.userName}
                 />
                 <br />
@@ -120,7 +121,6 @@ const UserEditProfile = () => {
                   onChange={handleInput}
                   type="text"
                   name="email"
-                  defaultValue={user?.email}
                   value={form.email}
                 />
                 <br />
@@ -130,7 +130,6 @@ const UserEditProfile = () => {
                   type="text"
                   name="district"
                   onChange={handleInput}
-                  defaultValue={user?.district}
                   value={form.district}
                 />
                 <br />
@@ -140,18 +139,12 @@ const UserEditProfile = () => {
                   type="text"
                   name="bio"
                   onChange={handleInput}
-                  defaultValue={user?.bio}
                   value={form.bio}
                 />
                 <br />
                 <label htmlFor="">date Of Birth</label>
                 <br />
-                <input
-                  type="text"
-                  name="dateOfBirth"
-                  onChange={handleInput}
-                  defaultValue={form?.dateOfBirth?.split("T")[0]}
-                />
+                <input type="text" name="dateOfBirth" onChange={handleInput} />
                 <br />
                 <label htmlFor=""> phone</label>
                 <br />
@@ -159,7 +152,6 @@ const UserEditProfile = () => {
                   type="text"
                   name="phone"
                   onChange={handleInput}
-                  defaultValue={user?.phone}
                   value={form.phone}
                 />
                 <br />
@@ -171,7 +163,6 @@ const UserEditProfile = () => {
                   name="gender"
                   placeholder="Enter Here"
                   onChange={handleInput}
-                  defaultValue={user?.gender}
                   value={form.gender}
                 />
                 <datalist id="gender">
@@ -187,7 +178,6 @@ const UserEditProfile = () => {
                   name="businessAcc"
                   placeholder="Enter Here"
                   onChange={handleInput}
-                  defaultValue={form?.business}
                 />
                 <datalist id="bussiness">
                   <option value="yes">yes</option>
