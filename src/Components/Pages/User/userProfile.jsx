@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-
 import { useDispatch, useSelector } from "react-redux";
 import { FcList, IconName } from "react-icons/fc";
 import "./user.css";
@@ -156,7 +155,7 @@ const UserProfile = () => {
             <a href="/userwall">Posts</a>
             <a href="">About</a>
             <a href="">Friends</a>
-            <a href="">Photos</a>
+            <a href="/usersphotos">Photos</a>
           </div>
           <div className="userprofileinforight">
             <div className="btn-group dropstart">
@@ -200,16 +199,18 @@ const UserProfile = () => {
               <a href="">See all</a>
             </div>
             <div className="allphotos">
-              {singleUser?.user?.posts?.map((post, i) => (
-                <div key={i} className="allphotos1">
-                  <img
-                    onClick={() => navigate(`/singlepost/${post._id}`)}
-                    key={i}
-                    src={`data:video/mp4;base64,${post.file}`}
-                    alt=""
-                  />
-                </div>
-              ))}
+              {singleUser?.user?.posts?.map(
+                (post, i) =>
+                  post?.fileType === "image" && (
+                    <div key={i} className="allphotos1">
+                      <img
+                        className="post__media"
+                        src={`data:video/mp4;base64,${post?.file}`}
+                        alt="Post Content"
+                      />
+                    </div>
+                  )
+              )}
             </div>
           </div>
           <div className="Friends">
@@ -317,12 +318,20 @@ const UserProfile = () => {
                   <h3>{post?.caption}</h3>
                 </div>
                 <div className="mypostsimage">
-                  <img
-                    onClick={() => navigate(`/singlepost/${post._id}`)}
-                    key={i}
-                    src={`data:video/mp4;base64,${post.file}`}
-                    alt=""
-                  />
+                  {post?.fileType === "image" && (
+                    <img
+                      className="post__media"
+                      src={`data:video/mp4;base64,${post?.file}`}
+                      alt="Post Content"
+                    />
+                  )}
+                  {post?.fileType === "video" && (
+                    <video
+                      src={`data:video/mp4;base64,${post?.file}`}
+                      alt="Post Content"
+                      controls
+                    />
+                  )}
                 </div>
               </div>
               <div className="mypostsBottom">
