@@ -18,7 +18,7 @@ import FullScreenPaper from "./Components/Pages/Epaper/FullScreenPaper";
 import SingleVideo from "./Components/Pages/Video/SingleVideo";
 import Timer from "./Components/Timer/Timer";
 import Language from "./Components/Pages/Language/Language.jsx";
-import UserWall from "./Components/Pages/User/Userwall";
+import UserwallNavbar from "./Components/Pages/User/UserActions/userNavbar";
 import UserPhotos from "./Components/Pages/User/UserActions/UsersPhoto.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { loadCategories } from "./Store/Actions/Categories";
@@ -61,7 +61,7 @@ const App = () => {
           <Route path="/otp" element={<Otp />} />
           <Route path="/Timer" element={<Timer />} />
           <Route path="/singleVideo/:id" element={<SingleVideo />} />
-          <Route path="/userwall" element={<UserWall />} />
+          <Route path="/userwall" element={<UserwallNavbar />} />
           <Route path="/user/photoupload" element={<UserPhotoUpload />} />
           <Route path="/mynews" element={<Mynews />} />
           <Route path="/Language" element={<Language />} />
