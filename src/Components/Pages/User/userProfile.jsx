@@ -15,7 +15,6 @@ const UserProfile = () => {
   const navigate = useNavigate();
   const { user, loading } = useSelector((state) => state.auth);
   const { posts, singleUser } = useSelector((state) => state);
-  // console.log(singleUser.user);
   const handleFollow = async (id) => {
     if (user) {
       const config = {
@@ -105,7 +104,7 @@ const UserProfile = () => {
         </div>
         <div className="pofilephotodiv">
           <div className="profilephotodivm">
-            <div className="profilephoto">
+            <div className="profilephoto" title={singleUser?.user?.name}>
               <img
                 src={
                   singleUser?.user?.profileImage?.includes("/avtar")
@@ -114,22 +113,24 @@ const UserProfile = () => {
                 }
                 alt=""
               />
-              {singleUser?.user?._id === user?._id&&
-              <div
-                className="profileuploadbutton"
-                onClick={() => {
-                  inputRef.current.click();
-                }}
-              >
-                <i className="bi bi-camera-fill"></i>
-                <input
-                  type="file"
-                  name="profileImage"
-                  onChange={handleProfileImage}
-                  style={{ display: "none" }}
-                  ref={inputRef}
-                />
-              </div>}
+              {singleUser?.user?._id === user?._id && (
+                <div
+                  title="Change profile photo"
+                  className="profileuploadbutton"
+                  onClick={() => {
+                    inputRef.current.click();
+                  }}
+                >
+                  <i className="bi bi-camera-fill"></i>
+                  <input
+                    type="file"
+                    name="profileImage"
+                    onChange={handleProfileImage}
+                    style={{ display: "none" }}
+                    ref={inputRef}
+                  />
+                </div>
+              )}
             </div>
           </div>
           <div className="profilephototext">
@@ -231,30 +232,25 @@ const UserProfile = () => {
               <a href="">see all friends</a>
             </div>
             <div className="allfriends">
-              <div className="allfriends1">
-                <img
-                  src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-                  alt=""
-                />
-              </div>
-              <div className="allfriends1">
-                <img
-                  src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-                  alt=""
-                />
-              </div>
-              <div className="allfriends1">
-                <img
-                  src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-                  alt=""
-                />
-              </div>
-              <div className="allfriends1">
-                <img
-                  src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-                  alt=""
-                />
-              </div>
+              {singleUser?.user?.following?.map((user, i) => (
+                <div
+                  className="allfriends1"
+                  key={i}
+                  onClick={() => {
+                    navigate(`/user/${user?.userName}`);
+                  }}
+                  title={user?.userName}
+                >
+                  <img
+                    src={
+                      user?.profileImage?.includes("/avtar")
+                        ? user?.profileImage
+                        : `data:video/mp4;base64,${user?.profileImage}`
+                    }
+                    alt=""
+                  />
+                </div>
+              ))}
             </div>
           </div>
         </div>
