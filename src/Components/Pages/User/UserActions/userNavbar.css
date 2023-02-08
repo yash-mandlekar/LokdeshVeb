@@ -353,7 +353,6 @@ img {
 .post__header {
   background-color: var(--primary);
   border-bottom: 1px solid var(--border);
-
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -363,6 +362,8 @@ img {
   display: flex;
   align-items: center;
   gap: 12px;
+  text-decoration: none;
+  color: var(--text-dark);
 }
 .post__avatar {
   width: 32px;
@@ -388,9 +389,6 @@ img {
   color: var(--text-dark);
   text-decoration: none;
   text-transform: lowercase;
-}
-.post__user:hover {
-  text-decoration: underline;
 }
 .post__more-options {
   background-color: transparent;

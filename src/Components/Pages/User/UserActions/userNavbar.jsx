@@ -17,9 +17,9 @@ const UserNavbar = () => {
         token: localStorage.getItem("accessToken"),
       },
     };
-    const { data } = await Axios.get("/user/post", config);
-    setposts(data.user.posts);
-    console.log(data.user.posts);
+    const { data } = await Axios.get("/user/feed", config);
+    console.log(data.post);
+    setposts(data.post);
   };
   useEffect(() => {
     getposts();
@@ -73,25 +73,25 @@ const UserNavbar = () => {
               {posts?.map((post, i) => (
                 <article key={i} className="post">
                   <div className="post__header">
-                    <div className="post__profile">
-                      <Link to="/User" className="post__avatar">
+                    <Link
+                      to={`/User/${post?.author?.userName}`}
+                      className="post__profile"
+                    >
+                      <div to="/User" className="post__avatar">
                         <img
                           src={
-                            user?.profileImage?.includes("/avtar")
-                              ? user?.profileImage
-                              : `data:video/mp4;base64,${user?.profileImage}`
+                            post?.author?.profileImage?.includes("/avtar")
+                              ? post?.author?.profileImage
+                              : `data:video/mp4;base64,${post?.author?.profileImage}`
                           }
                           alt="User Picture"
                         />
-                      </Link>
-                      <Link to="/User" className="post__user">
-                        {user?.userName}
-                      </Link>
-                    </div>
-                    <button
-                      
-                      className="post__more-options"
-                    >
+                      </div>
+                      <div to="/User" className="post__user">
+                        {post?.author?.userName}
+                      </div>
+                    </Link>
+                    <button className="post__more-options">
                       <svg
                         width="24"
                         height="24"
