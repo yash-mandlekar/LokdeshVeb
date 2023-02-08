@@ -18,7 +18,6 @@ const UserNavbar = () => {
       },
     };
     const { data } = await Axios.get("/user/feed", config);
-    console.log(data.post);
     setposts(data.post);
   };
   useEffect(() => {
@@ -147,7 +146,7 @@ const UserNavbar = () => {
                         onClick={() => handleHeart(post._id, i)}
                         className="post__button"
                       >
-                        {post.likes?.includes(user?._id) ? (
+                        {post?.likes?.some((like) => like._id === user._id) ? (
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="22"
@@ -217,7 +216,6 @@ const UserNavbar = () => {
                           />
                         </svg>
                       </button>
-
                       <div className="post__indicators"></div>
 
                       <button className="post__button post__button--align-right">
@@ -240,25 +238,30 @@ const UserNavbar = () => {
 
                     <div className="post__infos">
                       <div className="post__likes">
-                        <a href="#" className="post__likes-avatar">
-                          <img
-                            src={
-                              user?.profileImage?.includes("/avtar")
-                                ? user?.profileImage
-                                : `data:video/mp4;base64,${user?.profileImage}`
-                            }
-                            alt="User Picture"
-                          />
-                        </a>
+                        {post?.likes?.length > 0 && (
+                          <a href="#" className="post__likes-avatar">
+                            <img
+                              src={
+                                post?.likes[0]?.profileImage?.includes("/avtar")
+                                  ? post?.likes[0]?.profileImage
+                                  : `data:video/mp4;base64,${post?.likes[0]?.profileImage}`
+                              }
+                              alt="User Picture"
+                            />
+                          </a>
+                        )}
 
-                        <span>
-                          Liked by
-                          <a className="post__name--underline" href="#">
-                            user123
-                          </a>{" "}
-                          and
-                          <a href="#"> {post.likes.length} others</a>
-                        </span>
+                        {post?.likes?.length > 0 && (
+                          <span>
+                            Liked by&nbsp;
+                            <a className="post__name--underline" href="#">
+                              {post?.likes[0].userName}
+                            </a>
+                          </span>
+                        )}
+                        {post?.likes?.length > 1 && (
+                          <a href="#">and {post.likes.length - 1} others</a>
+                        )}
                       </div>
 
                       <div className="post__description">
@@ -268,7 +271,7 @@ const UserNavbar = () => {
                             href=""
                             target="_blank"
                           >
-                            {user?.userName}
+                            {post?.author?.userName}
                             &nbsp;
                           </a>
                           {post.caption}
