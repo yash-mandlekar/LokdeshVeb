@@ -19,15 +19,18 @@ body {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px rgb(197, 196, 196); 
+  box-shadow: inset 0 0 5px rgb(197, 196, 196);
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: rgb(245, 245, 245); 
+  background: rgb(245, 245, 245);
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #b7aeae; 
+  background: #b7aeae;
+}
+.TYiiRFB3EhYJGVPE4k4q,._M8cCug8H18ALQ05cNMt {
+  display: none;
 }

@@ -76,39 +76,37 @@ const UserProfile = () => {
   return (
     <>
       <div ref={overLayerRef} className="uploadpostmain">
-            <div  className="uploadpost1">
-              <div className="uploadpost1top">
-                <h1>Create post</h1>
-              </div>
-              <div className="uploadpost1center">
-                <div className="img1center">
-                  <img
-                    src={
-                      singleUser?.user?.profileImage?.includes("/avtar")
-                        ? singleUser?.user?.profileImage
-                        : `data:video/mp4;base64,${singleUser?.user?.profileImage}`
-                    }
-                    alt=""
-                  />
-                </div>
-                <textarea
-                  placeholder="What's on your mind ?"
-                  name=""
-                  id=""
-                  cols="30"
-                  rows="10"
-                ></textarea>
-                <input type="file" placeholder="" />
-              </div>
-              <div className="uploadpost1bottom">
-                <button >post</button>
-              </div>
-            </div>
+        <div className="uploadpost1">
+          <div className="uploadpost1top">
+            <h1>Create post</h1>
           </div>
+          <div className="uploadpost1center">
+            <div className="img1center">
+              <img
+                src={
+                  singleUser?.user?.profileImage?.includes("/avtar")
+                    ? singleUser?.user?.profileImage
+                    : `data:video/mp4;base64,${singleUser?.user?.profileImage}`
+                }
+                alt=""
+              />
+            </div>
+            <textarea
+              placeholder="What's on your mind ?"
+              name=""
+              id=""
+              cols="30"
+              rows="10"
+            ></textarea>
+            <input type="file" placeholder="" />
+          </div>
+          <div className="uploadpost1bottom">
+            <button>post</button>
+          </div>
+        </div>
+      </div>
       <div className="profilemain">
-        
         <div className="userProfile">
-        
           <div className="coverphoto">
             <img
               src={
@@ -201,7 +199,15 @@ const UserProfile = () => {
           <div className="userprofileinfo">
             <div className="userprofileinfoleft">
               <a href="/userwall">Posts</a>
-              <a href="">About</a>
+              {singleUser?.user?._id === user?._id ? (
+                <Link to={`/live/${username}`}>Go Live</Link>
+              ) : (
+                singleUser?.user?.live.length > 2 && (
+                  <Link to={`/live/${username}` + singleUser?.user?.live}>
+                    See Live
+                  </Link>
+                )
+              )}
               <a href="">Friends</a>
               <a href="/usersphotos">Photos</a>
             </div>
@@ -229,7 +235,7 @@ const UserProfile = () => {
             </div>
           </div>
         </div>
-        <div  className="userBottompost">
+        <div className="userBottompost">
           <div className="userBottompostTop">
             <div className="intro">
               <h1>Intro </h1>

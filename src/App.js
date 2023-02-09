@@ -29,6 +29,7 @@ import Mynews from "./Components/Pages/User/UserActions/Mynews";
 import UserSinglePosts from "./Components/Pages/User/UserActions/UserSinglePosts";
 import Findfriends from "./Components/Pages/User/Profile/Findfriends";
 import UserEditProfile from "./Components/Pages/User/editP";
+import UserLive from "./Components/Pages/UserLive/UserLive";
 const App = () => {
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.auth);
@@ -54,6 +55,7 @@ const App = () => {
           <Route path="/Epaper" element={<Epaper />} />
           <Route path="/news/:id" element={<SingleNews />} />
           <Route path="/user/:username" element={<UserProfile />} />
+          <Route path="/live/:roomId" element={<UserLive />} />
           <Route path="/feedback" element={<Mailer />} />
           <Route path="/:category" element={<Categories />} />
           <Route path="/epaper/:city" element={<LocationEpaper />} />
