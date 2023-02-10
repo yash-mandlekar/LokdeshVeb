@@ -36,7 +36,7 @@ const App = () => {
 
   useEffect(() => {
     const lang = localStorage.getItem("language");
-    if (!lang) {
+    if (!lang) {    
       localStorage.setItem("language", "hi");
     }
     Notification.requestPermission();
