@@ -34,7 +34,7 @@ const App = () => {
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.auth);
 
-  useEffect(() => { 
+  useEffect(() => {
     const lang = localStorage.getItem("language");
     if (!lang) {    
       localStorage.setItem("language", "hi");
