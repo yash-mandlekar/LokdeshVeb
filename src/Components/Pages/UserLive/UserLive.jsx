@@ -14,7 +14,6 @@ export function getUrlParams(url = window.location.href) {
 export default function UserLive() {
   const { roomId } = useParams();
   const { user } = useSelector((state) => state.auth);
-  console.log(user);
   let role_str = getUrlParams(window.location.href).get("role") || "Host";
   const role =
     role_str === "Host" ? ZegoUIKitPrebuilt.Host : ZegoUIKitPrebuilt.Audience;
@@ -59,8 +58,8 @@ export default function UserLive() {
           config
         );
       },
-      onLeaveRoom: async () => {
-        await Axios.get("/removeLive", config);
+      onLiveEnd: async () => {
+        await Axios.get("/user/removeLive", config);
       },
     });
   };
