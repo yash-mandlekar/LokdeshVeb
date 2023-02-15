@@ -33,10 +33,9 @@ import UserLive from "./Components/Pages/UserLive/UserLive";
 const App = () => {
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.auth);
-
   useEffect(() => {
     const lang = localStorage.getItem("language");
-    if (!lang) {    
+    if (!lang) {
       localStorage.setItem("language", "hi");
     }
     Notification.requestPermission();

@@ -17,6 +17,7 @@ const UserProfile = () => {
   const navigate = useNavigate();
   const { user, loading } = useSelector((state) => state.auth);
   const { posts, singleUser } = useSelector((state) => state);
+  const [isLive, setIsLive] = useState(false);
   const handleFollow = async (id) => {
     if (user) {
       const config = {
@@ -73,6 +74,17 @@ const UserProfile = () => {
       dispatch(loadUser());
     }
   };
+  const handleIsLive = async () => {
+    const res = await Axios.get(`/user/isLive/${username}`);
+    setIsLive(res.data.live);
+  };
+  useEffect(() => {
+    const interval = setInterval(() => {
+      handleIsLive();
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <>
       <div ref={overLayerRef} className="uploadpostmain">
@@ -202,7 +214,7 @@ const UserProfile = () => {
               {singleUser?.user?._id === user?._id ? (
                 <Link to={`/live/${username}`}>Go Live</Link>
               ) : (
-                singleUser?.user?.live.length > 2 && (
+                isLive && (
                   <Link to={`/live/${username}` + singleUser?.user?.live}>
                     See Live
                   </Link>

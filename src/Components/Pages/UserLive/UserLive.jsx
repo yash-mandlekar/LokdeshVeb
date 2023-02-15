@@ -3,8 +3,8 @@ import { ZegoUIKitPrebuilt } from "@zegocloud/zego-uikit-prebuilt";
 import { useParams } from "react-router-dom";
 import Axios from "../../Axios/Axios";
 import { useSelector } from "react-redux";
-import { useState } from "react";
 import { useEffect } from "react";
+import { useState } from "react";
 
 export function getUrlParams(url = window.location.href) {
   let urlStr = url.split("?")[1];
@@ -17,11 +17,6 @@ export default function UserLive() {
   let role_str = getUrlParams(window.location.href).get("role") || "Host";
   const role =
     role_str === "Host" ? ZegoUIKitPrebuilt.Host : ZegoUIKitPrebuilt.Audience;
-
-  // var sharedLinks = {
-  //   url: "?roomId=" + roomId + "&role=Audience",
-  // };
-  // generate Kit Token
   const appID = 628726461;
   const serverSecret = "7d6974cadc1fa2a0b63946061dcf615a";
   var kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(
@@ -31,6 +26,9 @@ export default function UserLive() {
     user?.userName,
     user?.userName
   );
+  if (kitToken) {
+    var zp = ZegoUIKitPrebuilt.create(kitToken);
+  }
   // start the call
   let myMeeting = async (element) => {
     const config = {
@@ -38,9 +36,6 @@ export default function UserLive() {
         token: localStorage.getItem("accessToken"),
       },
     };
-    // Create instance object from Kit Token.
-    const zp = ZegoUIKitPrebuilt.create(kitToken);
-    // start the call
     zp.joinRoom({
       container: element,
       scenario: {
@@ -50,7 +45,7 @@ export default function UserLive() {
         },
       },
       onJoinRoom: async () => {
-        await Axios.post(
+        const res = await Axios.post(
           "/user/golive",
           {
             url: "?roomId=" + roomId + "&role=Audience",
@@ -58,30 +53,31 @@ export default function UserLive() {
           config
         );
       },
-      onLiveEnd: async () => {
-        await Axios.get("/user/removeLive", config);
+      onLeaveRoom: async () => {
+        await removeLive();
       },
     });
   };
+  const removeLive = async () => {
+    const config = {
+      headers: {
+        token: localStorage.getItem("accessToken"),
+      },
+    };
+    await Axios.get("/user/removeLive", config);
+  };
+  useEffect(() => {
+    return () => {
+      zp.destroy();
+    };
+  }, []);
 
   return (
     <>
       <div
-        style={{
-          position: "absolute",
-          top: "210px",
-          left: "56vmax",
-          zIndex: "10",
-          padding: "0px 12vh",
-          fontSize: "2.5vw",
-        }}
-      >
-        Go Live
-      </div>
-      <div
         className="myCallContainer"
         ref={myMeeting}
-        style={{ width: "100vw", height: "100vh" }}
+        style={{ width: "100vw", height: "100vh", marginTop: "10vh" }}
       ></div>
     </>
   );
