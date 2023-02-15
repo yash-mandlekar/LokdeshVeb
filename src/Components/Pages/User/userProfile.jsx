@@ -352,7 +352,23 @@ const UserProfile = () => {
                   </div>
                   <div className="mypostsTop2">
                     <h1>{singleUser?.user?.userName} </h1>
-                    <h5> {singleUser?.user?.createdAt} </h5>
+                    <h5>
+                      {new Date(Date.now()).getDate() -
+                        new Date(post?.createdAt).getDate() >
+                      0
+                        ? new Date(Date.now()).getDate() -
+                          new Date(post?.createdAt).getDate() +
+                          " days ago"
+                        : new Date(Date.now()).getHours() -
+                            new Date(post?.createdAt).getHours() >
+                          0
+                        ? new Date(Date.now()).getHours() -
+                          new Date(post?.createdAt).getHours() +
+                          " hours ago"
+                        : new Date(Date.now()).getMinutes() -
+                          new Date(post?.createdAt).getMinutes() +
+                          " minutes ago"}
+                    </h5>
                   </div>
                   <div className="mypostsTop3">
                     <div className="btn-group dropstart">
