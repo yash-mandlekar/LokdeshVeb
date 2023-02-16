@@ -7,6 +7,7 @@ import { generateToken04 } from "./ZegoServer";
 // import { ZegoUIKitPrebuilt } from "@zegocloud/zego-uikit-prebuilt";
 import Axios from "../../Axios/Axios";
 import { useSelector } from "react-redux";
+import { useState } from "react";
 //   const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(
 //     appID,
 //     serverSecret,
@@ -18,6 +19,7 @@ const UserLive = () => {
   const { roomId } = useParams();
   const streamRef = useRef(null);
   const videoRef = useRef(null);
+  const [camera, setCamera] = useState(true);
   const { user } = useSelector((state) => state.auth);
   const appID = 628726461;
   const zg = new ZegoExpressEngine(
