@@ -6,6 +6,7 @@ import "./UserLive.css";
 import { generateToken04 } from "./ZegoServer";
 // import { ZegoUIKitPrebuilt } from "@zegocloud/zego-uikit-prebuilt";
 import Axios from "../../Axios/Axios";
+import { useSelector } from "react-redux";
 //   const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(
 //     appID,
 //     serverSecret,
@@ -13,10 +14,11 @@ import Axios from "../../Axios/Axios";
 //     roomId,
 //     roomId
 //   );
-function UserLive() {
+const UserLive = () => {
   const { roomId } = useParams();
   const streamRef = useRef(null);
   const videoRef = useRef(null);
+  const { user } = useSelector((state) => state.auth);
   const appID = 628726461;
   const zg = new ZegoExpressEngine(
     appID,
@@ -24,7 +26,7 @@ function UserLive() {
   );
   zg.on("roomStateUpdate", (roomID, state, errorCode, extendedData) => {
     console.log(
-      "%Normal from the room.",
+      "%cNormal from the room.",
       "color: black;background-color: yellow;"
     );
     if (state == "DISCONNECTED") {
@@ -47,20 +49,23 @@ function UserLive() {
       );
     }
   });
+  var localStream = null;
   const goLive = async () => {
-    const { data } = await Axios.get(`/user/zego/token/${roomId}`);
+    const { data } = await Axios.get(`/user/zego/token/${user?.userName}`);
     const result = await zg.loginRoom(
       roomId,
       data.token,
-      { userID: roomId, userName: "yash" },
+      { userID: user?.userName, username: user?.userName },
       { userUpdate: true }
     );
-    const localStream = await zg.createStream();
+    localStream = await zg.createStream();
     streamRef.current.srcObject = localStream;
     zg.startPublishingStream(roomId, localStream);
   };
   const stopLive = async () => {
     zg.stopPublishingStream(roomId);
+    zg.destroyStream(localStream);
+    streamRef.current.srcObject = null;
     zg.logoutRoom(roomId);
   };
   const showLive = async () => {
@@ -90,7 +95,7 @@ function UserLive() {
       </div>
     </div>
   );
-}
+};
 export default UserLive;
 
 // zg.on("roomUserUpdate", (roomID, updateType, userList) => {
