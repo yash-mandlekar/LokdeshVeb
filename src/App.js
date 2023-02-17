@@ -32,7 +32,6 @@ import UserEditProfile from "./Components/Pages/User/editP";
 import UserLive from "./Components/Pages/UserLive/UserLive";
 import ShowLive from "./Components/Pages/UserLive/ShowLive";
 import Myliveoptions from "./Components/Pages/UserLive/Myliveoptions";
-import Live from "./Components/Pages/UserLive/Live";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -57,9 +56,6 @@ const App = () => {
           <Route path="/video" element={<Video />} />
           <Route path="/Epaper" element={<Epaper />} />
           <Route path="/news/:id" element={<SingleNews />} />
-          <Route path="/user/:username" element={<UserProfile />} />
-          <Route path="/live/:roomId" element={<UserLive />} />
-          <Route path="/showlive/:roomId" element={<ShowLive />} />
           <Route path="/feedback" element={<Mailer />} />
           <Route path="/:category" element={<Categories />} />
           <Route path="/epaper/:city" element={<LocationEpaper />} />
@@ -75,8 +71,10 @@ const App = () => {
           <Route path="/user/editprofile" element={<UserP />} />
           <Route path="/findfriends" element={<Findfriends />} />
           <Route path="/usersphotos" element={<UserPhotos />} />
+          <Route path="/user/:username" element={<UserProfile />} />
           <Route path="/myLiveoptions" element={<Myliveoptions />} />
-          <Route path="/Lives" element={<Live />} />
+          <Route path="/live/:roomId" element={<UserLive />} />
+          <Route path="/showlive/:roomId" element={<ShowLive />} />
         </Routes>
       </BrowserRouter>
     </div>

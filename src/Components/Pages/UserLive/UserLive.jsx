@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { ZegoExpressEngine } from "zego-express-engine-webrtc";
 import "./UserLive.css";
 import Axios from "../../Axios/Axios";
@@ -9,11 +9,10 @@ var localStream = null;
 const UserLive = () => {
   const { roomId } = useParams();
   const streamRef = useRef(null);
-  const videoRef = useRef(null);
   const micRef = useRef(null);
   const cameraRef = useRef(null);
+  const navigate = useNavigate();
   const { user } = useSelector((state) => state.auth);
-  // const [camera, setCamera] = useState(true);
   const appID = 628726461;
   var zg = new ZegoExpressEngine(
     appID,
@@ -55,29 +54,44 @@ const UserLive = () => {
     localStream = await zg.createStream();
     streamRef.current.srcObject = localStream;
     zg.startPublishingStream(roomId, localStream);
+    const formdata = new FormData();
+    formdata.append("url", localStream);
+    const res = await Axios.post("/user/golive", formdata, {
+      headers: {
+        token: localStorage.getItem("accessToken"),
+      },
+    });
+    console.log(
+      "%cres: ",
+      "color: black;background-color: yellow;font-size: 20px;"
+    );
+    console.log(res);
+    console.log(
+      "%cres: ",
+      "color: black;background-color: yellow;font-size: 20px;"
+    );
   };
   const stopLive = async () => {
     zg.stopPublishingStream(roomId);
     zg.destroyStream(localStream);
     streamRef.current.srcObject = null;
     zg.logoutRoom(roomId);
-  };
-  const showLive = async () => {
-    const remoteStream = await zg.startPlayingStream(roomId);
-    videoRef.current.srcObject = remoteStream;
-    console.log("%cremoteStream: ", "color: black;background-color: yellow;");
-    console.log(remoteStream);
-    console.log("%cremoteStream: ", "color: black;background-color: yellow;");
+    await Axios.get("/user/removeLive", {
+      headers: {
+        token: localStorage.getItem("accessToken"),
+      },
+    });
+    navigate("/myLiveoptions");
   };
   var camera = false;
   const PlayPauseCamera = async () => {
     if (camera) {
       zg.mutePublishStreamVideo(localStream, false);
-      cameraRef.current.innerHTML = "Turn Off Camera";
+      cameraRef.current.className = "bi bi-camera-video";
       camera = false;
     } else {
       zg.mutePublishStreamVideo(localStream, true);
-      cameraRef.current.innerHTML = "Turn On Camera";
+      cameraRef.current.className = "bi bi-camera-video-off-fill";
       camera = true;
     }
   };
@@ -85,39 +99,74 @@ const UserLive = () => {
   const PlayPauseMic = async () => {
     if (mic) {
       zg.mutePublishStreamAudio(localStream, false);
-      micRef.current.innerHTML = "Turn Off Mic";
+      micRef.current.className = "bi bi-mic";
       mic = false;
     } else {
       zg.mutePublishStreamAudio(localStream, true);
-      micRef.current.innerHTML = "Turn On Mic";
+      micRef.current.className = "bi bi-mic-mute-fill";
       mic = true;
     }
   };
+  useEffect(() => {
+    setTimeout(() => {
+      goLive();
+    }, 1000);
+  }, []);
   return (
-    <div className="myCallContainer" style={{ marginTop: "10vh" }}>
-      <button onClick={goLive}>live</button>
-      <button onClick={stopLive}>stop live</button>
-      <button onClick={showLive}>show live</button>
-      <button ref={cameraRef} onClick={PlayPauseCamera}>
-        Turn Off Camera
-      </button>
-      <button ref={micRef} onClick={PlayPauseMic}>
-        Turn Off Mic
-      </button>
-      <div style={{ display: "flex" }} className="video-cnt">
-        <video
-          autoPlay={true}
-          className="myvideo"
-          ref={streamRef}
-          style={{ width: "50vw", height: "50vh" }}
-        ></video>
-        <video
-          autoPlay={true}
-          ref={videoRef}
-          style={{ width: "50vw", height: "50vh" }}
-        ></video>
+    <>
+      <div className="Liveuser">
+        <div className="liveuservideo">
+          <video
+            autoPlay={true}
+            className="myvideo"
+            ref={streamRef}
+          ></video>
+          <div className="liveuservideofeatures">
+            <div className="liveuservideofeaturesTop">
+              <div className="liveuservideofeaturesTopLeft">
+                <div className="liveuservideofeaturesTopLeftphoto">
+                  <img src="" alt="" />
+                </div>
+              </div>
+              <div className="liveuservideofeaturesTopLeftName">
+                <h3>{roomId}</h3>
+              </div>
+            </div>
+            <div className="liveuservideofeaturesMiddle"></div>
+            <div className="liveuservideofeaturesBottom">
+              <div className="liveuservideofeaturesBottomleft">
+                <div className="liveuservideofeaturesBottomleftmute1">
+                  <div className="liveuservideofeaturesBottomleftmute">
+                    <i
+                      ref={micRef}
+                      onClick={PlayPauseMic}
+                      className="bi bi-mic"
+                    ></i>
+                  </div>
+                </div>
+                <div className="liveuservideofeaturesBottomleftmute11">
+                  <div className="liveuservideofeaturesBottomleftcammera">
+                    <i
+                      ref={cameraRef}
+                      onClick={PlayPauseCamera}
+                      className="bi bi-camera-video"
+                    ></i>
+                  </div>
+                </div>
+              </div>
+              <div className="liveuservideofeaturesBottomRight">
+                <div
+                  onClick={stopLive}
+                  className="liveuservideofeaturesBottomRightclose"
+                >
+                  <i className="bi bi-x-circle"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 export default UserLive;

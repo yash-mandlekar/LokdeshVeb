@@ -233,7 +233,7 @@ const UserProfile = () => {
             <div className="userprofileinfoleft">
               <a href="/userwall">Posts</a>
               {singleUser?.user?._id === user?._id ? (
-                <Link to={`/live/${username}`}>Go Live</Link>
+                <Link to={"/myLiveoptions"}>Go Live</Link>
               ) : (
                 isLive && (
                   <Link to={`/live/${username}` + singleUser?.user?.live}>

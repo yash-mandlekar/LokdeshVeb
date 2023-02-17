@@ -1,15 +1,20 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import "./myliveoptions.css";
 
 const Myliveoptions = () => {
+  const { user } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
   return (
     <>
       <div className="myliveoptions">
         <div className="myoptionsleft">
           <h1>Created live video</h1>
-          <button >
-          <Link to="/"> <i class="bi bi-camera-video-fill"></i> Home</Link>
+          <button>
+            <Link to="/">
+              <i className="bi bi-camera-video-fill"></i> Home
+            </Link>
           </button>
           <div className="myoptionsleftDiv">
             <div className="myoptionsDivprofile">
@@ -24,36 +29,41 @@ const Myliveoptions = () => {
           <div className="myoptionsrightbottom">
             <div className="myoptionsrightbottomleft">
               <h1>
-                <i class="bi bi-camera-reels"></i>
+                <i className="bi bi-camera-reels"></i>
               </h1>
               <h4>Go live</h4>
               <h5>
-                <i class="bi bi-people-fill"></i> Go live by yourself or with
-                others
+                <i className="bi bi-people-fill"></i> Go live by yourself or
+                with others
               </h5>
               <h5>
-                <i class="bi bi-clock"></i>&nbsp;    Go live now or automatically within
-                24 hours
+                <i className="bi bi-clock"></i>&nbsp; Go live now or
+                automatically within 24 hours
               </h5>
               <h5>
-                <i class="bi bi-clock"></i> &nbsp;Add interactivity tools to
+                <i className="bi bi-clock"></i> &nbsp;Add interactivity tools to
                 keep your audience engaged
               </h5>
-              <button>select</button>
+              <button onClick={() => navigate(`/live/${user?.userName}`)}>
+                select
+              </button>
             </div>
             <div className="myoptionsrightbottomleft">
               <h1 className="calender">
-              <i class="bi bi-calendar2-event"></i>
+                <i className="bi bi-calendar2-event"></i>
               </h1>
               <h4>Create live video request to admin</h4>
               <h5>
-                <i class="bi bi-people-fill"></i> admin can respond to your event
+                <i className="bi bi-people-fill"></i> admin can respond to your
+                event
               </h5>
               <h5>
-              <i class="bi bi-newspaper"></i>&nbsp;    Your live video will be available in LokdesdhTV 
+                <i className="bi bi-newspaper"></i>&nbsp; Your live video will
+                be available in LokdesdhTV
               </h5>
               <h5>
-              <i class="bi bi-alarm"></i> &nbsp;We'll remind you about your live
+                <i className="bi bi-alarm"></i> &nbsp;We'll remind you about
+                your live
               </h5>
               <button>select</button>
             </div>
