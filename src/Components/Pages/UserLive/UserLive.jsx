@@ -19,12 +19,7 @@ const UserLive = () => {
     "wss://webliveroom628726461-api.coolzcloud.com/ws"
   );
   zg.on("roomStateUpdate", (roomID, state, errorCode, extendedData) => {
-    console.log(
-      "%cNormal from the room.",
-      "color: black;background-color: yellow;"
-    );
     if (state == "DISCONNECTED") {
-      // console.log("Disconnected from the room.");
       console.log(
         "%cDisconnected from the room.",
         "color: black;background-color: red;"
@@ -38,8 +33,14 @@ const UserLive = () => {
     }
     if (state == "CONNECTED") {
       console.log(
-        "%cConnected from the room.",
-        "color: black;background-color: green;"
+        "%cNormal from the room.",
+        "color: black;background-color: yellow;font-size: 30px;"
+      );
+      // joined user name
+      console.log(extendedData);
+      console.log(
+        "%cNormal from the room.",
+        "color: black;background-color: yellow;font-size: 30px;"
       );
     }
   });
@@ -116,11 +117,7 @@ const UserLive = () => {
     <>
       <div className="Liveuser">
         <div className="liveuservideo">
-          <video
-            autoPlay={true}
-            className="myvideo"
-            ref={streamRef}
-          ></video>
+          <video autoPlay={true} className="myvideo" ref={streamRef}></video>
           <div className="liveuservideofeatures">
             <div className="liveuservideofeaturesTop">
               <div className="liveuservideofeaturesTopLeft">

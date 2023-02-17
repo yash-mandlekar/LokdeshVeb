@@ -15,6 +15,18 @@ const ShowLive = () => {
     628726461,
     "wss://webliveroom628726461-api.coolzcloud.com/ws"
   );
+  zg.on("playerStateUpdate", (roomID, state, errorCode, extendedData) => {
+    console.log(
+      "%croomID ",
+      "color: black;background-color: yellow;font-size: 30px;"
+      );
+      console.log(roomID);
+      console.log(
+        "%croomID ",
+        "color: black;background-color: yellow;font-size: 30px;"
+      );
+  });
+
   useEffect(() => {
     showLive();
   }, []);
