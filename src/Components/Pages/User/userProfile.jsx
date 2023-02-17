@@ -10,14 +10,14 @@ import { loadPosts, deletePost } from "../../../Store/Actions/UserPosts";
 const UserProfile = () => {
   const { username } = useParams();
   const CoverRef = useRef();
-  const ProfileRef = useRef();
   const overLayerRef = useRef();
   const inputRef = useRef();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user, loading } = useSelector((state) => state.auth);
-  const { posts, singleUser } = useSelector((state) => state);
+  const { singleUser } = useSelector((state) => state);
   const [isLive, setIsLive] = useState(false);
+  const [posts, setPosts] = useState([]);
   const handleFollow = async (id) => {
     if (user) {
       const config = {
@@ -48,6 +48,9 @@ const UserProfile = () => {
       dispatch(loadSingleUser(username));
     }
   }, [loading, username]);
+  useEffect(() => {
+    setPosts(singleUser?.user?.posts);
+  }, [singleUser]);
   const handleProfileImage = async (e) => {
     const formdata = new FormData();
     formdata.append("profileImage", e.target.files[0]);
@@ -78,13 +81,31 @@ const UserProfile = () => {
     const res = await Axios.get(`/user/isLive/${username}`);
     setIsLive(res.data.live);
   };
+  const handleHeart = async (id, i) => {
+    const config = {
+      headers: {
+        token: localStorage.getItem("accessToken"),
+      },
+    };
+    if (localStorage.getItem("accessToken")?.length > 25) {
+      try {
+        const { data } = await Axios.get(`/user/post/likes/${id}`, config);
+        const newPosts = [...posts];
+        newPosts[i] = data.post;
+        setPosts(newPosts);
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      navigate("/login");
+    }
+  };
   useEffect(() => {
     const interval = setInterval(() => {
       handleIsLive();
     }, 1000);
     return () => clearInterval(interval);
   }, []);
-
   return (
     <>
       <div ref={overLayerRef} className="uploadpostmain">
@@ -337,7 +358,7 @@ const UserProfile = () => {
                 </h1>
               </div>
             </div>
-            {singleUser?.user?.posts?.map((post, i) => (
+            {posts?.map((post, i) => (
               <div key={i} className="myposts">
                 <div className="mypostsTop">
                   <div className="mypostsTop1">
@@ -416,10 +437,22 @@ const UserProfile = () => {
                 </div>
                 <div className="mypostsBottom">
                   <div className="mypostsBottom1">
-                    <h1>
-                      <i className="bi bi-heart"></i> {post.likes.length} Like
+                    <h1 onClick={() => handleHeart(post._id, i)}>
+                      {post?.likes?.some((like) => like._id === user._id) ? (
+                        <i
+                          style={{ color: "red" }}
+                          className="bi bi-heart-fill"
+                        ></i>
+                      ) : (
+                        <i className="bi bi-heart"></i>
+                      )}{" "}
+                      {post.likes.length} Like
                     </h1>
-                    <h1>
+                    <h1
+                      onClick={() => {
+                        navigate(`/singlepost/${post._id}`);
+                      }}
+                    >
                       <i className="ri-message-line"></i> comment
                     </h1>
                     <h1>

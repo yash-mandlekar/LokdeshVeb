@@ -590,6 +590,7 @@
   color: rgb(120, 120, 120);
   margin-left: 1%;
   font-family: sans-serif;
+  cursor: pointer;
 }
 .mypostsBottom1 i {
   font-size: 1.2vmax;
