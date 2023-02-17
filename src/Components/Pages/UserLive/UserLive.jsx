@@ -1,28 +1,21 @@
-import * as React from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ZegoExpressEngine } from "zego-express-engine-webrtc";
-import { useRef } from "react";
 import "./UserLive.css";
-import { generateToken04 } from "./ZegoServer";
-// import { ZegoUIKitPrebuilt } from "@zegocloud/zego-uikit-prebuilt";
 import Axios from "../../Axios/Axios";
 import { useSelector } from "react-redux";
-import { useState } from "react";
-//   const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(
-//     appID,
-//     serverSecret,
-//     roomId,
-//     roomId,
-//     roomId
-//   );
+
+var localStream = null;
 const UserLive = () => {
   const { roomId } = useParams();
   const streamRef = useRef(null);
   const videoRef = useRef(null);
-  const [camera, setCamera] = useState(true);
+  const micRef = useRef(null);
+  const cameraRef = useRef(null);
   const { user } = useSelector((state) => state.auth);
+  // const [camera, setCamera] = useState(true);
   const appID = 628726461;
-  const zg = new ZegoExpressEngine(
+  var zg = new ZegoExpressEngine(
     appID,
     "wss://webliveroom628726461-api.coolzcloud.com/ws"
   );
@@ -51,7 +44,6 @@ const UserLive = () => {
       );
     }
   });
-  var localStream = null;
   const goLive = async () => {
     const { data } = await Axios.get(`/user/zego/token/${user?.userName}`);
     const result = await zg.loginRoom(
@@ -77,11 +69,41 @@ const UserLive = () => {
     console.log(remoteStream);
     console.log("%cremoteStream: ", "color: black;background-color: yellow;");
   };
+  var camera = false;
+  const PlayPauseCamera = async () => {
+    if (camera) {
+      zg.mutePublishStreamVideo(localStream, false);
+      cameraRef.current.innerHTML = "Turn Off Camera";
+      camera = false;
+    } else {
+      zg.mutePublishStreamVideo(localStream, true);
+      cameraRef.current.innerHTML = "Turn On Camera";
+      camera = true;
+    }
+  };
+  var mic = false;
+  const PlayPauseMic = async () => {
+    if (mic) {
+      zg.mutePublishStreamAudio(localStream, false);
+      micRef.current.innerHTML = "Turn Off Mic";
+      mic = false;
+    } else {
+      zg.mutePublishStreamAudio(localStream, true);
+      micRef.current.innerHTML = "Turn On Mic";
+      mic = true;
+    }
+  };
   return (
     <div className="myCallContainer" style={{ marginTop: "10vh" }}>
       <button onClick={goLive}>live</button>
       <button onClick={stopLive}>stop live</button>
       <button onClick={showLive}>show live</button>
+      <button ref={cameraRef} onClick={PlayPauseCamera}>
+        Turn Off Camera
+      </button>
+      <button ref={micRef} onClick={PlayPauseMic}>
+        Turn Off Mic
+      </button>
       <div style={{ display: "flex" }} className="video-cnt">
         <video
           autoPlay={true}
@@ -103,16 +125,6 @@ export default UserLive;
 // zg.on("roomUserUpdate", (roomID, updateType, userList) => {
 //   console.log("%croomUserUpdate: ", "color: black;background-color: yellow;");
 // });
-// zg.on(
-//   "roomStreamUpdate",
-//   async (roomID, updateType, streamList, extendedData) => {
-//     if (updateType == "ADD") {
-//       // New stream added, start playing the stream.
-//     } else if (updateType == "DELETE") {
-//       // Stream deleted, stop playing the stream.
-//     }
-//   }
-// );
 // zg.on("publisherStateUpdate", (result) => {
 //   // Callback for updates on stream publishing status.
 //   // ...
