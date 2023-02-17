@@ -1,9 +1,11 @@
 import React from "react";
+import { useEffect } from "react";
 import { useRef } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { ZegoExpressEngine } from "zego-express-engine-webrtc";
 import Axios from "../../Axios/Axios";
+import "./UserLive.css";
 
 const ShowLive = () => {
   const videoRef = useRef(null);
@@ -13,7 +15,9 @@ const ShowLive = () => {
     628726461,
     "wss://webliveroom628726461-api.coolzcloud.com/ws"
   );
-
+  useEffect(() => {
+    showLive();
+  }, []);
   const showLive = async () => {
     const { data } = await Axios.get(`/user/zego/token/${user?.userName}`);
     const result = await zg.loginRoom(
@@ -24,23 +28,15 @@ const ShowLive = () => {
     );
     const remoteStream = await zg.startPlayingStream(roomId);
     videoRef.current.srcObject = remoteStream;
-    console.log("%cremoteStream: ", "color: black;background-color: yellow;");
-    console.log(remoteStream);
-    console.log("%cremoteStream: ", "color: black;background-color: yellow;");
   };
   return (
     <div
+      className="liveuservideo"
       style={{
         marginTop: "10vh",
       }}
     >
-      <button onClick={showLive}>show live</button>
-
-      <video
-        autoPlay={true}
-        ref={videoRef}
-        style={{ width: "50vw", height: "50vh" }}
-      ></video>
+      <video autoPlay={true} ref={videoRef}></video>
     </div>
   );
 };

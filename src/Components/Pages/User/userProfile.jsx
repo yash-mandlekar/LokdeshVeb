@@ -105,7 +105,7 @@ const UserProfile = () => {
       handleIsLive();
     }, 1000);
     return () => clearInterval(interval);
-  }, []);
+  }, [username]);
   return (
     <>
       <div ref={overLayerRef} className="uploadpostmain">
