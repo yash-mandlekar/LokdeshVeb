@@ -31,6 +31,9 @@ import Findfriends from "./Components/Pages/User/Profile/Findfriends";
 import UserEditProfile from "./Components/Pages/User/editP";
 import UserLive from "./Components/Pages/UserLive/UserLive";
 import ShowLive from "./Components/Pages/UserLive/ShowLive";
+import Myliveoptions from "./Components/Pages/UserLive/Myliveoptions";
+import Live from "./Components/Pages/UserLive/Live";
+
 const App = () => {
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.auth);
@@ -72,6 +75,8 @@ const App = () => {
           <Route path="/user/editprofile" element={<UserP />} />
           <Route path="/findfriends" element={<Findfriends />} />
           <Route path="/usersphotos" element={<UserPhotos />} />
+          <Route path="/myLiveoptions" element={<Myliveoptions />} />
+          <Route path="/Lives" element={<Live />} />
         </Routes>
       </BrowserRouter>
     </div>
