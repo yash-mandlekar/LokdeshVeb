@@ -45,7 +45,7 @@ const App = () => {
     dispatch(loadCategories());
     dispatch(loadShorts());
     dispatch(loadUser());
-  }, []);
+  }, []); 
   return (
     <div>
       <BrowserRouter>
