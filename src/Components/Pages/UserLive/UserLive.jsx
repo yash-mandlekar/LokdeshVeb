@@ -109,10 +109,12 @@ const UserLive = () => {
     }
   };
   useEffect(() => {
-    setTimeout(() => {
-      goLive();
-    }, 1000);
-  }, []);
+    if (user) {
+      setTimeout(() => {
+        goLive();
+      }, 1000);
+    }
+  }, [user]);
   return (
     <>
       <div className="Liveuser">
