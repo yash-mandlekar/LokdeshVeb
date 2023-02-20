@@ -90,6 +90,10 @@
     width: 20%;
     height: 100%;
 }
+.liveuservideofeaturesBottomleftmute1 i{
+    font-size: 1.4rem;
+    color: #e66c02;
+}
 .liveuservideofeaturesBottomleftmute11{
     position: relative;
     width: 20%;
@@ -113,10 +117,10 @@
     justify-content: center;
 }
 .liveuservideofeaturesBottomRightclose i{
-   
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     cursor: pointer;
-    color: #000;
+    color: #ff0000;
+    font-weight: 600;
 }
 .liveuservideofeaturesBottomleftmute{
     position: absolute;
@@ -174,6 +178,10 @@
     align-items: center;
     justify-content: center;
     box-shadow: 0 0 5px 0 #000000;
+}
+.liveuservideofeaturesBottomleftcammera i{
+    font-size: 1.3rem;
+    color: #005cbf;
 }
 
 @media screen and (max-width: 768px){
