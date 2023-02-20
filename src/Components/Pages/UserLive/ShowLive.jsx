@@ -19,14 +19,14 @@ const ShowLive = () => {
     console.log(
       "%croomID ",
       "color: black;background-color: yellow;font-size: 30px;"
-      );
-      console.log(roomID);
-      console.log(
-        "%croomID ",
-        "color: black;background-color: yellow;font-size: 30px;"
-      );
+    );
+    console.log(roomID);
+    console.log(
+      "%croomID ",
+      "color: black;background-color: yellow;font-size: 30px;"
+    );
   });
- 
+
   useEffect(() => {
     showLive();
   }, []);

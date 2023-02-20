@@ -10,6 +10,7 @@ export const loadCategories = () => async (dispatch) => {
     const { data } = await Axios.get("/news-category", {
       withCredentials: true,
     });
+    console.log(data);
     for (var i = 0; i < data.length; i++) {
       const res2 = await Axios.post("/user/translate", {
         text: data[i].hindiName,

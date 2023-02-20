@@ -235,11 +235,7 @@ const UserProfile = () => {
               {singleUser?.user?._id === user?._id ? (
                 <Link to={"/myLiveoptions"}>Go Live</Link>
               ) : (
-                isLive && (
-                  <Link to={`/showlive/${username}` + singleUser?.user?.live}>
-                    See Live
-                  </Link>
-                )
+                isLive && <Link to={`/showlive/${username}`}>See Live</Link>
               )}
               <a href="">Friends</a>
               <a href="/usersphotos">Photos</a>

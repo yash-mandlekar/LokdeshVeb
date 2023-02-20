@@ -56,7 +56,7 @@ const UserLive = () => {
     streamRef.current.srcObject = localStream;
     zg.startPublishingStream(roomId, localStream);
     const formdata = new FormData();
-    formdata.append("url", localStream);
+    formdata.append("url", roomId);
     const res = await Axios.post("/user/golive", formdata, {
       headers: {
         token: localStorage.getItem("accessToken"),
