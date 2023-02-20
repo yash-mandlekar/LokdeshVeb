@@ -156,7 +156,7 @@ const UserLive = () => {
                   onClick={stopLive}
                   className="liveuservideofeaturesBottomRightclose"
                 >
-                  <i className="bi bi-x-circle"></i>
+                 <i class="bi bi-x-lg"></i>
                 </div>
               </div>
             </div>

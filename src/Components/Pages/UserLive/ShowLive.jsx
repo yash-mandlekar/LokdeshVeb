@@ -42,14 +42,53 @@ const ShowLive = () => {
     videoRef.current.srcObject = remoteStream;
   };
   return (
-    <div
-      className="liveuservideo"
-      style={{
-        marginTop: "10vh",
-      }}
-    >
-      <video autoPlay={true} ref={videoRef}></video>
-    </div>
+    <>
+     <div className="Liveuser">
+        <div className="liveuservideo">
+        <video autoPlay={true} ref={videoRef}></video>
+          <div className="liveuservideofeatures">
+            <div className="liveuservideofeaturesTop">
+              <div className="liveuservideofeaturesTopLeft">
+                <div className="liveuservideofeaturesTopLeftphoto">
+                  <img src="" alt="" />
+                </div>
+              </div>
+              <div className="liveuservideofeaturesTopLeftName">
+                <h3>{roomId}</h3>
+              </div>
+            </div>
+            <div className="liveuservideofeaturesMiddle"></div>
+            <div className="liveuservideofeaturesBottom">
+              <div className="liveuservideofeaturesBottomleft">
+                <div className="liveuservideofeaturesBottomleftmute1">
+                  <div className="liveuservideofeaturesBottomleftmute">
+                    <i
+                      className="bi bi-mic"
+                    ></i>
+                  </div>
+                </div>
+                <div className="liveuservideofeaturesBottomleftmute11">
+                  <div className="liveuservideofeaturesBottomleftcammera">
+                    <i
+                      className="bi bi-camera-video"
+                    ></i>
+                  </div>
+                </div>
+              </div>
+              <div className="liveuservideofeaturesBottomRight">
+                <div
+              
+                  className="liveuservideofeaturesBottomRightclose"
+                >
+                 <i class="bi bi-x-lg"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/*  */}
+    </>
   );
 };
 
