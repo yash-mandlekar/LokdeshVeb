@@ -34,7 +34,7 @@ import ShowLive from "./Components/Pages/UserLive/ShowLive";
 import Myliveoptions from "./Components/Pages/UserLive/Myliveoptions";
 
 const App = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch(); 
   const { loading } = useSelector((state) => state.auth);
   useEffect(() => {
     const lang = localStorage.getItem("language");
